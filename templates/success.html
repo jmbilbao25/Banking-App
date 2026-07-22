@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Payment Successful{% endblock %}
+
+{% block content %}
+<section class="success-section">
+    <div class="success-card">
+        <div class="checkmark-wrapper">
+            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+        </div>
+
+        <h1>Payment Successful!</h1>
+        <p class="success-sub">Your payment has been processed securely.</p>
+
+        <div class="receipt">
+            <div class="receipt-row">
+                <span class="label">Order ID</span>
+                <span class="value">#{{ order.id }}</span>
+            </div>
+            <div class="receipt-row">
+                <span class="label">Account</span>
+                <span class="value">{{ order.account }}</span>
+            </div>
+            <div class="receipt-divider"></div>
+            {% for item in order.order_items %}
+            <div class="receipt-row receipt-item">
+                <span class="label">{{ item.name }} × {{ item.quantity }}</span>
+                <span class="value">₱{{ "%.2f"|format(item.quantity * item.price) }}</span>
+            </div>
+            {% endfor %}
+            <div class="receipt-divider"></div>
+            <div class="receipt-row receipt-total">
+                <span class="label">Total Paid</span>
+                <span class="value">₱{{ "%.2f"|format(order.total) }}</span>
+            </div>
+            <div class="receipt-row">
+                <span class="label">Status</span>
+                <span class="value status-paid">PAID</span>
+            </div>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Back to Dashboard</a>
+    </div>
+</section>
+{% endblock %}

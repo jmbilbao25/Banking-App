@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>Payment Dashboard</h1>
+    <p class="hero-sub">Monitor incoming payment requests and their status.</p>
+</section>
+
+<section class="orders-section">
+    {% if orders %}
+    <div class="orders-grid">
+        {% for order in orders %}
+        <div class="order-card {% if order.status == 'PAID' %}order-paid{% endif %}">
+            <div class="order-header">
+                <span class="order-id">#{{ order.id }}</span>
+                <span class="order-status status-{{ order.status|lower }}">{{ order.status }}</span>
+            </div>
+            <div class="order-body">
+                <div class="order-account">
+                    <span class="label">Account</span>
+                    <span class="value">{{ order.account }}</span>
+                </div>
+                <div class="order-items-summary">
+                    <span class="label">Items</span>
+                    <span class="value">{{ order.order_items|length }} item{{ 's' if order.order_items|length != 1 }}</span>
+                </div>
+                <ul class="order-items-list">
+                    {% for item in order.order_items %}
+                    <li>
+                        <span class="item-name">{{ item.name }}</span>
+                        <span class="item-detail">× {{ item.quantity }} @ ₱{{ "%.2f"|format(item.price) }}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <div class="order-total">
+                    <span class="label">Total</span>
+                    <span class="total-amount">₱{{ "%.2f"|format(order.total) }}</span>
+                </div>
+            </div>
+            <div class="order-actions">
+                {% if order.status == 'PENDING' %}
+                <div style="text-align:center; margin-top:0.5rem;">
+                    <p style="color:#94a3b8; font-size:0.8rem; margin-bottom:0.5rem;">Scan to pay</p>
+                    <img src="{{ url_for('api_get_qr', order_id=order.id) }}" alt="QR Code" style="border-radius:6px; width:160px; height:160px;">
+                </div>
+                {% else %}
+                <a href="{{ url_for('success_page', order_id=order.id) }}" class="btn btn-ghost">View Receipt</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <div class="empty-icon">📭</div>
+        <h2>No Orders Yet</h2>
+        <p>Waiting for payment requests from the e-commerce app.</p>
+        <div class="empty-hint">
+            <p>The e-commerce app should POST to:</p>
+            <code>POST {{ base_url }}/api/orders</code>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock %}
