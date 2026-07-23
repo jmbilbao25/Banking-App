@@ -36,11 +36,21 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
 
-# Seed database at startup
-try:
-    seed_data(app, db)
-except Exception as e:
-    print(f"Error seeding database: {e}")
+# Seed database at startup with retry logic for MySQL readiness
+from sqlalchemy.exc import OperationalError
+retries = 10
+while retries > 0:
+    try:
+        seed_data(app, db)
+        print("Database seeded successfully.")
+        break
+    except OperationalError as e:
+        print(f"Database not ready yet, retrying in 5 seconds... ({retries} retries left)")
+        time.sleep(5)
+        retries -= 1
+    except Exception as e:
+        print(f"Error seeding database: {e}")
+        break
 
 ECOM_CALLBACK_BASE = os.environ.get('ECOM_CALLBACK_BASE', 'http://ecommerce:5000')
 if not os.environ.get('ECOM_CALLBACK_BASE'):

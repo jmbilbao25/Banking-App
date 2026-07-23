@@ -32,9 +32,18 @@ else:
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
+from sqlalchemy.exc import OperationalError
 with app.app_context():
-    db.create_all()
-    
+    retries = 10
+    while retries > 0:
+        try:
+            db.create_all()
+            print("Database initialized.")
+            break
+        except OperationalError:
+            print(f"Database not ready yet, retrying in 5 seconds... ({retries} retries left)")
+            time.sleep(5)
+            retries -= 1
 BANK_PUBLIC_BASE = os.environ.get('BANK_PUBLIC_BASE', 'http://127.0.0.1:5001')
 MERCHANT_ACCOUNT = os.environ.get('MERCHANT_ACCOUNT', 'jmb-grocery')
 
