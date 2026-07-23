@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ theme }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="user-greeting">
+                {% if current_user %}
+                    <span>Hello, <strong>{{ current_user.username }}</strong>!</span>
+                {% else %}
+                    <span>Welcome, <strong>Guest</strong>!</span>
+                {% endif %}
+            </div>
+            <div class="nav-links">
+                <a href="/cart" class="btn btn-secondary">
+                    🛒 Cart {% if cart_count > 0 %}<span class="badge">{{ cart_count }}</span>{% endif %}
+                </a>
+                {% if current_user %}
+                    <a href="/logout" class="btn btn-danger">Logout</a>
+                {% else %}
+                    <a href="/login" class="btn btn-outline">Login</a>
+                    <a href="/register" class="btn btn-primary">Register</a>
+                {% endif %}
+            </div>
+        </nav>
+        
+        <div class="text-center mb-4">
+            <h1>Welcome to {{ theme }}</h1>
+            <p class="text-muted">Discover our fresh groceries and everyday essentials.</p>
+        </div>
+        
+        <h2 class="mb-4">Featured Products</h2>
+        
+        <div class="product-grid">
+            {% for p in products %}
+            <div class="product-card">
+                <div class="product-emoji">{{ p.image }}</div>
+                <h3 class="product-title">{{ p.name }}</h3>
+                <div class="product-price">${{ "%.2f"|format(p.price) }}</div>
+                <a href="/cart/add/{{ p.id }}" class="btn btn-primary btn-block">Add to Cart</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

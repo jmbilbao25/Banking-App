@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ecommerce-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: ecommerce-app
+  template:
+    metadata:
+      labels:
+        app: ecommerce-app
+    spec:
+      containers:
+      - name: ecommerce-app
+        image: myregistry.azurecr.io/ecommerce-app:latest
+        ports:
+        - containerPort: 5000
+        env:
+        - name: BANK_PUBLIC_BASE
+          value: "http://bank.domain.com"
+        - name: MERCHANT_ACCOUNT
+          value: "sweetcrumb-pastries"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 15
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 5000
+          initialDelaySeconds: 5
+          periodSeconds: 10

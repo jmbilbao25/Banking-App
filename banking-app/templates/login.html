@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="center-layout">
+        <div class="glass-panel" style="width: 100%; max-width: 400px;">
+            <div class="header" style="justify-content: center; box-shadow: none; border: none; padding-bottom: 0;">
+                <h1>Nexus Bank</h1>
+            </div>
+            <div class="text-center mb-4">
+                <p class="text-muted">Sign in to your account</p>
+            </div>
+            
+            {% if error %}
+            <div class="error-banner mb-4 text-center">
+                <strong>Error:</strong> {{ error }}
+            </div>
+            {% endif %}
+            
+            <form method="POST" action="/login">
+                <div class="form-group">
+                    <label>Account ID</label>
+                    <input type="text" name="account_id" class="form-control" required placeholder="e.g., alice-consumer">
+                </div>
+                
+                <div class="form-group mb-4">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required value="password123">
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

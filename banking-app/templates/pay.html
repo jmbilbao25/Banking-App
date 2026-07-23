@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="center-layout">
+        <div class="glass-panel" style="width: 100%; max-width: 500px;">
+            <div class="text-center mb-4">
+                <h2>Confirm Payment</h2>
+                <p class="text-muted">Review details before paying</p>
+            </div>
+            
+            <div class="payment-summary mb-4">
+                <div class="payment-summary-row">
+                    <span class="text-muted">Order ID:</span>
+                    <strong class="font-mono">{{ order_id }}</strong>
+                </div>
+                <div class="checkout-item mb-2" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem;">
+                    <span class="text-muted">Paying to:</span>
+                    <strong>{{ merchant_account }}</strong>
+                </div>
+
+                {% if order_details and order_details['items'] %}
+                <div class="order-items my-4" style="text-align: left; background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px;">
+                    <p class="text-muted mb-2" style="font-size: 0.85rem; text-transform: uppercase;">Items in Order:</p>
+                    {% for item in order_details['items'] %}
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.95rem;">
+                        <span>{{ item.product.image }} {{ item.product.name }} (x{{ item.quantity }})</span>
+                        <span>${{ "%.2f"|format(item.subtotal) }}</span>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                <div class="checkout-item" style="font-size: 1.25rem; font-weight: 700; margin-top: 1rem;">
+                    <span>Total:</span>
+                    <span class="text-success">${{ amount }}</span>
+                </div>
+            </div>
+            
+            {% if error %}
+            <div class="error-banner mb-4">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if not expired %}
+            <form method="POST" action="/pay">
+                <input type="hidden" name="order_id" value="{{ order_id }}">
+                <input type="hidden" name="amount" value="{{ amount }}">
+                <input type="hidden" name="merchant_account" value="{{ merchant_account }}">
+                <input type="hidden" name="expires" value="{{ expires }}">
+                
+                <div class="form-group mb-4">
+                    <label>Select Account to Pay From</label>
+                    <select name="consumer_account" class="form-control" required>
+                        {% for account in accounts %}
+                            <option value="{{ account.id }}">{{ account.name }} (Bal: ${{ "%.2f"|format(account.balance) }})</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Confirm Payment</button>
+            </form>
+            {% else %}
+            <div class="text-center mt-4">
+                <p class="text-muted">You can safely close this window.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - JMB Grocery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .checkout-items {
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        .checkout-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--surface-border);
+        }
+        .checkout-item:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container center-layout">
+        <div class="checkout-card">
+            <h1 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-main); background: none; -webkit-text-fill-color: currentcolor;">Checkout Summary</h1>
+            
+            <div class="checkout-items">
+                {% for item in order['items'] %}
+                <div class="checkout-item">
+                    <span>{{ item.product.image }} {{ item.product.name }} (x{{ item.quantity }})</span>
+                    <strong>${{ "%.2f"|format(item.subtotal) }}</strong>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; border-top: 1px solid var(--surface-border); padding-top: 1rem;">
+                <span>Total:</span>
+                <span style="color: var(--primary);">${{ "%.2f"|format(order.total) }}</span>
+            </div>
+            
+            {% if order.status == 'PENDING' %}
+            <div class="qr-container">
+                <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #64748b; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Scan to Pay</h3>
+                <p id="countdown-timer" style="color: #ef4444; font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Expires in: --:--</p>
+                <img src="/qr/{{ order.id }}" alt="Payment QR Code">
+                <div class="mt-4">
+                    <a href="{{ payment_url }}" target="_blank" class="btn btn-outline">Simulate Scanning</a>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="mt-4">
+                <p class="text-muted mb-4">Order Status</p>
+                <div id="order-status" class="status-badge {% if order.status == 'PAID' %}paid{% elif order.status == 'EXPIRED' %}error-banner{% else %}pending{% endif %}" style="{% if order.status == 'EXPIRED' %}padding: 0.5rem 1rem; display: inline-block; width: auto;{% endif %}">
+                    {% if order.status == 'PAID' %}
+                        Payment Complete
+                    {% elif order.status == 'EXPIRED' %}
+                        QR Code Expired
+                    {% else %}
+                        <span class="pulse-text">Waiting for payment...</span>
+                    {% endif %}
+                </div>
+                {% if order.status == 'EXPIRED' %}
+                <div class="mt-4">
+                    <a href="/" class="btn btn-primary">Start New Order</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            var statusEl = document.getElementById('order-status');
+            var timerEl = document.getElementById('countdown-timer');
+            var expiresAt = {{ order.expires_at|default(0) }} * 1000;
+            
+            // If already paid or expired based on template render, stop polling
+            if (statusEl.classList.contains('paid') || statusEl.classList.contains('error-banner')) return;
+
+            // Countdown timer
+            if (timerEl && expiresAt > 0) {
+                var countdownInterval = setInterval(function() {
+                    var now = new Date().getTime();
+                    var distance = expiresAt - now;
+                    
+                    if (distance < 0) {
+                        clearInterval(countdownInterval);
+                        timerEl.innerHTML = "Expired";
+                    } else {
+                        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                        timerEl.innerHTML = "Expires in: " + minutes + "m " + (seconds < 10 ? "0" : "") + seconds + "s";
+                    }
+                }, 1000);
+            }
+
+            var pollInterval = setInterval(function() {
+                fetch('/api/orders/{{ order.id }}/status')
+                    .then(function(res) { return res.json(); })
+                    .then(function(data) {
+                        if (data.status === 'PAID') {
+                            statusEl.innerHTML = 'Payment Complete';
+                            statusEl.className = 'status-badge paid';
+                            clearInterval(pollInterval);
+                            document.querySelector('.qr-container').style.display = 'none';
+                        } else if (data.status === 'EXPIRED') {
+                            statusEl.innerHTML = 'QR Code Expired';
+                            statusEl.className = 'status-badge error-banner';
+                            statusEl.style.padding = '0.5rem 1rem';
+                            statusEl.style.display = 'inline-block';
+                            statusEl.style.width = 'auto';
+                            clearInterval(pollInterval);
+                            document.querySelector('.qr-container').style.display = 'none';
+                            
+                            var newOrderBtn = document.createElement('div');
+                            newOrderBtn.className = 'mt-4';
+                            newOrderBtn.innerHTML = '<a href="/" class="btn btn-primary">Start New Order</a>';
+                            statusEl.parentElement.appendChild(newOrderBtn);
+                        }
+                    })
+                    .catch(function() { /* silent retry on next interval */ });
+            }, 2000);
+        })();
+    </script>
+</body>
+</html>

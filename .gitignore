@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+*.egg-info/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Docker volumes (local dev)
+mysql_data/
+
+# Environment / Secrets
+.env
+
+# Agent / Memory Bank
+.agents/
+.gemini/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Database (local dev)
+*.db

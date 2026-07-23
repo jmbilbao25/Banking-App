@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Success</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="center-layout">
+        <div class="glass-panel text-center" style="width: 100%; max-width: 450px;">
+            <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                <circle class="success-checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
+                <path class="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+            </svg>
+            
+            <h2 class="text-success mb-4">Payment Successful</h2>
+            <p class="text-muted mb-4">Your payment for order <strong class="font-mono text-main">{{ order_id }}</strong> has been securely processed.</p>
+            
+            <a href="/accounts" class="btn btn-primary btn-block">Return to Dashboard</a>
+        </div>
+    </div>
+</body>
+</html>

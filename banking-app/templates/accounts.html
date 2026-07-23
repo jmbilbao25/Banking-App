@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Nexus Bank</h1>
+            <div class="user-info">
+                <span>Welcome, <strong>{{ current_user.name }}</strong> 
+                    {% if current_user.is_admin %}<span class="badge badge-admin">ADMIN</span>{% endif %}
+                </span>
+                <a href="/logout" class="text-danger">Logout</a>
+            </div>
+        </div>
+        
+        <div class="cta-banner">
+            <div class="cta-banner-text">
+                <h2>Ready to pay?</h2>
+                <p>Scan a merchant's QR code to authorize a payment instantly.</p>
+            </div>
+            <a href="/scan" class="btn btn-success">
+                📷 Scan QR Code
+            </a>
+        </div>
+
+        {% if current_user.is_admin %}
+        <div class="glass-panel mb-4">
+            <h2>Admin Tools</h2>
+            <div class="admin-grid">
+                <!-- Add Funds Tool -->
+                <div class="admin-card">
+                    <h3>💰 Add Funds</h3>
+                    <form action="/admin/add_funds" method="POST">
+                        <div class="form-group">
+                            <label>Select Account</label>
+                            <select name="account_id" class="form-control" required>
+                                {% for acct in all_accounts %}
+                                <option value="{{ acct.id }}">{{ acct.name }} ({{ acct.id }}) - ${{ "%.2f"|format(acct.balance) }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Amount ($)</label>
+                            <input type="number" name="amount" class="form-control" step="0.01" min="0.01" required placeholder="100.00">
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Deposit Funds</button>
+                    </form>
+                </div>
+                
+                <!-- Test QR Tool -->
+                <div class="admin-card">
+                    <h3>🔗 Generate Test QR</h3>
+                    <form id="qr-form" onsubmit="generateQR(event)">
+                        <div class="form-group">
+                            <label>Amount ($)</label>
+                            <input type="number" id="qr-amount" class="form-control" step="0.01" min="0.01" required value="5.00">
+                        </div>
+                        <div class="form-group">
+                            <label>Merchant ID</label>
+                            <input type="text" id="qr-merchant" class="form-control" required value="jmb-grocery">
+                        </div>
+                        <button type="submit" class="btn btn-outline btn-block">Generate QR Code</button>
+                    </form>
+                    
+                    <div id="qr-result" class="text-center mt-4" style="display: none;">
+                        <p class="text-muted" style="font-size: 0.8rem; margin: 0 0 10px 0;">Scan this with the "Scan QR Code" button above!</p>
+                        <img id="qr-image" src="" alt="Test QR Code" style="max-width: 200px; border: 4px solid white; box-shadow: var(--shadow); background: white; padding: 10px; border-radius: 8px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="glass-panel">
+            <h2>Accounts Directory</h2>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Available Balance</th>
+                    </tr>
+                    {% for account in accounts %}
+                    <tr>
+                        <td class="font-mono text-muted">{{ account.id }}</td>
+                        <td style="font-weight: 500;">{{ account.name }}</td>
+                        <td><span class="badge">{{ account.type }}</span></td>
+                        <td class="balance">${{ "%.2f"|format(account.balance) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function generateQR(e) {
+            e.preventDefault();
+            const amount = document.getElementById('qr-amount').value;
+            const merchant = document.getElementById('qr-merchant').value;
+            const qrImg = document.getElementById('qr-image');
+            const qrResult = document.getElementById('qr-result');
+            
+            // Build URL to the new admin endpoint
+            const url = `/admin/qr?amount=${amount}&merchant=${encodeURIComponent(merchant)}&t=${Date.now()}`;
+            qrImg.src = url;
+            qrResult.style.display = 'block';
+            
+            // Smooth reveal animation
+            qrResult.style.opacity = '0';
+            setTimeout(() => {
+                qrResult.style.transition = 'opacity 0.2s ease';
+                qrResult.style.opacity = '1';
+            }, 100);
+        }
+    </script>
+</body>
+</html>

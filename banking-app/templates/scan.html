@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan QR Code - Banking</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://unpkg.com/html5-qrcode"></script>
+</head>
+<body>
+    <div class="center-layout">
+        <div class="glass-panel text-center" style="width: 100%; max-width: 500px;">
+            <h2>Scan to Pay</h2>
+            <p class="text-muted mb-4">Point your camera at the merchant's QR code.</p>
+            
+            <div id="reader" style="border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; background: #000;"></div>
+            
+            <a href="/accounts" class="btn btn-outline btn-block">&larr; Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script>
+        function onScanSuccess(decodedText, decodedResult) {
+            html5QrcodeScanner.clear().then(_ => {
+                window.location.href = decodedText;
+            }).catch(error => {
+                console.error("Failed to clear html5QrcodeScanner. ", error);
+            });
+        }
+
+        function onScanFailure(error) {
+            // handle scan failure
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner(
+            "reader",
+            { fps: 10, qrbox: {width: 250, height: 250} },
+            /* verbose= */ false);
+            
+        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+    </script>
+</body>
+</html>

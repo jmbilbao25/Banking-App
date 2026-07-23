@@ -1,0 +1,27 @@
+pipeline { 
+  agent any 
+  environment { 
+    IMAGE = "myregistry.azurecr.io/banking-app" 
+    TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}" 
+  } 
+  stages { 
+    stage('Build & Unit Test') { 
+      steps { sh 'pip install -r requirements.txt && pytest' } 
+    } 
+    stage('Docker Build & Push') { 
+      steps { sh 'docker build -t $IMAGE:$TAG . && docker push $IMAGE:$TAG' } 
+    } 
+    stage('Deploy to Test (ACI)') { 
+      steps { sh './deploy/aci-deploy.sh $IMAGE:$TAG' } 
+    } 
+    stage('Smoke Test') { 
+      steps { sh 'pytest tests/smoke --base-url=$TEST_URL' } 
+    } 
+    stage('Approve Prod Deploy') { 
+      steps { input message: 'Deploy to production?' } 
+    } 
+    stage('Deploy to Prod (K8s)') { 
+      steps { sh 'kubectl set image deployment/banking-app app=$IMAGE:$TAG' } 
+    } 
+  } 
+}

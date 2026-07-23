@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart - JMB Grocery</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .cart-container {
+            background: var(--surface);
+            backdrop-filter: var(--glass-blur);
+            border-radius: var(--radius);
+            padding: 2rem;
+            border: 1px solid var(--surface-border);
+            box-shadow: var(--shadow);
+            animation: fadeUp 0.4s ease forwards;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--surface-border);
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-details {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .cart-item-emoji {
+            font-size: 2rem;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .cart-summary {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--surface-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="user-greeting">
+                <a href="/" class="btn btn-outline">&larr; Back to Store</a>
+            </div>
+            <div class="nav-links">
+                <h2>Your Cart</h2>
+            </div>
+        </nav>
+
+        <div class="cart-container">
+            {% if cart_items %}
+                <div class="cart-items">
+                    {% for item in cart_items %}
+                    <div class="cart-item">
+                        <div class="cart-item-details">
+                            <span class="cart-item-emoji">{{ item.product.image }}</span>
+                            <div>
+                                <h3 style="margin:0;">{{ item.product.name }}</h3>
+                                <div class="text-muted">${{ "%.2f"|format(item.product.price) }} x {{ item.quantity }}</div>
+                            </div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <strong>${{ "%.2f"|format(item.subtotal) }}</strong>
+                            <a href="/cart/remove/{{ item.product.id }}" class="btn btn-danger" style="padding: 0.5rem 1rem;">Remove</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div class="cart-summary">
+                    <span>Total:</span>
+                    <span style="color: var(--primary);">${{ "%.2f"|format(total) }}</span>
+                </div>
+                
+                <div class="text-center mt-4 pt-4">
+                    <a href="/checkout/create" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2rem;">Proceed to Checkout &rarr;</a>
+                </div>
+            {% else %}
+                <div class="text-center py-4" style="padding: 4rem 0;">
+                    <p class="text-muted mb-4" style="font-size: 1.2rem;">Your cart is empty.</p>
+                    <a href="/" class="btn btn-primary">Start Shopping</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
