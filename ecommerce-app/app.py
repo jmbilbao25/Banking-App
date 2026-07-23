@@ -39,6 +39,21 @@ with app.app_context():
         try:
             db.create_all()
             print("Database initialized.")
+            
+            # Seed products if the table is empty
+            if Product.query.count() == 0:
+                products_to_seed = [
+                    Product(id="p1", name="Jasmine Rice (5kg)", price=12.00, image_url="/static/images/rice.png", stock=50),
+                    Product(id="p2", name="Fresh Eggs (12pcs)", price=4.50, image_url="/static/images/eggs.png", stock=100),
+                    Product(id="p3", name="Whole Milk (1L)", price=3.00, image_url="/static/images/milk.png", stock=30),
+                    Product(id="p4", name="Chicken Breast (1kg)", price=8.50, image_url="/static/images/chicken.png", stock=40),
+                    Product(id="p5", name="Bananas (bundle)", price=2.50, image_url="/static/images/bananas.png", stock=60),
+                    Product(id="p6", name="Fresh Avocados (3pcs)", price=5.00, image_url="/static/images/avocados.png", stock=25)
+                ]
+                db.session.bulk_save_objects(products_to_seed)
+                db.session.commit()
+                print("Products seeded successfully.")
+                
             break
         except OperationalError:
             print(f"Database not ready yet, retrying in 5 seconds... ({retries} retries left)")
