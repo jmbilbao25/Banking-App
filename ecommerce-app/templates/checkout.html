@@ -41,33 +41,45 @@
                 <span style="color: var(--primary);">${{ "%.2f"|format(order.total) }}</span>
             </div>
             
-            {% if order.status == 'PENDING' %}
-            <div class="qr-container">
-                <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #64748b; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Scan to Pay</h3>
-                <p id="countdown-timer" style="color: #ef4444; font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Expires in: --:--</p>
-                <img src="/qr/{{ order.id }}" alt="Payment QR Code">
-                <div class="mt-4">
-                    <a href="{{ payment_url }}" target="_blank" class="btn btn-outline">Simulate Scanning</a>
+            <div id="success-animation-container" class="success-content" style="{% if order.status != 'PAID' %}display: none;{% endif %}">
+                <svg class="success-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="success-svg__circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="success-svg__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h2 class="success-title">Payment Successful!</h2>
+                <p class="success-subtitle">Your order is being processed.</p>
+                <div class="success-actions">
+                    <a href="/" class="btn btn-primary">Continue Shopping</a>
                 </div>
             </div>
-            {% endif %}
-            
-            <div class="mt-4">
-                <p class="text-muted mb-4">Order Status</p>
-                <div id="order-status" class="status-badge {% if order.status == 'PAID' %}paid{% elif order.status == 'EXPIRED' %}error-banner{% else %}pending{% endif %}" style="{% if order.status == 'EXPIRED' %}padding: 0.5rem 1rem; display: inline-block; width: auto;{% endif %}">
-                    {% if order.status == 'PAID' %}
-                        Payment Complete
-                    {% elif order.status == 'EXPIRED' %}
-                        QR Code Expired
-                    {% else %}
-                        <span class="pulse-text">Waiting for payment...</span>
-                    {% endif %}
-                </div>
-                {% if order.status == 'EXPIRED' %}
-                <div class="mt-4">
-                    <a href="/" class="btn btn-primary">Start New Order</a>
+
+            <div id="pending-container" style="{% if order.status == 'PAID' %}display: none;{% endif %}">
+                {% if order.status == 'PENDING' %}
+                <div class="qr-container" id="qr-container">
+                    <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #64748b; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Scan to Pay</h3>
+                    <p id="countdown-timer" style="color: #ef4444; font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Expires in: --:--</p>
+                    <img src="/qr/{{ order.id }}" alt="Payment QR Code">
+                    <div class="mt-4">
+                        <a href="{{ payment_url }}" target="_blank" class="btn btn-outline">Simulate Scanning</a>
+                    </div>
                 </div>
                 {% endif %}
+                
+                <div class="mt-4">
+                    <p class="text-muted mb-4">Order Status</p>
+                    <div id="order-status" class="status-badge {% if order.status == 'EXPIRED' %}error-banner{% else %}pending{% endif %}" style="{% if order.status == 'EXPIRED' %}padding: 0.5rem 1rem; display: inline-block; width: auto;{% endif %}">
+                        {% if order.status == 'EXPIRED' %}
+                            QR Code Expired
+                        {% else %}
+                            <span class="pulse-text">Waiting for payment...</span>
+                        {% endif %}
+                    </div>
+                    {% if order.status == 'EXPIRED' %}
+                    <div class="mt-4" id="new-order-btn">
+                        <a href="/" class="btn btn-primary">Start New Order</a>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
@@ -103,10 +115,9 @@
                     .then(function(res) { return res.json(); })
                     .then(function(data) {
                         if (data.status === 'PAID') {
-                            statusEl.innerHTML = 'Payment Complete';
-                            statusEl.className = 'status-badge paid';
+                            document.getElementById('pending-container').style.display = 'none';
+                            document.getElementById('success-animation-container').style.display = 'block';
                             clearInterval(pollInterval);
-                            document.querySelector('.qr-container').style.display = 'none';
                         } else if (data.status === 'EXPIRED') {
                             statusEl.innerHTML = 'QR Code Expired';
                             statusEl.className = 'status-badge error-banner';
@@ -114,12 +125,17 @@
                             statusEl.style.display = 'inline-block';
                             statusEl.style.width = 'auto';
                             clearInterval(pollInterval);
-                            document.querySelector('.qr-container').style.display = 'none';
                             
-                            var newOrderBtn = document.createElement('div');
-                            newOrderBtn.className = 'mt-4';
-                            newOrderBtn.innerHTML = '<a href="/" class="btn btn-primary">Start New Order</a>';
-                            statusEl.parentElement.appendChild(newOrderBtn);
+                            var qrContainer = document.getElementById('qr-container');
+                            if (qrContainer) qrContainer.style.display = 'none';
+                            
+                            if (!document.getElementById('new-order-btn')) {
+                                var newOrderBtn = document.createElement('div');
+                                newOrderBtn.id = 'new-order-btn';
+                                newOrderBtn.className = 'mt-4';
+                                newOrderBtn.innerHTML = '<a href="/" class="btn btn-primary">Start New Order</a>';
+                                statusEl.parentElement.appendChild(newOrderBtn);
+                            }
                         }
                     })
                     .catch(function() { /* silent retry on next interval */ });
