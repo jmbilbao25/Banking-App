@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction History - {{ theme }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        .tx-card {
+            background: var(--surface-card);
+            border: 1px solid var(--surface-border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1.25rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        .tx-card:hover {
+            border-color: rgba(52, 211, 153, 0.35);
+            transform: translateY(-2px);
+        }
+        .tx-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid var(--surface-border);
+        }
+        .tx-items {
+            margin-bottom: 1rem;
+        }
+        .tx-item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 0.4rem;
+        }
+        .tx-item-thumb {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            object-fit: cover;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col">
+        <nav class="navbar">
+            <a href="/" class="brand">
+                <div class="brand-logo">TS</div>
+                <span class="brand-title">{{ theme }}</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="btn btn-outline">&larr; Back to Product Catalog</a>
+            </div>
+        </nav>
+
+        <div class="w-full max-w-4xl mx-auto" style="margin-top: 1rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+                <div>
+                    <h2>Transaction History</h2>
+                    <p class="text-muted">Review your previous grocery purchases and order statuses.</p>
+                </div>
+                <a href="/" class="btn btn-primary">&plus; New Order</a>
+            </div>
+
+            {% if error %}
+            <div class="error-banner mb-4">
+                {{ error }}
+            </div>
+            {% endif %}
+
+            {% if orders %}
+                <div class="tx-list">
+                    {% for order in orders %}
+                    <div class="tx-card">
+                        <div class="tx-header">
+                            <div>
+                                <span class="font-mono" style="font-weight: 700; color: var(--accent); font-size: 1.1rem;">#{{ order['id'] }}</span>
+                                <span class="text-muted" style="margin-left: 0.75rem; font-size: 0.85rem;">{{ order['created_at'] }}</span>
+                            </div>
+                            <div>
+                                {% if order['status'] == 'PAID' %}
+                                    <span class="status-badge paid">Paid & Completed</span>
+                                {% elif order['status'] == 'PENDING' %}
+                                    <span class="status-badge pending">Payment Pending</span>
+                                {% else %}
+                                    <span class="status-badge error-banner" style="display: inline-block; padding: 0.4rem 1rem;">Expired</span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="tx-items">
+                            {% for item in order['items'] %}
+                            <div class="tx-item-row">
+                                <div style="display: flex; align-items: center;">
+                                    {% if item['product'] and item['product']['image_url'] %}
+                                    <img src="{{ item['product']['image_url'] }}" alt="{{ item['product_name'] }}" class="tx-item-thumb">
+                                    {% endif %}
+                                    <span>{{ item['product_name'] }} (x{{ item['quantity'] }})</span>
+                                </div>
+                                <strong>${{ "%.2f"|format(item['subtotal']) }}</strong>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--surface-border); padding-top: 0.75rem; font-weight: 700;">
+                            <span>Total Amount</span>
+                            <span style="color: var(--accent); font-size: 1.25rem;">${{ "%.2f"|format(order['total']) }}</span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="glass-panel text-center py-4" style="padding: 3rem 0;">
+                    <p class="text-muted mb-4" style="font-size: 1.2rem;">No transaction history found.</p>
+                    <a href="/" class="btn btn-primary">Start Shopping</a>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
