@@ -1,5 +1,4 @@
 pipeline { 
-pipeline { 
   agent any 
   environment { 
     // Docker Hub Repository
@@ -7,10 +6,7 @@ pipeline {
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
     
     // Target deployment EC2 IP
-    // TODO: Replace with the actual E-commerce EC2 IP
-    EC2_IP = "REPLACE_WITH_ECOM_EC2_IP"
-    // TODO: Replace with the actual Banking EC2 IP
-    BANK_IP = "REPLACE_WITH_BANKING_EC2_IP"
+    EC2_IP = "100.55.37.88" // TODO: Replace with actual Ecom VM IP
     EC2_USER = "ubuntu"
   } 
   stages { 
@@ -32,7 +28,7 @@ pipeline {
       steps { 
         sshagent(credentials: ['ec2-ssh-key']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App/ecommerce-app && export BANK_PUBLIC_BASE=http://$BANK_IP && sudo -E docker compose pull && sudo -E docker compose up -d"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App/ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce nginx"
           '''
         }
       } 

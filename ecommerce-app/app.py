@@ -3,14 +3,14 @@ import io
 import uuid
 import qrcode
 import time
+import socket
 from flask import Flask, request, jsonify, render_template, send_file, redirect, url_for, session
 from models import db, User
 
 app = Flask(__name__)
 app.secret_key = 'super-secret-ecommerce-key'
 
-import socket
-
+# Setup database connection
 db_user = os.environ.get('DB_USER', 'ecomuser')
 db_password = os.environ.get('DB_PASSWORD', 'devpass')
 db_host = os.environ.get('DB_HOST', 'mysql')

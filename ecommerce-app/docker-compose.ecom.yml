@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  ecommerce:
+    image: jmbilbao25/qr-ecommerce-app:latest
+    container_name: ecommerce-app
+    environment:
+      - BANK_PUBLIC_BASE=${BANK_PUBLIC_BASE:-http://32.192.179.249}
+      - DB_HOST=mysql
+      - DB_NAME=${DB_NAME:-ecomdb}
+      - DB_USER=${DB_USER:-ecomuser}
+      - DB_PASSWORD=${DB_PASSWORD:-devpass}
+      - USE_SQLITE=${USE_SQLITE:-}
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - ecom-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: ecom-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - ecommerce
+    restart: unless-stopped
+    networks:
+      - ecom-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: ecom-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-devroot}
+      - MYSQL_DATABASE=${DB_NAME:-ecomdb}
+      - MYSQL_USER=${DB_USER:-ecomuser}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-devpass}
+    volumes:
+      - ecom_mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - ecom-net
+
+volumes:
+  ecom_mysql_data:
+
+networks:
+  ecom-net:
