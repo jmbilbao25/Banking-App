@@ -2,26 +2,6 @@
 
 A two-app Flask system demonstrating a QR-code-based payment flow, containerised with Docker and deployed behind Nginx.
 
-## Architecture
-
-```
-                     ┌──────────────────────┐
-  Customer ────80───►│   Nginx (port 80)    │
-                     │   reverse proxy      │
-                     └──┬──────────────┬────┘
-          shop.*        │              │        bank.*
-              ┌─────────┘              └─────────┐
-              ▼                                  ▼
-    ┌──────────────────┐              ┌──────────────────┐
-    │ E-commerce :5000 │              │  Banking  :5001  │
-    │ (grocery app     │   callback   │  (SQLAlchemy +   │
-    │           shop)  │◄─────────────│   MySQL)         │
-    └──────────────────┘              └────────┬─────────┘
-                                               │
-                                        ┌──────┴──────┐
-                                        │ MySQL :3306 │
-                                        └─────────────┘
-```
 
 ### Flow
 1. Customer clicks **Buy** on the e-commerce shop.
@@ -44,16 +24,6 @@ docker compose up -d --build
 docker compose ps          # all containers should be running/healthy
 ```
 
-### Access the Apps
-
-| App | Local URL |
-|-----|-----------|
-| Shop | [http://shop.127-0-0-1.nip.io](http://shop.127-0-0-1.nip.io) |
-| Bank Dashboard | [http://bank.127-0-0-1.nip.io/accounts](http://bank.127-0-0-1.nip.io/accounts) |
-| Adminer (dev only) | [http://localhost:8080](http://localhost:8080) (via SSH tunnel) |
-
-> **Deploying on a VM?** Replace `127-0-0-1` with your VM's IP (dashes, not dots).  
-> For example: `shop.20-51-32-10.nip.io`. Set `VM_IP=20-51-32-10` in `.env`.
 
 ## Project Structure
 
