@@ -1,21 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scan QR Code - Banking</title>
+    <title>Scan QR Code - Bahwan CyberBank</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
+
 <body>
     <div class="center-layout">
-        <div class="glass-panel text-center" style="width: 100%; max-width: 500px;">
-            <h2>Scan to Pay</h2>
-            <p class="text-muted mb-4">Point your camera at the merchant's QR codeeeee</p>
-            
-            <div id="reader" style="border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; background: #000;"></div>
-            
-            <a href="/accounts" class="btn btn-outline btn-block">&larr; Back to Dashboard</a>
+        <div class="glass-panel text-center" style="width: 100%; max-width: 500px; padding: 2.5rem 2rem;">
+            <div class="brand-logo" style="margin: 0 auto 1rem auto; width: 44px; height: 44px;">BC</div>
+            <h2 style="font-size: 1.75rem; color: var(--text-main); margin-bottom: 0.25rem;">Scan to Pay</h2>
+            <p class="text-muted mb-4" style="font-size: 0.9rem;">Point your camera at the merchant's QR code to scan.
+            </p>
+
+            <div id="reader"
+                style="border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; background: #0b0e14; box-shadow: var(--shadow-glow);">
+            </div>
+
+            <a href="/accounts" class="btn btn-outline btn-block">&larr; Return to Dashboard</a>
         </div>
     </div>
 
@@ -34,10 +40,11 @@
 
         let html5QrcodeScanner = new Html5QrcodeScanner(
             "reader",
-            { fps: 10, qrbox: {width: 250, height: 250} },
+            { fps: 10, qrbox: { width: 250, height: 250 } },
             /* verbose= */ false);
-            
+
         html5QrcodeScanner.render(onScanSuccess, onScanFailure);
     </script>
 </body>
+
 </html>
