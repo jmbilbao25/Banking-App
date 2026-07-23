@@ -14,8 +14,8 @@ A two-app Flask system demonstrating a QR-code-based payment flow, containerised
               ▼                                  ▼
     ┌──────────────────┐              ┌──────────────────┐
     │ E-commerce :5000 │              │  Banking  :5001  │
-    │ (Sweetcrumb      │   callback   │  (SQLAlchemy +   │
-    │  Pastries shop)  │◄─────────────│   MySQL)         │
+    │ (grocery app     │   callback   │  (SQLAlchemy +   │
+    │           shop)  │◄─────────────│   MySQL)         │
     └──────────────────┘              └────────┬─────────┘
                                                │
                                         ┌──────┴──────┐
