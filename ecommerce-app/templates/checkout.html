@@ -3,85 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - JMB Grocery</title>
+    <title>Checkout - {{ theme }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <style>
         .checkout-items {
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
         .checkout-item {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 0;
+            padding: 0.75rem 0;
             border-bottom: 1px solid var(--surface-border);
         }
         .checkout-item:last-child {
             border-bottom: none;
         }
+        .checkout-item-thumb {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            object-fit: cover;
+            vertical-align: middle;
+            margin-right: 0.75rem;
+        }
     </style>
 </head>
-<body>
-    <div class="container center-layout">
-        <div class="checkout-card">
-            <h1 style="font-size: 2rem; margin-bottom: 1rem; color: var(--text-main); background: none; -webkit-text-fill-color: currentcolor;">Checkout Summary</h1>
-            
-            <div class="checkout-items">
-                {% for item in order['items'] %}
-                <div class="checkout-item">
-                    <span>{{ item.product.image }} {{ item.product.name }} (x{{ item.quantity }})</span>
-                    <strong>${{ "%.2f"|format(item.subtotal) }}</strong>
-                </div>
-                {% endfor %}
+<body class="min-h-screen flex flex-col">
+    <div class="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col">
+        <nav class="navbar">
+            <a href="/" class="brand">
+                <div class="brand-logo">TS</div>
+                <span class="brand-title">{{ theme }}</span>
+            </a>
+            <div class="nav-links">
+                <a href="/" class="btn btn-outline">&larr; Back to Product Catalog</a>
             </div>
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 2rem; border-top: 1px solid var(--surface-border); padding-top: 1rem;">
-                <span>Total:</span>
-                <span style="color: var(--primary);">${{ "%.2f"|format(order.total) }}</span>
-            </div>
-            
-            <div id="success-animation-container" class="success-content" style="{% if order.status != 'PAID' %}display: none;{% endif %}">
-                <svg class="success-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
-                    <circle class="success-svg__circle" cx="26" cy="26" r="25" fill="none"/>
-                    <path class="success-svg__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
-                </svg>
-                <h2 class="success-title">Payment Successful!</h2>
-                <p class="success-subtitle">Your order is being processed.</p>
-                <div class="success-actions">
-                    <a href="/" class="btn btn-primary">Continue Shopping</a>
-                </div>
-            </div>
+        </nav>
 
-            <div id="pending-container" style="{% if order.status == 'PAID' %}display: none;{% endif %}">
-                {% if order.status == 'PENDING' %}
-                <div class="qr-container" id="qr-container">
-                    <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #64748b; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;">Scan to Pay</h3>
-                    <p id="countdown-timer" style="color: #ef4444; font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Expires in: --:--</p>
-                    <img src="/qr/{{ order.id }}" alt="Payment QR Code">
-                    <div class="mt-4">
-                        <a href="{{ payment_url }}" target="_blank" class="btn btn-outline">Simulate Scanning</a>
+        <main class="flex-1 flex items-center justify-center py-8 w-full my-auto">
+            <div class="checkout-card glass-panel w-full max-w-2xl mx-auto text-center">
+                <h1 style="font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-main); background: none; -webkit-text-fill-color: currentcolor;">Checkout Summary</h1>
+                <p class="text-muted mb-4" style="font-size: 0.9rem;">Order ID: <strong class="font-mono" style="color: var(--accent);">{{ order.id }}</strong></p>
+
+                <div class="checkout-items">
+                    {% for item in order['items'] %}
+                    <div class="checkout-item">
+                        <div style="display: flex; align-items: center;">
+                            {% if item.product.image_url %}
+                            <img src="{{ item.product.image_url }}" alt="{{ item.product_name }}" class="checkout-item-thumb">
+                            {% endif %}
+                            <span>{{ item.product_name }} (x{{ item.quantity }})</span>
+                        </div>
+                        <strong>${{ "%.2f"|format(item.subtotal) }}</strong>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <div style="display: flex; justify-content: space-between; align-items: center; font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; border-top: 1px solid var(--surface-border); padding-top: 1rem;">
+                    <span>Total Amount:</span>
+                    <span style="color: var(--accent);">${{ "%.2f"|format(order.total) }}</span>
+                </div>
+                
+                <div id="success-animation-container" class="success-content" style="{% if order.status != 'PAID' %}display: none;{% endif %}">
+                    <svg class="success-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                        <circle class="success-svg__circle" cx="26" cy="26" r="25" fill="none"/>
+                        <path class="success-svg__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                    </svg>
+                    <h2 class="success-title">Payment Successful!</h2>
+                    <p class="success-subtitle mb-4">Your order has been placed and inventory updated.</p>
+                    <div class="success-actions" style="opacity: 1;">
+                        <a href="/" class="btn btn-primary" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">Back to Product Catalog</a>
+                        <a href="/transactions" class="btn btn-outline" style="font-size: 0.95rem; padding: 0.85rem 1.5rem;">View Order History</a>
                     </div>
                 </div>
-                {% endif %}
-                
-                <div class="mt-4">
-                    <p class="text-muted mb-4">Order Status</p>
-                    <div id="order-status" class="status-badge {% if order.status == 'EXPIRED' %}error-banner{% else %}pending{% endif %}" style="{% if order.status == 'EXPIRED' %}padding: 0.5rem 1rem; display: inline-block; width: auto;{% endif %}">
-                        {% if order.status == 'EXPIRED' %}
-                            QR Code Expired
-                        {% else %}
-                            <span class="pulse-text">Waiting for payment...</span>
-                        {% endif %}
-                    </div>
-                    {% if order.status == 'EXPIRED' %}
-                    <div class="mt-4" id="new-order-btn">
-                        <a href="/" class="btn btn-primary">Start New Order</a>
+
+                <div id="pending-container" style="{% if order.status == 'PAID' %}display: none;{% endif %}">
+                    {% if order.status == 'PENDING' %}
+                    <div class="qr-container" id="qr-container">
+                        <h3 style="margin-top: 0; margin-bottom: 0.5rem; color: #475569; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Scan with Banking App to Pay</h3>
+                        <p id="countdown-timer" style="color: #f43f5e; font-weight: 600; margin-bottom: 1rem; font-size: 0.9rem;">Expires in: --:--</p>
+                        <img src="/qr/{{ order.id }}" alt="Payment QR Code" id="qr-img">
+                        <div class="mt-4">
+                            <a href="{{ payment_url }}" target="_blank" class="btn btn-outline" style="color: #0f172a; border-color: #cbd5e1;">Simulate QR Scan / Pay</a>
+                        </div>
                     </div>
                     {% endif %}
+                    
+                    <div class="mt-4">
+                        <p class="text-muted mb-2">Order Status</p>
+                        <div id="order-status" class="status-badge {% if order.status == 'EXPIRED' %}error-banner{% else %}pending{% endif %}" style="{% if order.status == 'EXPIRED' %}padding: 0.5rem 1rem; display: inline-block; width: auto;{% endif %}">
+                            {% if order.status == 'EXPIRED' %}
+                                QR Code Expired / Session Invalidated
+                            {% else %}
+                                <span class="pulse-text">Waiting for payment...</span>
+                            {% endif %}
+                        </div>
+                        {% if order.status == 'EXPIRED' %}
+                        <div class="mt-4" id="new-order-btn">
+                            <a href="/" class="btn btn-primary">Back to Product Catalog</a>
+                        </div>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <script>
@@ -90,10 +117,8 @@
             var timerEl = document.getElementById('countdown-timer');
             var expiresAt = {{ order.expires_at|default(0) }} * 1000;
             
-            // If already paid or expired based on template render, stop polling
-            if (statusEl.classList.contains('paid') || statusEl.classList.contains('error-banner')) return;
+            if (statusEl && (statusEl.classList.contains('paid') || statusEl.classList.contains('error-banner'))) return;
 
-            // Countdown timer
             if (timerEl && expiresAt > 0) {
                 var countdownInterval = setInterval(function() {
                     var now = new Date().getTime();
@@ -115,30 +140,34 @@
                     .then(function(res) { return res.json(); })
                     .then(function(data) {
                         if (data.status === 'PAID') {
-                            document.getElementById('pending-container').style.display = 'none';
-                            document.getElementById('success-animation-container').style.display = 'block';
+                            var pendingCont = document.getElementById('pending-container');
+                            var successCont = document.getElementById('success-animation-container');
+                            if (pendingCont) pendingCont.style.display = 'none';
+                            if (successCont) successCont.style.display = 'block';
                             clearInterval(pollInterval);
                         } else if (data.status === 'EXPIRED') {
-                            statusEl.innerHTML = 'QR Code Expired';
-                            statusEl.className = 'status-badge error-banner';
-                            statusEl.style.padding = '0.5rem 1rem';
-                            statusEl.style.display = 'inline-block';
-                            statusEl.style.width = 'auto';
+                            if (statusEl) {
+                                statusEl.innerHTML = 'QR Code Expired / Session Invalidated';
+                                statusEl.className = 'status-badge error-banner';
+                                statusEl.style.padding = '0.5rem 1rem';
+                                statusEl.style.display = 'inline-block';
+                                statusEl.style.width = 'auto';
+                            }
                             clearInterval(pollInterval);
                             
                             var qrContainer = document.getElementById('qr-container');
                             if (qrContainer) qrContainer.style.display = 'none';
                             
-                            if (!document.getElementById('new-order-btn')) {
+                            if (!document.getElementById('new-order-btn') && statusEl && statusEl.parentElement) {
                                 var newOrderBtn = document.createElement('div');
                                 newOrderBtn.id = 'new-order-btn';
                                 newOrderBtn.className = 'mt-4';
-                                newOrderBtn.innerHTML = '<a href="/" class="btn btn-primary">Start New Order</a>';
+                                newOrderBtn.innerHTML = '<a href="/" class="btn btn-primary">Back to Product Catalog</a>';
                                 statusEl.parentElement.appendChild(newOrderBtn);
                             }
                         }
                     })
-                    .catch(function() { /* silent retry on next interval */ });
+                    .catch(function() { /* retry */ });
             }, 2000);
         })();
     </script>

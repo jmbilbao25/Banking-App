@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ theme }}</title>
+    <title>{{ theme }} - Fresh Organic Groceries</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-<body>
-    <div class="container">
+<body class="min-h-screen flex flex-col">
+    <div class="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col">
         <nav class="navbar">
-            <div class="user-greeting">
-                {% if current_user %}
-                    <span>Hello, <strong>{{ current_user.username }}</strong>!</span>
-                {% else %}
-                    <span>Welcome, <strong>Guest</strong>!</span>
-                {% endif %}
-            </div>
+            <a href="/" class="brand">
+                <div class="brand-logo">TS</div>
+                <span class="brand-title">{{ theme }}</span>
+            </a>
             <div class="nav-links">
+                <a href="/transactions" class="btn btn-outline">
+                    📋 Order History
+                </a>
                 <a href="/cart" class="btn btn-secondary">
                     🛒 Cart {% if cart_count > 0 %}<span class="badge">{{ cart_count }}</span>{% endif %}
                 </a>
                 {% if current_user %}
+                    <span class="user-greeting">Hi, <strong>{{ current_user.username }}</strong></span>
                     <a href="/logout" class="btn btn-danger">Logout</a>
                 {% else %}
                     <a href="/login" class="btn btn-outline">Login</a>
@@ -28,24 +29,69 @@
                 {% endif %}
             </div>
         </nav>
+
+        {% if cart_error %}
+        <div class="error-banner mb-4">
+            ⚠️ {{ cart_error }}
+        </div>
+        {% endif %}
         
         <div class="text-center mb-4">
             <h1>Welcome to {{ theme }}</h1>
-            <p class="text-muted">Discover our fresh groceries and everyday essentials.</p>
+            <p class="text-muted" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Discover fresh groceries, organic produce, and daily essentials with fast & direct payment.</p>
+        </div>
+
+        <!-- Product Search -->
+        <form action="/" method="GET" class="search-container">
+            <div class="search-input-group">
+                <span class="search-icon">🔍</span>
+                <input type="text" name="q" class="search-input" placeholder="Search products by name (e.g. Rice, Eggs, Milk)..." value="{{ search_query }}">
+                <button type="submit" class="search-btn">Search</button>
+            </div>
+            {% if search_query %}
+            <div class="text-center mt-4">
+                <a href="/" class="text-muted" style="font-size: 0.9rem;">&times; Clear search filter</a>
+            </div>
+            {% endif %}
+        </form>
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h2>{% if search_query %}Search Results for "{{ search_query }}"{% else %}Featured Products{% endif %}</h2>
+            <span class="text-muted">{{ products|length }} product{% if products|length != 1 %}s{% endif %} available</span>
         </div>
         
-        <h2 class="mb-4">Featured Products</h2>
-        
+        {% if products %}
         <div class="product-grid">
             {% for p in products %}
             <div class="product-card">
-                <div class="product-emoji">{{ p.image }}</div>
+                <div class="product-img-wrapper">
+                    <img src="{{ p.image_url }}" alt="{{ p.name }}" class="product-img">
+                </div>
                 <h3 class="product-title">{{ p.name }}</h3>
-                <div class="product-price">${{ "%.2f"|format(p.price) }}</div>
-                <a href="/cart/add/{{ p.id }}" class="btn btn-primary btn-block">Add to Cart</a>
+                <div class="product-meta">
+                    <div class="product-price">${{ "%.2f"|format(p.price) }}</div>
+                    {% if p.stock > 10 %}
+                        <span class="stock-badge in-stock">In Stock: {{ p.stock }}</span>
+                    {% elif p.stock > 0 %}
+                        <span class="stock-badge low-stock">Low Stock: {{ p.stock }}</span>
+                    {% else %}
+                        <span class="stock-badge out-of-stock">Out of Stock</span>
+                    {% endif %}
+                </div>
+                {% if p.stock > 0 %}
+                    <a href="/cart/add/{{ p.id }}" class="btn btn-primary btn-block">Add to Cart</a>
+                {% else %}
+                    <button class="btn btn-secondary btn-block" disabled>Sold Out</button>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
+        {% else %}
+        <div class="glass-panel text-center py-4">
+            <p class="text-muted mb-4" style="font-size: 1.2rem;">No products found matching "{{ search_query }}".</p>
+            <a href="/" class="btn btn-primary">View All Products</a>
+        </div>
+        {% endif %}
     </div>
 </body>
 </html>

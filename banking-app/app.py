@@ -155,7 +155,7 @@ def pay():
     if request.method == 'GET':
         order_id = request.args.get('order_id')
         amount = request.args.get('amount')
-        merchant_account = request.args.get('merchant_account')
+        merchant_account = request.args.get('merchant_account', 'techstart-grocery')
         expires = request.args.get('expires')
         
         if expires and time.time() > int(expires):
@@ -165,19 +165,21 @@ def pay():
         if existing_tx:
             return render_template('pay.html', order_id=order_id, error="This order has already been paid.", expired=True)
         
-        # Only allow paying from the currently logged in account
-        accounts = [Account.query.get(session['account_id'])]
-        
-        # Try to fetch detailed order items from Ecommerce app API
+        # Fetch detailed order items and check live status from Ecommerce app API
         order_details = None
         if order_id:
             try:
                 resp = requests.get(f"{ECOM_CALLBACK_BASE}/api/orders/{order_id}", timeout=2)
                 if resp.status_code == 200:
                     order_details = resp.json()
+                    if order_details.get('status') == 'PAID':
+                        return render_template('pay.html', order_id=order_id, error="This QR code / order has already been paid and cannot be reused.", expired=True)
+                    if order_details.get('status') == 'EXPIRED':
+                        return render_template('pay.html', order_id=order_id, error="This QR code has expired.", expired=True)
             except Exception as e:
                 print(f"Could not fetch order details: {e}")
                 
+        accounts = [Account.query.get(session['account_id'])]
         return render_template('pay.html', order_id=order_id, amount=amount, merchant_account=merchant_account, expires=expires, accounts=accounts, order_details=order_details)
     
     data = request.form
@@ -191,7 +193,7 @@ def pay():
         amount = float(data.get('amount', 0))
     except ValueError:
         amount = 0.0
-    merchant_account = data.get('merchant_account')
+    merchant_account = data.get('merchant_account', 'techstart-grocery')
     consumer_account = data.get('consumer_account')
     
     if not all([order_id, amount, merchant_account, consumer_account]):
@@ -200,6 +202,10 @@ def pay():
     consumer = Account.query.get(consumer_account)
     merchant = Account.query.get(merchant_account)
     
+    # Fallback to jmb-grocery if merchant is jmb-grocery or techstart-grocery
+    if not merchant:
+        merchant = Account.query.get('jmb-grocery') or Account.query.get('techstart-grocery')
+        
     if not consumer or not merchant:
         return "Invalid accounts", 400
         
@@ -209,22 +215,39 @@ def pay():
     existing_tx = Transaction.query.filter_by(order_id=order_id).first()
     if existing_tx:
         return render_template('pay.html', order_id=order_id, error="This order has already been paid.", expired=True)
-        
+
+    # Double-check live status with ecommerce app before deducting funds
+    try:
+        resp = requests.get(f"{ECOM_CALLBACK_BASE}/api/orders/{order_id}", timeout=3)
+        if resp.status_code == 200:
+            order_data = resp.json()
+            if order_data.get('status') == 'PAID':
+                return render_template('pay.html', order_id=order_id, error="This QR code / order has already been paid and cannot be reused.", expired=True)
+            if order_data.get('status') == 'EXPIRED':
+                return render_template('pay.html', order_id=order_id, error="This QR code has expired.", expired=True)
+    except Exception as e:
+        print(f"Order status check failed: {e}")
+
+    # Callback to ecommerce app to mark paid & update stock
+    try:
+        callback_url = f"{ECOM_CALLBACK_BASE}/api/orders/{order_id}/paid"
+        cb_resp = requests.post(callback_url, timeout=5)
+        if cb_resp.status_code != 200:
+            err_msg = cb_resp.json().get('error', 'Payment validation failed')
+            return render_template('pay.html', order_id=order_id, error=f"Payment rejected: {err_msg}", expired=True)
+    except Exception as e:
+        print(f"Callback failed: {e}")
+        return render_template('pay.html', order_id=order_id, error="Could not communicate with merchant to process payment.", expired=False)
+
     consumer.balance -= amount
     merchant.balance += amount
     
     tx = Transaction(order_id=order_id, from_acct=consumer.id, to_acct=merchant.id, amount=amount)
     db.session.add(tx)
     db.session.commit()
-    
-    # Callback to ecommerce app
-    try:
-        callback_url = f"{ECOM_CALLBACK_BASE}/api/orders/{order_id}/paid"
-        requests.post(callback_url, timeout=5)
-    except Exception as e:
-        print(f"Callback failed: {e}")
         
     return render_template('success.html', order_id=order_id)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
