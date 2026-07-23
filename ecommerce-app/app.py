@@ -9,8 +9,26 @@ from models import db, User
 app = Flask(__name__)
 app.secret_key = 'super-secret-ecommerce-key'
 
-# Setup local SQLite DB for simple auth
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ecommerce.db"
+import socket
+
+db_user = os.environ.get('DB_USER', 'ecomuser')
+db_password = os.environ.get('DB_PASSWORD', 'devpass')
+db_host = os.environ.get('DB_HOST', 'mysql')
+db_name = os.environ.get('DB_NAME', 'ecomdb')
+
+use_sqlite = os.environ.get('USE_SQLITE')
+if not use_sqlite:
+    try:
+        socket.gethostbyname(db_host)
+    except socket.error:
+        print(f"Warning: Could not resolve DB_HOST '{db_host}'. Falling back to SQLite.")
+        use_sqlite = True
+
+if use_sqlite:
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ecommerce.db"
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
