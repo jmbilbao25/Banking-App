@@ -22,7 +22,7 @@ services:
       retries: 10
 
   banking:
-    build: ./banking-app
+    image: jmbilbao25/qr-banking-app:latest
     expose: ["5001"]             # internal only - reached via nginx
     environment:
       DB_HOST: mysql
@@ -34,7 +34,7 @@ services:
       mysql: { condition: service_healthy }
 
   ecommerce:
-    build: ./ecommerce-app
+    image: jmbilbao25/qr-ecommerce-app:latest
     expose: ["5000"]             # internal only - reached via nginx
     environment:
       # URL the phone opens after scanning -> public bank URL on port 80
