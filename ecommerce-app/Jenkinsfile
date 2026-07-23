@@ -6,7 +6,7 @@ pipeline {
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
     
     // Target deployment EC2 IP
-    EC2_IP = "34.236.254.132"
+    EC2_IP = "100.55.37.88" // TODO: Replace with actual Ecom VM IP
     EC2_USER = "ubuntu"
   } 
   stages { 
@@ -26,9 +26,9 @@ pipeline {
     } 
     stage('Deploy to EC2') { 
       steps { 
-        sshagent(credentials: ['ec2-ssh-key']) {
+        sshagent(credentials: ['ec2-ssh-key-ecom']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App && sudo docker compose pull ecommerce && sudo docker compose up -d --no-deps ecommerce"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce nginx"
           '''
         }
       } 

@@ -6,7 +6,7 @@ pipeline {
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
     
     // Target deployment EC2 IP
-    EC2_IP = "34.236.254.132"
+    EC2_IP = "32.192.179.249" // TODO: Replace with actual Bank VM IP
     EC2_USER = "ubuntu"
   } 
   stages { 
@@ -28,7 +28,7 @@ pipeline {
       steps { 
         sshagent(credentials: ['ec2-ssh-key']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App && sudo docker compose pull banking && sudo docker compose up -d --no-deps banking"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd banking-app && sudo docker compose -f docker-compose.bank.yml pull banking && sudo docker compose -f docker-compose.bank.yml up -d banking nginx"
           '''
         }
       } 

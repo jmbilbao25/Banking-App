@@ -9,10 +9,13 @@
 <body class="min-h-screen flex flex-col">
     <div class="max-w-6xl mx-auto px-4 py-8 w-full flex-1 flex flex-col">
         <nav class="navbar">
-            <a href="/" class="brand">
-                <div class="brand-logo">TS</div>
-                <span class="brand-title">{{ theme }}</span>
-            </a>
+            <div class="user-greeting">
+                {% if current_user %}
+                    <span>Hello, <strong>{{ current_user.username }}</strong>!</span>
+                {% else %}
+                    <span>Welcome po, <strong>Guest</strong>!</span>
+                {% endif %}
+            </div>
             <div class="nav-links">
                 <a href="/transactions" class="btn btn-outline">
                     📋 Order History

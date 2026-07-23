@@ -3,47 +3,47 @@ import io
 import uuid
 import qrcode
 import time
-from datetime import datetime, timezone
+import socket
 from flask import Flask, request, jsonify, render_template, send_file, redirect, url_for, session
 from models import db, User, Product, Order, OrderItem
 
 app = Flask(__name__)
 app.secret_key = 'super-secret-ecommerce-key'
 
-# Setup local SQLite DB
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ecommerce.db"
+# Setup database connection
+db_user = os.environ.get('DB_USER', 'ecomuser')
+db_password = os.environ.get('DB_PASSWORD', 'devpass')
+db_host = os.environ.get('DB_HOST', 'mysql')
+db_name = os.environ.get('DB_NAME', 'ecomdb')
+
+use_sqlite = os.environ.get('USE_SQLITE')
+if not use_sqlite:
+    try:
+        socket.gethostbyname(db_host)
+    except socket.error:
+        print(f"Warning: Could not resolve DB_HOST '{db_host}'. Falling back to SQLite.")
+        use_sqlite = True
+
+if use_sqlite:
+    app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///ecommerce.db"
+else:
+    app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+pymysql://{db_user}:{db_password}@{db_host}/{db_name}"
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-INITIAL_PRODUCTS = [
-    {"id": "p1", "name": "Jasmine Rice (5kg)", "price": 12.00, "image_url": "/static/images/rice.png", "stock": 20},
-    {"id": "p2", "name": "Fresh Eggs (12pcs)", "price": 4.50, "image_url": "/static/images/eggs.png", "stock": 35},
-    {"id": "p3", "name": "Whole Milk (1L)", "price": 3.00, "image_url": "/static/images/milk.png", "stock": 40},
-    {"id": "p4", "name": "Chicken Breast (1kg)", "price": 8.50, "image_url": "/static/images/chicken.png", "stock": 15},
-    {"id": "p5", "name": "Bananas (bundle)", "price": 2.50, "image_url": "/static/images/bananas.png", "stock": 30},
-    {"id": "p6", "name": "Fresh Avocados (4pcs)", "price": 5.99, "image_url": "/static/images/avocados.png", "stock": 25}
-]
-
+from sqlalchemy.exc import OperationalError
 with app.app_context():
-    db.create_all()
-    # Seed products if empty or update missing products
-    for p_data in INITIAL_PRODUCTS:
-        existing = db.session.get(Product, p_data["id"])
-        if not existing:
-            product = Product(
-                id=p_data["id"],
-                name=p_data["name"],
-                price=p_data["price"],
-                image_url=p_data["image_url"],
-                stock=p_data["stock"]
-            )
-            db.session.add(product)
-        else:
-            existing.image_url = p_data["image_url"]
-            if existing.stock is None:
-                existing.stock = p_data["stock"]
-    db.session.commit()
-
+    retries = 10
+    while retries > 0:
+        try:
+            db.create_all()
+            print("Database initialized.")
+            break
+        except OperationalError:
+            print(f"Database not ready yet, retrying in 5 seconds... ({retries} retries left)")
+            time.sleep(5)
+            retries -= 1
 BANK_PUBLIC_BASE = os.environ.get('BANK_PUBLIC_BASE', 'http://127.0.0.1:5001')
 MERCHANT_ACCOUNT = os.environ.get('MERCHANT_ACCOUNT', 'techstart-grocery')
 APP_TITLE = "TechStart Grocery"

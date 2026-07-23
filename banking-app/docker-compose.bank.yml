@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  banking:
+    image: jmbilbao25/qr-banking-app:latest
+    container_name: banking-app
+    environment:
+      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://100.55.37.88}
+      - DB_HOST=mysql
+      - DB_NAME=${DB_NAME:-bankdb}
+      - DB_USER=${DB_USER:-bankuser}
+      - DB_PASSWORD=${DB_PASSWORD:-devpass}
+      - USE_SQLITE=${USE_SQLITE:-}
+    depends_on:
+      - mysql
+    restart: unless-stopped
+    networks:
+      - bank-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: bank-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - banking
+    restart: unless-stopped
+    networks:
+      - bank-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: bank-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-devroot}
+      - MYSQL_DATABASE=${DB_NAME:-bankdb}
+      - MYSQL_USER=${DB_USER:-bankuser}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-devpass}
+    volumes:
+      - bank_mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - bank-net
+
+volumes:
+  bank_mysql_data:
+
+networks:
+  bank-net:
