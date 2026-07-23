@@ -1,0 +1,205 @@
+﻿Diagnose log at 2026-07-23T10:02:38Z
+
+AppPath: C:\Users\ELG83756\AppData\Local\Programs\Git\mingw64\bin\git-credential-manager.exe
+InstallDir: C:\Users\ELG83756\AppData\Local\Programs\Git\mingw64\bin\
+Version: 2.9.0+194ba290ce533465310d50f811684ab180536ae7
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: Windows
+OSVersion: 10.0 (build 26200)
+Reading environment variables... OK
+ Variables:
+SystemDrive=C:
+ProgramFiles(x86)=C:\Program Files (x86)
+MSYSTEM=MINGW64
+ProgramW6432=C:\Program Files
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 186 Stepping 2, GenuineIntel
+EFC_42568_2283032206=1
+PROCESSOR_ARCHITECTURE=AMD64
+INTELLIJ_TERMINAL_COMMAND_BLOCKS_REWORKED=1
+PATHEXT=.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.CPL
+USERPROFILE=C:\Users\ELG83756
+PROCESSOR_REVISION=ba02
+TEMP=C:\Users\ELG83756\AppData\Local\Temp
+FPS_BROWSER_APP_PROFILE_STRING=Internet Explorer
+FPS_BROWSER_USER_PROFILE_STRING=Default
+LOGONSERVER=\\CDCMKPW19IAVM03
+TERM=xterm-256color
+USERNAME=ELG83756
+SystemRoot=C:\WINDOWS
+GIT_EXEC_PATH=C:/Users/ELG83756/AppData/Local/Programs/Git/mingw64/libexec/git-core
+PLINK_PROTOCOL=ssh
+USERDNSDOMAIN=HQ.LOCAL.EASTWESTBANKER.COM
+OneDrive=C:\Users\ELG83756\OneDrive - EastWest Banking Corporation
+FIG_TERM=1
+PROCESS_LAUNCHED_BY_Q=1
+CommonProgramFiles=C:\Program Files\Common Files
+EFC_42568_2775293581=1
+ProgramData=C:\ProgramData
+LC_CTYPE=C.UTF-8
+HOMEPATH=\Users\ELG83756
+COMPUTERNAME=WW0897LBDQ49D41
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+ALLUSERSPROFILE=C:\ProgramData
+EFC_42568_1592913036=1
+TERM_SESSION_ID=bfd1ae82-b0a2-4edb-af1a-75536af88571
+OneDriveCommercial=C:\Users\ELG83756\OneDrive - EastWest Banking Corporation
+TMP=C:\Users\ELG83756\AppData\Local\Temp
+TERMINAL_EMULATOR=JetBrains-JediTerm
+SESSIONNAME=Console
+DriverData=C:\Windows\System32\Drivers\DriverData
+EFC_42568_4126798990=1
+windir=C:\WINDOWS
+GIT_TRACE2_PARENT_SID=c2eb3767-92c7-4665-aeac-201ffb17df16
+NUMBER_OF_PROCESSORS=16
+OS=Windows_NT
+PROCESS_LAUNCHED_BY_CW=1
+ProgramFiles=C:\Program Files
+ComSpec=C:\WINDOWS\system32\cmd.exe
+HOMEDRIVE=C:
+HOME=C:\Users\ELG83756
+PSModulePath=C:\Users\ELG83756\OneDrive - EastWest Banking Corporation\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules;C:\Program Files (x86)\Microsoft Azure Information Protection\Powershell
+TMPDIR=C:\Users\ELG83756\AppData\Local\Temp
+APPDATA=C:\Users\ELG83756\AppData\Roaming
+USERDOMAIN=HQ
+PROCESSOR_LEVEL=6
+Path=C:/Users/ELG83756/AppData/Local/Programs/Git/mingw64/libexec/git-core;C:\Users\ELG83756\AppData\Local\Programs\Git\mingw64\bin;C:\Users\ELG83756\AppData\Local\Programs\Git\usr\bin;C:\Users\ELG83756\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\Users\ELG83756\AppData\Local\Programs\Python\Launcher\;C:\Users\ELG83756\AppData\Local\Microsoft\WindowsApps;C:\Users\ELG83756\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ELG83756\AppData\Local\Programs\Antigravity IDE\bin;C:\Users\ELG83756\AppData\Local\Programs\Git\cmd
+LOCALAPPDATA=C:\Users\ELG83756\AppData\Local
+CommonProgramW6432=C:\Program Files\Common Files
+EFC_42568_3789132940=1
+PSExecutionPolicyPreference=Bypass
+EFC_42568_1262719628=1
+USERDOMAIN_ROAMINGPROFILE=HQ
+COLORTERM=truecolor
+PUBLIC=C:\Users\Public
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is 'C:\Users\ELG83756\AppData\Local\Temp\'...
+Checking basic file I/O...
+Writing to temporary file 'C:\Users\ELG83756\AppData\Local\Temp\c8e941cd8e405df528a2fdac'... OK
+Reading from temporary file 'C:\Users\ELG83756\AppData\Local\Temp\c8e941cd8e405df528a2fdac'... OK
+Deleting temporary file 'C:\Users\ELG83756\AppData\Local\Temp\c8e941cd8e405df528a2fdac'... OK
+Testing IFileSystem instance...
+UserHomePath: C:\Users\ELG83756
+UserDataDirectoryPath: C:\Users\ELG83756\.gcm
+GetCurrentDirectory(): C:\Users\ELG83756\OneDrive - EastWest Banking Corporation\Documents\github\Banking-App\ecommerce-app
+
+------------
+Diagnostic: Networking
+Skipped: False
+Success: True
+Exception: None
+Log:
+Checking networking and HTTP stack...
+Creating HTTP client... OK
+IsNetworkAvailable: True
+Sending HEAD request to http://example.com... OK
+Sending HEAD request to https://example.com... OK
+Acquiring free TCP port... OK
+Testing local HTTP loopback connections...
+Creating new HTTP listener for http://localhost:63662/... OK
+Waiting for loopback connection... OK
+Writing response... OK
+Waiting for response data... OK
+Loopback connection data OK
+
+------------
+Diagnostic: Git
+Skipped: False
+Success: True
+Exception: None
+Log:
+Getting Git version... OK
+Git version is '2.55.0.windows.3'
+Locating current repository...Git repository at 'C:/Users/ELG83756/OneDrive - EastWest Banking Corporation/Documents/github/Banking-App/.git'
+ OK
+Listing all Git configuration... OK
+Git configuration:
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	diff.astextplain.textconv=astextplain
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.clean=git-lfs clean -- %f
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.smudge=git-lfs smudge -- %f
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.process=git-lfs filter-process
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	filter.lfs.required=true
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	http.sslbackend=schannel
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	core.autocrlf=true
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	core.fscache=true
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	core.symlinks=false
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	pull.rebase=false
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	credential.helper=manager
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	credential.https://dev.azure.com.usehttppath=true
+file:C:/Users/ELG83756/AppData/Local/Programs/Git/etc/gitconfig	init.defaultbranch=master
+file:C:/Users/ELG83756/.gitconfig	user.name=DomskieEe
+file:C:/Users/ELG83756/.gitconfig	user.email=Edlendominic12@gmail.com
+file:C:/Users/ELG83756/.gitconfig	credential.helper=manager
+file:C:/Users/ELG83756/.gitconfig	credential.helper=
+file:C:/Users/ELG83756/.gitconfig	credential.helper=C:/Users/ELG83756/AppData/Local/Programs/Git/mingw64/bin/git-credential-manager.exe
+file:.git/config	core.repositoryformatversion=0
+file:.git/config	core.filemode=false
+file:.git/config	core.bare=false
+file:.git/config	core.logallrefupdates=true
+file:.git/config	core.symlinks=false
+file:.git/config	core.ignorecase=true
+file:.git/config	remote.origin.url=https://github.com/jmbilbao25/Banking-App.git
+file:.git/config	remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
+file:.git/config	branch.main.remote=origin
+file:.git/config	branch.main.merge=refs/heads/main
+
+
+------------
+Diagnostic: Credential storage
+Skipped: False
+Success: True
+Exception: None
+Log:
+ICredentialStore instance is of type: CredentialStore
+Writing test credential... OK
+Reading test credential... OK
+Deleting test credential... OK
+
+------------
+Diagnostic: Microsoft authentication (AAD/MSA)
+Skipped: False
+Success: True
+Exception: None
+Log:
+Broker is not enabled.
+Gathering MSAL token cache data... OK
+CacheDirectory: C:\Users\ELG83756\AppData\Local\.IdentityService
+CacheFileName: msal.cache
+CacheFilePath: C:\Users\ELG83756\AppData\Local\.IdentityService\msal.cache
+Creating cache helper... OK
+Verifying MSAL token cache persistence... OK
+
+------------
+Diagnostic: GitHub API
+Skipped: False
+Success: False
+Exception:
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at GitHub.GitHubRestApi.<GetMetaInfoAsync>d__5.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at GitHub.Diagnostics.GitHubApiDiagnostic.<RunInternalAsync>d__2.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.ThrowForNonSuccess(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at GitCredentialManager.Diagnostics.Diagnostic.<RunAsync>d__6.MoveNext()
+Log:
+Using 'https://github.com/' as API target.
+Querying '/meta' endpoint...
