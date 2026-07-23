@@ -40,12 +40,8 @@ services:
       # URL the phone opens after scanning -> public bank URL on port 80
       # VM_IP comes from .env (dots replaced with dashes, e.g. 20-51-32-10)
       BANK_PUBLIC_BASE: http://bank.${VM_IP:-127-0-0-1}.nip.io
-      MERCHANT_ACCOUNT: sweetcrumb-pastries
+      MERCHANT_ACCOUNT: jmb-grocery
     depends_on: [banking]
-
-  adminer:            # DEV ONLY - never in Test or Prod
-    image: adminer
-    ports: ["127.0.0.1:8080:8080"]
 
 volumes:
   mysql_data:
