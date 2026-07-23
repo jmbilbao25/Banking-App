@@ -126,7 +126,7 @@ def test_qr():
         return "Unauthorized", 403
         
     amount = request.args.get('amount', '5.00')
-    merchant = request.args.get('merchant', 'sweetcrumb-pastries')
+    merchant = request.args.get('merchant', 'jmb-grocery')
     order_id = "test-" + str(uuid.uuid4())[:8]
     
     # Use request.host_url to automatically get the correct base URL for the bank (e.g. 127.0.0.1:5001 or bank.IP.nip.io)

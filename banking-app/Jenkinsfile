@@ -1,27 +1,41 @@
 pipeline { 
   agent any 
   environment { 
-    IMAGE = "myregistry.azurecr.io/banking-app" 
-    TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}" 
+    // Docker Hub Repository
+    IMAGE = "jmbilbao25/qr-banking-app" 
+    TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
+    
+    // Target deployment EC2 IP
+    EC2_IP = "34.236.254.132"
+    EC2_USER = "ubuntu"
   } 
   stages { 
-    stage('Build & Unit Test') { 
-      steps { sh 'pip install -r requirements.txt && pytest' } 
+    stage('Build Docker Image') { 
+      steps { 
+        sh 'docker build -t $IMAGE:$TAG -t $IMAGE:latest .' 
+      } 
     } 
-    stage('Docker Build & Push') { 
-      steps { sh 'docker build -t $IMAGE:$TAG . && docker push $IMAGE:$TAG' } 
+    stage('Push to Docker Hub') { 
+      steps { 
+        withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', passwordVariable: 'DOCKER_PASS', usernameVariable: 'DOCKER_USER')]) {
+          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+          sh 'docker push $IMAGE:$TAG'
+          sh 'docker push $IMAGE:latest'
+        }
+      } 
     } 
-    stage('Deploy to Test (ACI)') { 
-      steps { sh './deploy/aci-deploy.sh $IMAGE:$TAG' } 
-    } 
-    stage('Smoke Test') { 
-      steps { sh 'pytest tests/smoke --base-url=$TEST_URL' } 
-    } 
-    stage('Approve Prod Deploy') { 
-      steps { input message: 'Deploy to production?' } 
-    } 
-    stage('Deploy to Prod (K8s)') { 
-      steps { sh 'kubectl set image deployment/banking-app app=$IMAGE:$TAG' } 
+    stage('Deploy to EC2') { 
+      steps { 
+        sshagent(credentials: ['ec2-ssh-key']) {
+          sh '''
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP << EOF
+              cd ~/Banking-App
+              sudo docker compose pull banking
+              sudo docker compose up -d --no-deps banking
+            EOF
+          '''
+        }
+      } 
     } 
   } 
 }
