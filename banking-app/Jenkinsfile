@@ -28,7 +28,7 @@ pipeline {
       steps { 
         sshagent(credentials: ['ec2-ssh-key']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App/banking-app && sudo docker compose -f docker-compose.bank.yml pull banking && sudo docker compose -f docker-compose.bank.yml up -d banking nginx"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd banking-app && sudo docker compose -f docker-compose.bank.yml pull banking && sudo docker compose -f docker-compose.bank.yml up -d banking nginx"
           '''
         }
       } 
