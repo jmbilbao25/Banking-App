@@ -26,9 +26,9 @@ pipeline {
     } 
     stage('Deploy to EC2') { 
       steps { 
-        sshagent(credentials: ['ec2-ssh-key']) {
+        sshagent(credentials: ['ec2-ssh-key-ecom']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "cd ~/Banking-App/ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce nginx"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce nginx"
           '''
         }
       } 
