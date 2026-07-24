@@ -4,8 +4,10 @@ services:
   banking:
     image: jmbilbao25/qr-banking-app:latest
     container_name: banking-app
+    ports:
+      - "80:80"
     environment:
-      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://44.201.185.76}
+      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://100.59.16.39}
       - DB_HOST=mysql
       - DB_NAME=${DB_NAME:-bankdb}
       - DB_USER=${DB_USER:-bankuser}
@@ -13,19 +15,6 @@ services:
       - USE_SQLITE=${USE_SQLITE:-}
     depends_on:
       - mysql
-    restart: unless-stopped
-    networks:
-      - bank-net
-
-  nginx:
-    image: nginx:alpine
-    container_name: bank-nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - banking
     restart: unless-stopped
     networks:
       - bank-net

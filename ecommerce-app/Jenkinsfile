@@ -6,7 +6,7 @@ pipeline {
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
     
     // Target deployment EC2 IP
-    EC2_IP = "44.201.185.76" // TODO: Replace with actual Ecom VM IP
+    EC2_IP = "100.59.16.39" // TODO: Replace with actual Ecom VM IP
     EC2_USER = "ubuntu"
   } 
   stages { 
@@ -28,7 +28,7 @@ pipeline {
       steps { 
         withCredentials([usernamePassword(credentialsId: 'azure-credentials', passwordVariable: 'AZ_PASS', usernameVariable: 'AZ_USER'), string(credentialsId: 'azure-tenant-id', variable: 'AZ_TENANT')]) {
           sh 'az login --service-principal -u $AZ_USER -p $AZ_PASS --tenant $AZ_TENANT'
-          sh 'az container create --resource-group qr-payment-rg --name ecommerce-dev --image $IMAGE:$TAG --dns-name-label ecom-dev-${BUILD_NUMBER} --ports 5000 --environment-variables USE_SQLITE=true BANK_PUBLIC_BASE=http://bank-dev-${BUILD_NUMBER}.eastus.azurecontainer.io:5001 --restart-policy Always'
+          sh 'az container create --resource-group qr-payment-rg --name ecommerce-dev --image $IMAGE:$TAG --dns-name-label ecom-dev-${BUILD_NUMBER} --ports 80 --environment-variables USE_SQLITE=true BANK_PUBLIC_BASE=http://bank-dev-${BUILD_NUMBER}.eastus.azurecontainer.io --restart-policy Always'
         }
       } 
     } 
@@ -36,7 +36,7 @@ pipeline {
       steps { 
         sshagent(credentials: ['ec2-ssh-key-ecom']) {
           sh '''
-            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce nginx"
+            ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP "if [ ! -d ~/Banking-App ]; then git clone https://github.com/jmbilbao25/Banking-App.git ~/Banking-App; fi && cd ~/Banking-App && git pull && cd ecommerce-app && sudo docker compose -f docker-compose.ecom.yml pull ecommerce && sudo docker compose -f docker-compose.ecom.yml up -d ecommerce"
           '''
         }
       } 

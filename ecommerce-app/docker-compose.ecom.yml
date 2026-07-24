@@ -4,8 +4,10 @@ services:
   ecommerce:
     image: jmbilbao25/qr-ecommerce-app:latest
     container_name: ecommerce-app
+    ports:
+      - "80:80"
     environment:
-      - BANK_PUBLIC_BASE=${BANK_PUBLIC_BASE:-http://44.204.212.148}
+      - BANK_PUBLIC_BASE=${BANK_PUBLIC_BASE:-http://3.84.196.154}
       - DB_HOST=mysql
       - DB_NAME=${DB_NAME:-ecomdb}
       - DB_USER=${DB_USER:-ecomuser}
@@ -13,19 +15,6 @@ services:
       - USE_SQLITE=${USE_SQLITE:-}
     depends_on:
       - mysql
-    restart: unless-stopped
-    networks:
-      - ecom-net
-
-  nginx:
-    image: nginx:alpine
-    container_name: ecom-nginx
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-    depends_on:
-      - ecommerce
     restart: unless-stopped
     networks:
       - ecom-net
