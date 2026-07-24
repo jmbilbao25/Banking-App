@@ -6,7 +6,7 @@ pipeline {
     TAG   = "${env.GIT_COMMIT ? env.GIT_COMMIT.take(7) : 'latest'}"
     
     // Target deployment EC2 IP
-    EC2_IP = "100.59.16.39" // TODO: Replace with actual Ecom VM IP
+    EC2_IP = "3.91.174.230" // TODO: Replace with actual Ecom VM IP
     EC2_USER = "ubuntu"
   } 
   stages { 

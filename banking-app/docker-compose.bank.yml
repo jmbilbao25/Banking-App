@@ -7,7 +7,7 @@ services:
     ports:
       - "80:80"
     environment:
-      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://100.59.16.39}
+      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://3.91.174.230}
       - DB_HOST=mysql
       - DB_NAME=${DB_NAME:-bankdb}
       - DB_USER=${DB_USER:-bankuser}
