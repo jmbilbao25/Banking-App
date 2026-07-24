@@ -79,8 +79,9 @@ pipeline {
                     --name ${instance} \\
                     --image $IMAGE:$TAG \\
                     --os-type Linux \\
-                    --cpu 1 --memory 1.5 \\
+                    --cpu 3 --memory 1.5 \\
                     --ports 80 \\
+                    --environment-variables DB_HOST=testestste.mysql.database.azure.com DB_USER=jmbilbao25 DB_PASSWORD='@dreamCS2025' DB_NAME=ecomdb USE_SQLITE="" \\
                     --location ${AZURE_LOCATION} \\
                     --dns-name-label ${instance}
                 """
