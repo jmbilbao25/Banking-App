@@ -47,28 +47,35 @@ pipeline {
         AZURE_LOCATION = "centralindia"
       }
       steps {
-        script {
-          def instances = ['bank-app-1', 'bank-app-2']
-          for (instance in instances) {
-            echo "Deploying/Restarting ACI: ${instance}"
-            // Check if ACI exists
-            def exists = sh(script: "az container show --name ${instance} --resource-group ${AZURE_RG} --query name -o tsv || true", returnStdout: true).trim()
-            
-            if (exists == instance) {
-              echo "${instance} exists. Restarting to pull latest image..."
-              sh "az container restart --name ${instance} --resource-group ${AZURE_RG}"
-            } else {
-              echo "${instance} does not exist. Creating..."
-              sh """
-                az container create \\
-                  --resource-group ${AZURE_RG} \\
-                  --name ${instance} \\
-                  --image $IMAGE:$TAG \\
-                  --os-type Linux \\
-                  --ports 80 \\
-                  --location ${AZURE_LOCATION} \\
-                  --dns-name-label ${instance}
-              """
+        withCredentials([
+          usernamePassword(credentialsId: 'azure-sp-credentials', passwordVariable: 'AZURE_CLIENT_SECRET', usernameVariable: 'AZURE_CLIENT_ID'),
+          string(credentialsId: 'azure-tenant-id', variable: 'AZURE_TENANT_ID')
+        ]) {
+          sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID'
+          
+          script {
+            def instances = ['bank-app-1', 'bank-app-2']
+            for (instance in instances) {
+              echo "Deploying/Restarting ACI: ${instance}"
+              // Check if ACI exists
+              def exists = sh(script: "az container show --name ${instance} --resource-group ${AZURE_RG} --query name -o tsv || true", returnStdout: true).trim()
+              
+              if (exists == instance) {
+                echo "${instance} exists. Restarting to pull latest image..."
+                sh "az container restart --name ${instance} --resource-group ${AZURE_RG}"
+              } else {
+                echo "${instance} does not exist. Creating..."
+                sh """
+                  az container create \\
+                    --resource-group ${AZURE_RG} \\
+                    --name ${instance} \\
+                    --image $IMAGE:$TAG \\
+                    --os-type Linux \\
+                    --ports 80 \\
+                    --location ${AZURE_LOCATION} \\
+                    --dns-name-label ${instance}
+                """
+              }
             }
           }
         }
