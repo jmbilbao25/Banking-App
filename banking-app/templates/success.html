@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Success</title>
+    <title>Payment Successful - Bahwan CyberBank</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
     <div class="center-layout">
-        <div class="glass-panel text-center" style="width: 100%; max-width: 450px;">
+        <div class="glass-panel text-center" style="width: 100%; max-width: 480px; padding: 2.75rem 2rem;">
             <svg class="success-checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                 <circle class="success-checkmark__circle" cx="26" cy="26" r="25" fill="none"/>
                 <path class="success-checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
             </svg>
             
-            <h2 class="text-success mb-4">Payment testing</h2>
-            <p class="text-muted mb-4">Your payment for order <strong class="font-mono text-main">{{ order_id }}</strong> has been securely processed and done.</p>
+            <h2 class="text-success mb-2" style="font-size: 1.85rem;">Payment Successful!</h2>
+            <p class="text-muted mb-4" style="font-size: 0.95rem;">Your transaction for order <strong class="font-mono text-main" style="color: var(--accent);">#{{ order_id }}</strong> has been authorized and completed via Bahwan CyberBank.</p>
             
-            <a href="/accounts" class="btn btn-primary btn-block">Return to Test</a>
+            <a href="/accounts" class="btn btn-primary btn-block" style="padding: 0.85rem; font-size: 1rem;">Return to Dashboard</a>
         </div>
     </div>
 </body>
