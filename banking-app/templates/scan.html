@@ -7,39 +7,137 @@
     <title>Scan QR Code - Bahwan CyberBank</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        .uploader-box {
+            border: 2px dashed var(--surface-border);
+            border-radius: 12px;
+            padding: 2.25rem 1.25rem;
+            cursor: pointer;
+            transition: var(--transition);
+            background: rgba(11, 14, 20, 0.6);
+        }
+
+        .uploader-box:hover {
+            border-color: var(--primary);
+            background: rgba(28, 20, 46, 0.6);
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 
 <body>
     <div class="center-layout">
-        <div class="glass-panel text-center" style="width: 100%; max-width: 500px;">
-            <h2>Scan to Pay</h2>
-            <p class="text-muted mb-4">Point your camera at the merchant's QR codeeeee</p>
-            
-            <div id="reader" style="border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; margin-bottom: 2rem; background: #000;"></div>
-            
-            <a href="/accounts" class="btn btn-outline btn-block">&larr; Back to Dashboard</a>
+        <div class="glass-panel text-center" style="width: 100%; max-width: 500px; padding: 2.5rem 2rem;">
+            <div class="brand-logo" style="margin: 0 auto 1rem auto; width: 44px; height: 44px;">BC</div>
+            <h2 style="font-size: 1.75rem; color: var(--text-main); margin-bottom: 0.25rem;">Scan to Pay</h2>
+            <p class="text-muted mb-4" style="font-size: 0.9rem;">Point your camera at the merchant's QR code or upload
+                a QR image file.</p>
+
+            <!-- Secure Context Warning Banner (hidden by default) -->
+            <div id="secure-context-warning" class="error-banner mb-4 text-center"
+                style="display: none; font-size: 0.88rem;">
+                🔒 <strong>HTTP Connection Detected:</strong> Camera access requires an HTTPS secure connection. Live
+                camera scanning is disabled, but you can upload a photo or screenshot of the QR code below. Ouch!
+            </div>
+
+            <!-- Live Camera Container -->
+            <div id="camera-container" style="display: block;">
+                <div id="reader"
+                    style="border: 2px solid var(--primary); border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; background: #0b0e14; box-shadow: var(--shadow-glow);">
+                </div>
+            </div>
+
+            <!-- File Upload Fallback Container -->
+            <div id="file-uploader-section" style="margin-bottom: 1.5rem;">
+                <div class="uploader-box" onclick="document.getElementById('qr-file-input').click()">
+                    <div style="font-size: 2.25rem; margin-bottom: 0.5rem;">📁</div>
+                    <p style="font-weight: 600; color: var(--text-main); margin-bottom: 0.25rem;">Upload QR Code Image
+                    </p>
+                    <p class="text-muted" style="font-size: 0.82rem; margin-bottom: 1rem;">Upload a photo or screenshot
+                        of the QR code</p>
+                    <button type="button" class="btn btn-secondary"
+                        style="padding: 0.5rem 1.25rem; font-size: 0.88rem;">Browse Files</button>
+                    <input type="file" id="qr-file-input" accept="image/*" style="display: none;"
+                        onchange="handleFileUpload(event)">
+                </div>
+                <div id="file-feedback" class="mt-4" style="font-size: 0.88rem;"></div>
+            </div>
+
+            <a href="/accounts" class="btn btn-outline btn-block">&larr; Return to Dashboard</a>
         </div>
     </div>
 
     <script>
-        function onScanSuccess(decodedText, decodedResult) {
-            html5QrcodeScanner.clear().then(_ => {
+        let html5QrCode = null;
+
+        function onScanSuccess(decodedText) {
+            if (html5QrCode) {
+                html5QrCode.stop().then(() => {
+                    window.location.href = decodedText;
+                }).catch(() => {
+                    window.location.href = decodedText;
+                });
+            } else {
                 window.location.href = decodedText;
-            }).catch(error => {
-                console.error("Failed to clear html5QrcodeScanner. ", error);
-            });
+            }
         }
 
-        function onScanFailure(error) {
-            // handle scan failure
+        function handleFileUpload(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            const feedbackEl = document.getElementById('file-feedback');
+            if (feedbackEl) {
+                feedbackEl.innerHTML = '<span class="text-muted">🔍 Scanning image for QR code...</span>';
+            }
+
+            const qrScanner = new Html5Qrcode("reader");
+            qrScanner.scanFile(file, /* renderImage= */ true)
+                .then(decodedText => {
+                    if (feedbackEl) {
+                        feedbackEl.innerHTML = '<span class="text-success">✅ QR Code detected! Redirecting...</span>';
+                    }
+                    setTimeout(() => {
+                        window.location.href = decodedText;
+                    }, 500);
+                })
+                .catch(err => {
+                    if (feedbackEl) {
+                        feedbackEl.innerHTML = '<span class="text-danger">⚠️ No valid QR code found in this image. Please upload another photo.</span>';
+                    }
+                });
         }
 
-        let html5QrcodeScanner = new Html5QrcodeScanner(
-            "reader",
-            { fps: 10, qrbox: { width: 250, height: 250 } },
-            /* verbose= */ false);
+        document.addEventListener("DOMContentLoaded", function () {
+            const isSecure = window.isSecureContext && navigator.mediaDevices && navigator.mediaDevices.getUserMedia;
+            const warningEl = document.getElementById("secure-context-warning");
+            const cameraContainer = document.getElementById("camera-container");
 
-        html5QrcodeScanner.render(onScanSuccess, onScanFailure);
+            if (!isSecure) {
+                // Insecure context (HTTP over remote IP) -> Hide live camera and show warning & uploader
+                if (warningEl) warningEl.style.display = "block";
+                if (cameraContainer) cameraContainer.style.display = "none";
+            } else {
+                // Secure context (HTTPS or localhost) -> Attempt live camera scanning
+                try {
+                    html5QrCode = new Html5Qrcode("reader");
+                    html5QrCode.start(
+                        { facingMode: "environment" },
+                        { fps: 10, qrbox: { width: 250, height: 250 } },
+                        onScanSuccess,
+                        function (err) { /* silent camera scan retry */ }
+                    ).catch(err => {
+                        console.warn("Camera start failed, showing fallback:", err);
+                        if (warningEl) {
+                            warningEl.innerHTML = "📷 <strong>Camera Access Blocked:</strong> Could not access camera permissions. Please use the file upload option below.";
+                            warningEl.style.display = "block";
+                        }
+                    });
+                } catch (e) {
+                    console.warn("Html5Qrcode init error:", e);
+                }
+            }
+        });
     </script>
 </body>
 
