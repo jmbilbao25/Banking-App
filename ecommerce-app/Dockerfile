@@ -5,5 +5,5 @@ RUN pip install --no-cache-dir -r requirements.txt gunicorn
 COPY . .
 RUN useradd -m appuser && chown -R appuser /app
 USER appuser
-EXPOSE 80
-CMD ["gunicorn", "-b", "0.0.0.0:80", "app:app"]
+EXPOSE 8000
+CMD ["gunicorn", "-b", "0.0.0.0:8000", "app:app"]

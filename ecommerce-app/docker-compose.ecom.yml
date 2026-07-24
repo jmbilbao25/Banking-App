@@ -5,7 +5,7 @@ services:
     image: jmbilbao25/qr-ecommerce-app:latest
     container_name: ecommerce-app
     ports:
-      - "80:80"
+      - "80:8000"
     environment:
       - BANK_PUBLIC_BASE=${BANK_PUBLIC_BASE:-http://3.83.82.3}
       - DB_HOST=mysql
