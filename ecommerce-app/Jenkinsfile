@@ -28,7 +28,7 @@ pipeline {
       steps { 
         withCredentials([usernamePassword(credentialsId: 'azure-credentials', passwordVariable: 'AZ_PASS', usernameVariable: 'AZ_USER'), string(credentialsId: 'azure-tenant-id', variable: 'AZ_TENANT')]) {
           sh 'az login --service-principal -u $AZ_USER -p $AZ_PASS --tenant $AZ_TENANT'
-          sh 'az container create --resource-group rg-azuser7669_mml.local-aafPZ --name ecommerce-dev --image $IMAGE:$TAG --dns-name-label ecom-dev-${BUILD_NUMBER} --ports 80 --environment-variables USE_SQLITE=true BANK_PUBLIC_BASE=http://bank-dev-${BUILD_NUMBER}.centralindia.azurecontainer.io --restart-policy Always'
+          sh 'az container create --resource-group rg-azuser7669_mml.local-aafPZ --name ecommerce-dev --image $IMAGE:$TAG --os-type Linux --dns-name-label ecom-dev-${BUILD_NUMBER} --ports 80 --environment-variables USE_SQLITE=true BANK_PUBLIC_BASE=http://bank-dev-${BUILD_NUMBER}.centralindia.azurecontainer.io --restart-policy Always'
         }
       } 
     } 
