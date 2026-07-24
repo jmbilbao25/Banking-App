@@ -25,7 +25,7 @@ pipeline {
       } 
     } 
  
-    stage('Deploy to EC2') { 
+    stage('Deploy to Dev (AWS)') { 
       steps { 
         sshagent(credentials: ['ec2-ssh-key']) {
           sh '''
@@ -34,5 +34,45 @@ pipeline {
         }
       } 
     } 
+
+    stage('Validation') {
+      steps {
+        input message: 'AWS Dev deployment complete. Proceed to deploy to Production (Azure ACI)?', ok: 'Deploy to Prod'
+      }
+    }
+
+    stage('Deploy to Prod (Azure ACI)') {
+      environment {
+        AZURE_RG = "rg-azuser7669_mml.local-aafPZ"
+        AZURE_LOCATION = "centralindia"
+      }
+      steps {
+        script {
+          def instances = ['bank-app-1', 'bank-app-2']
+          for (instance in instances) {
+            echo "Deploying/Restarting ACI: ${instance}"
+            // Check if ACI exists
+            def exists = sh(script: "az container show --name ${instance} --resource-group ${AZURE_RG} --query name -o tsv || true", returnStdout: true).trim()
+            
+            if (exists == instance) {
+              echo "${instance} exists. Restarting to pull latest image..."
+              sh "az container restart --name ${instance} --resource-group ${AZURE_RG}"
+            } else {
+              echo "${instance} does not exist. Creating..."
+              sh """
+                az container create \\
+                  --resource-group ${AZURE_RG} \\
+                  --name ${instance} \\
+                  --image $IMAGE:$TAG \\
+                  --os-type Linux \\
+                  --ports 80 \\
+                  --location ${AZURE_LOCATION} \\
+                  --dns-name-label ${instance}
+              """
+            }
+          }
+        }
+      }
+    }
   } 
 }
