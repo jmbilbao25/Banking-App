@@ -5,7 +5,7 @@ services:
     image: jmbilbao25/qr-banking-app:latest
     container_name: banking-app
     environment:
-      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://100.55.37.88}
+      - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://44.201.185.76}
       - DB_HOST=mysql
       - DB_NAME=${DB_NAME:-bankdb}
       - DB_USER=${DB_USER:-bankuser}
