@@ -8,16 +8,33 @@ services:
       - "80:80"
     environment:
       - ECOM_CALLBACK_BASE=${ECOM_CALLBACK_BASE:-http://100.59.16.39}
-      - DB_HOST=host.docker.internal
+      - DB_HOST=mysql
       - DB_NAME=${DB_NAME:-bankdb}
       - DB_USER=${DB_USER:-bankuser}
       - DB_PASSWORD=${DB_PASSWORD:-devpass}
       - USE_SQLITE=${USE_SQLITE:-}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    depends_on:
+      - mysql
     restart: unless-stopped
     networks:
       - bank-net
+
+  mysql:
+    image: mysql:8.0
+    container_name: bank-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-devroot}
+      - MYSQL_DATABASE=${DB_NAME:-bankdb}
+      - MYSQL_USER=${DB_USER:-bankuser}
+      - MYSQL_PASSWORD=${DB_PASSWORD:-devpass}
+    volumes:
+      - bank_mysql_data:/var/lib/mysql
+    restart: unless-stopped
+    networks:
+      - bank-net
+
+volumes:
+  bank_mysql_data:
 
 networks:
   bank-net:
