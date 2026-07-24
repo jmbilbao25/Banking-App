@@ -79,7 +79,7 @@ pipeline {
                     --name ${instance} \\
                     --image $IMAGE:$TAG \\
                     --os-type Linux \\
-                    --cpu 3 --memory 1.5 \\
+                    --cpu 1 --memory 1.5 \\
                     --ports 80 \\
                     --location ${AZURE_LOCATION} \\
                     --dns-name-label ${instance}
