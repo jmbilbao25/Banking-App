@@ -79,6 +79,7 @@ pipeline {
                     --resource-group ${AZURE_RG} \\
                     --name ${instance} \\
                     --image $IMAGE:$TAG \\
+                    --registry-login-server index.docker.io \\
                     --registry-username \$DOCKER_USER \\
                     --registry-password "\$DOCKER_PASS" \\
                     --os-type Linux \\
