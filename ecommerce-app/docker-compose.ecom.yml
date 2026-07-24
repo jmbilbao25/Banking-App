@@ -20,7 +20,7 @@ services:
       - ecom-net
 
   mysql:
-    image: mysql:8.0
+    image: mysql:5.7
     container_name: ecom-mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-devroot}
