@@ -37,7 +37,15 @@ pipeline {
 
     stage('Validation') {
       steps {
-        input message: 'AWS Dev deployment complete. Proceed to deploy to Production (Azure ACI)?', ok: 'Deploy to Prod'
+        script {
+          echo "Waiting for Dev app to become available at http://${EC2_IP}..."
+          // Retry for up to 2 minutes
+          retry(12) {
+            sleep(time: 10, unit: 'SECONDS')
+            sh "curl -sS -f http://${EC2_IP} > /dev/null"
+          }
+          echo "Validation successful! Proceeding to deploy to Production."
+        }
       }
     }
 
