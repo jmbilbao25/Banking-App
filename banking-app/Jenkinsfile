@@ -30,12 +30,12 @@ pipeline {
         sshagent(credentials: ['ec2-ssh-key']) {
           sh '''
             ssh -o StrictHostKeyChecking=no $EC2_USER@$EC2_IP << 'EOF'
-              if ! command -v docker &> /dev/null; then curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh; fi
+              if ! command -v docker &> /dev/null; then curl -fsSL https://get.docker.com -o get-docker.sh && sudo sh get-docker.sh </dev/null; fi
               if ! command -v mysql &> /dev/null; then
                 export DEBIAN_FRONTEND=noninteractive
                 export NEEDRESTART_MODE=a
-                sudo -E apt-get update
-                sudo -E apt-get install -yq mysql-server
+                sudo -E apt-get update </dev/null
+                sudo -E apt-get install -yq mysql-server </dev/null
               fi
               sudo sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
               sudo systemctl restart mysql
