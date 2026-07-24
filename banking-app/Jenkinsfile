@@ -24,6 +24,14 @@ pipeline {
         }
       } 
     } 
+    stage('Deploy to Dev/Test (ACI)') { 
+      steps { 
+        withCredentials([usernamePassword(credentialsId: 'azure-credentials', passwordVariable: 'AZ_PASS', usernameVariable: 'AZ_USER'), string(credentialsId: 'azure-tenant-id', variable: 'AZ_TENANT')]) {
+          sh 'az login --service-principal -u $AZ_USER -p $AZ_PASS --tenant $AZ_TENANT'
+          sh 'az container create --resource-group qr-payment-rg --name banking-dev --image $IMAGE:$TAG --dns-name-label bank-dev-${BUILD_NUMBER} --ports 5001 --environment-variables USE_SQLITE=true ECOM_CALLBACK_BASE=http://ecom-dev-${BUILD_NUMBER}.eastus.azurecontainer.io:5000 --restart-policy Always'
+        }
+      } 
+    } 
     stage('Deploy to EC2') { 
       steps { 
         sshagent(credentials: ['ec2-ssh-key']) {
