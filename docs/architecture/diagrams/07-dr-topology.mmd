@@ -1,0 +1,53 @@
+flowchart TB
+    U["Customers"]
+    AFD["Front Door Premium<br/>health probes + automatic origin failover"]
+
+    subgraph P["PRIMARY - Southeast Asia - Singapore - ACTIVE"]
+        direction TB
+        AP1["APIM Premium<br/>multi-region unit"]
+        AK1["AKS - zones 1,2,3"]
+        PG1[("PostgreSQL Flexible Server<br/>ZONE-REDUNDANT HA<br/>synchronous standby<br/>RPO = 0 in region")]
+        RD1[("Redis Enterprise<br/>zone-redundant")]
+        SB1["Service Bus Premium<br/>geo-DR primary alias"]
+    end
+
+    subgraph S["SECONDARY - East Asia - Hong Kong - WARM STANDBY"]
+        direction TB
+        AP2["APIM Premium<br/>multi-region unit"]
+        AK2["AKS - scaled to minimum<br/>manifests synced by Argo CD"]
+        PG2[("Read replica<br/>asynchronous<br/>RPO <= 60s, promotable")]
+        RD2[("Redis geo-replica")]
+        SB2["Service Bus geo-DR secondary"]
+    end
+
+    subgraph BK["Backup and Archive"]
+        BV["Backup Vault<br/>immutable + soft delete<br/>PITR 35 days"]
+        LTR[("Long-term retention<br/>ADLS WORM, 7 years<br/>legal hold")]
+        ACL["Confidential Ledger<br/>independent integrity anchor"]
+    end
+
+    subgraph PH["PH On-Premises / Co-location"]
+        ARCH[("In-country archival copy<br/>for BSP examination access")]
+        CORE["Core Banking System"]
+    end
+
+    U --> AFD
+    AFD -->|"priority 1"| AP1
+    AFD -->|"priority 2 on failure"| AP2
+    AP1 --> AK1 --> PG1
+    AK1 --> RD1
+    AK1 --> SB1
+    AP2 --> AK2 --> PG2
+    PG1 -->|"async geo-replication"| PG2
+    RD1 --> RD2
+    SB1 -->|"geo-DR pairing"| SB2
+    PG1 --> BV --> LTR --> ARCH
+    LTR --> ACL
+    AK1 -.->|ExpressRoute| CORE
+
+    T["TARGETS<br/>RPO <= 60s cross-region, 0 in-region<br/>RTO <= 15 min<br/>Quarterly DR drills, evidence retained<br/>Chaos Studio validates failover"]
+
+    classDef tgt fill:#fff3cd,stroke:#cc8800,stroke-width:2px,color:#000
+    classDef act fill:#ddffdd,stroke:#008800,stroke-width:2px,color:#000
+    class T tgt
+    class PG1,AK1,AP1 act

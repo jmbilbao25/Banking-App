@@ -1,0 +1,49 @@
+flowchart LR
+    DEV["Developer"]
+    PR["Pull Request<br/>branch protection<br/>2 reviewers + CODEOWNERS"]
+
+    subgraph SEC["Pre-merge gates - GitHub Advanced Security"]
+        SS["Secret scanning<br/>push protection"]
+        CQ["CodeQL SAST"]
+        DEP["Dependabot + SCA"]
+        UT["Unit + contract tests<br/>coverage gate"]
+        TF["Terraform validate<br/>OPA / Conftest policy-as-code"]
+    end
+
+    subgraph BUILD["Build - GitHub Actions, OIDC federated to Azure"]
+        MS["Multi-stage distroless build<br/>non-root, read-only rootfs"]
+        SBOM["SBOM - CycloneDX"]
+        TRV["Trivy + Defender scan<br/>fail on HIGH/CRITICAL"]
+        SIGN["Notation / Cosign signing<br/>key in Managed HSM"]
+        ATT["Provenance attestation<br/>SLSA level 3"]
+    end
+
+    ACR["Azure Container Registry Premium<br/>quarantine until scanned<br/>geo-replicated SEA + EA"]
+
+    subgraph ENV["Progressive delivery - Argo CD GitOps"]
+        DEVE["dev<br/>auto-sync"]
+        SIT["sit<br/>integration + DAST ZAP"]
+        UAT["uat<br/>perf + VAPT + BSP change approval"]
+        PRD["prod<br/>manual approval + CAB"]
+    end
+
+    ROLL["Argo Rollouts<br/>canary 10 - 50 - 100 percent<br/>auto-rollback on SLO breach"]
+    AKS["AKS - Azure Policy admission<br/>signed images only<br/>Ratify + Gatekeeper"]
+
+    OBS["Azure Monitor + App Insights<br/>SLO error budget"]
+    CHAOS["Azure Chaos Studio<br/>scheduled fault injection"]
+
+    DEV --> PR --> SEC
+    SEC --> BUILD
+    MS --> SBOM --> TRV --> SIGN --> ATT --> ACR
+    ACR --> ENV
+    DEVE --> SIT --> UAT --> PRD
+    PRD --> ROLL --> AKS
+    AKS --> OBS
+    OBS -.->|"breach triggers rollback"| ROLL
+    CHAOS --> AKS
+
+    classDef gate fill:#ffe8cc,stroke:#cc7700,stroke-width:2px,color:#000
+    classDef good fill:#ddffdd,stroke:#008800,stroke-width:2px,color:#000
+    class SS,CQ,DEP,UT,TF,TRV gate
+    class SIGN,ATT,ACR,ROLL good
