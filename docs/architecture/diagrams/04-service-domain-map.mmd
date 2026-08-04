@@ -1,0 +1,66 @@
+flowchart TB
+    subgraph BC1["Bounded Context: Identity and Access"]
+        S1["identity-adapter<br/>Entra External ID facade"]
+        S2["consent-service<br/>Data Privacy Act consent ledger"]
+    end
+
+    subgraph BC2["Bounded Context: Accounts"]
+        S3["account-service<br/>account master, KYC tier, limits"]
+        S4["balance-projection<br/>CQRS read model from ledger"]
+    end
+
+    subgraph BC3["Bounded Context: Payments - core"]
+        S5["payment-orchestrator<br/>saga, idempotency, timeouts"]
+        S6["ledger-service<br/>double-entry, append-only journal<br/>runs on confidential compute"]
+        S7["qrph-service<br/>EMVCo TLV, CRC16, JWS sign+verify"]
+        S8["reversal-service<br/>compensating entries, chargebacks"]
+    end
+
+    subgraph BC4["Bounded Context: Risk and Compliance"]
+        S9["fraud-service<br/>velocity, device, ML scoring"]
+        S10["aml-service<br/>sanctions, PEP, CTR, STR"]
+        S11["audit-service<br/>hash-chained immutable events"]
+        S12["reporting-service<br/>BSP and AMLC submissions"]
+    end
+
+    subgraph BC5["Bounded Context: Settlement"]
+        S13["reconciliation-service<br/>EOD sweep, orphan detection"]
+        S14["settlement-service<br/>InstaPay / PESONet netting"]
+    end
+
+    subgraph BC6["Bounded Context: Commerce - separate trust zone"]
+        S15["catalog-service"]
+        S16["cart-service"]
+        S17["order-service<br/>authoritative order total"]
+        S18["inventory-service"]
+    end
+
+    subgraph BC7["Cross-cutting"]
+        S19["notification-service<br/>SMS OTP, push, email"]
+        S20["bff-web / bff-mobile"]
+    end
+
+    S20 --> S1
+    S20 --> S5
+    S5 --> S7
+    S5 --> S9
+    S9 --> S10
+    S10 --> S6
+    S6 --> S3
+    S6 --> S4
+    S6 -.->|"outbox event"| S17
+    S17 --> S18
+    S17 --> S15
+    S6 --> S11
+    S11 --> S12
+    S6 --> S13
+    S13 --> S8
+    S13 --> S14
+    S5 --> S19
+
+    classDef core fill:#ddffdd,stroke:#008800,stroke-width:3px,color:#000
+    classDef comp fill:#fff3cd,stroke:#cc8800,stroke-width:2px,color:#000
+    classDef ecom fill:#e8e8f5,stroke:#5555aa,stroke-width:2px,color:#000
+    class S5,S6,S7 core
+    class S9,S10,S11,S12 comp
+    class S15,S16,S17,S18 ecom

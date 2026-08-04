@@ -1,0 +1,64 @@
+sequenceDiagram
+    autonumber
+    actor C as Customer
+    participant AFD as Front Door + WAF
+    participant APIM as API Management
+    participant PO as payment-orchestrator
+    participant R as Redis
+    participant QR as qrph-service
+    participant O as order-service
+    participant F as fraud-service
+    participant A as aml-service
+    participant L as ledger-service
+    participant PG as PostgreSQL
+    participant SB as Service Bus
+    participant AU as audit-service
+
+    C->>AFD: scan QR Ph, POST /payments (Idempotency-Key)
+    AFD->>APIM: Private Link, WAF passed
+    APIM->>APIM: validate-jwt, rate-limit-by-key
+    APIM->>PO: authorised request + subject claim
+
+    PO->>R: SETNX idempotency:{key}
+    alt key already present
+        R-->>PO: exists
+        PO-->>C: 200 cached original result (no double charge)
+    end
+
+    PO->>QR: verify detached JWS on QR payload
+    QR->>QR: Managed HSM public key, CRC16, expiry
+    QR-->>PO: valid, orderRef only
+
+    PO->>O: GET order by ref (internal mesh, mTLS)
+    O-->>PO: AUTHORITATIVE amount, merchant, status=PENDING
+    Note over PO,O: amount never comes from the client (fixes F-02)
+
+    PO->>F: score(subject, amount, device, velocity)
+    F-->>PO: risk=LOW
+    alt risk HIGH
+        F-->>PO: risk=HIGH
+        PO-->>C: 402 step-up authentication required
+    end
+
+    PO->>A: screen(payer, payee, amount)
+    A-->>PO: cleared (CTR queued if >= PHP 500k)
+
+    rect rgb(220,245,220)
+        Note over L,PG: single local ACID transaction
+        PO->>L: post double-entry (debit payer / credit merchant)
+        L->>PG: SELECT ... FOR UPDATE on payer account
+        L->>PG: INSERT journal entries, SUM(dr)-SUM(cr)=0
+        L->>PG: INSERT outbox row (PaymentCompleted)
+        PG-->>L: COMMIT
+    end
+    L-->>PO: ledgerTxnId
+
+    PG->>SB: outbox relay publishes PaymentCompleted
+    SB->>O: mark PAID + decrement stock (idempotent consumer)
+    SB->>AU: append hash-chained audit event
+    AU->>AU: anchor receipt in Confidential Ledger
+
+    PO-->>C: 201 Created + receipt
+
+    Note over PO,L: COMPENSATION — if ledger commit fails,<br/>no event is ever published, so the order<br/>stays PENDING. Fixes F-04 by construction.
+    Note over SB: Failed consumers retry with backoff,<br/>then land in DLQ for reconciliation-service.

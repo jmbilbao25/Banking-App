@@ -1,0 +1,45 @@
+flowchart TB
+    U["End User Browser"]
+
+    subgraph AWS["AWS EC2 - Dev/Test - public IP, HTTP only"]
+        direction TB
+        NB["Nginx :80"]
+        NE["Nginx :80"]
+        FB["Flask banking-app<br/>Gunicorn :5001<br/>session cookie auth"]
+        FE["Flask ecommerce-app<br/>Gunicorn :5000<br/>session cookie auth"]
+        MB[("MySQL 5.7<br/>bankdb<br/>single node")]
+        ME[("MySQL 5.7<br/>ecomdb<br/>single node")]
+        NB --> FB
+        NE --> FE
+        FB --> MB
+        FE --> ME
+    end
+
+    subgraph ACI["Azure ACI - Prod - centralindia"]
+        direction TB
+        B1["bank-app-1"]
+        B2["bank-app-2"]
+        E1["ecom-app-1"]
+        E2["ecom-app-2"]
+        AMY[("Azure MySQL<br/>public endpoint<br/>creds in Jenkinsfile")]
+        B1 --> AMY
+        B2 --> AMY
+        E1 --> AMY
+        E2 --> AMY
+    end
+
+    subgraph CICD["CI/CD"]
+        direction TB
+        JEN["Jenkins<br/>agent any"]
+        DH["Docker Hub<br/>public, unsigned, unscanned"]
+        JEN --> DH
+    end
+
+    U -->|"HTTP :80 cleartext"| NB
+    U -->|"HTTP :80 cleartext"| NE
+    FB <-->|"unauthenticated<br/>HTTP callback"| FE
+    DH -->|"ssh StrictHostKeyChecking=no"| AWS
+    DH -->|"az container delete + create<br/>= downtime"| ACI
+
+    classDef bad fill:#ffdddd,stroke:#cc0000,stroke-width:2px,color:#000
+    class MB,ME,AMY,DH bad

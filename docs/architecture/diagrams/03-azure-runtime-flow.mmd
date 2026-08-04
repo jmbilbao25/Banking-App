@@ -1,0 +1,77 @@
+flowchart LR
+    C["Customer<br/>mobile / web"]
+    MER["Merchant POS"]
+
+    subgraph L1["1 - Edge"]
+        AFD["Front Door Premium<br/>WAF + DDoS + CDN"]
+    end
+
+    subgraph L2["2 - Identity"]
+        EXT["Entra External ID - CIAM<br/>OIDC / MFA / passkeys<br/>Conditional Access + risk"]
+    end
+
+    subgraph L3["3 - Gateway"]
+        APIM["API Management Premium<br/>validate-jwt<br/>rate-limit-by-key<br/>merchant mTLS<br/>OpenAPI + versioning"]
+    end
+
+    subgraph L4["4 - Banking Domain - AKS"]
+        BFF["bff-service"]
+        QR["qrph-service<br/>EMVCo TLV + CRC16<br/>JWS via Managed HSM"]
+        PO["payment-orchestrator<br/>Dapr saga workflow"]
+        FR["fraud-service<br/>velocity + ML scoring"]
+        AML["aml-service<br/>sanctions / PEP / CTR / STR"]
+        LED["ledger-service<br/>double-entry append-only<br/>CONFIDENTIAL node pool"]
+        ACC["account-service"]
+        AUD["audit-service<br/>hash-chained"]
+        NOT["notification-service"]
+    end
+
+    subgraph L5["5 - Ecommerce Domain - AKS"]
+        ORD["order-service"]
+        CAT["catalog-service"]
+        INV["inventory-service"]
+        SET["settlement-service"]
+    end
+
+    subgraph L6["6 - Data"]
+        PG[("PostgreSQL<br/>NUMERIC 19,4")]
+        RED[("Redis<br/>idempotency + locks")]
+        SB["Service Bus<br/>topics + DLQ"]
+        ADLS[("ADLS WORM 7y")]
+        ACL["Confidential Ledger"]
+    end
+
+    subgraph L7["7 - National Rails"]
+        QRPH["QR Ph switch"]
+        INSTA["InstaPay / PESONet"]
+        AMLC["AMLC reporting"]
+    end
+
+    C -->|HTTPS TLS 1.3| AFD
+    MER -->|mTLS| AFD
+    AFD -->|Private Link| APIM
+    APIM -.->|"validate token"| EXT
+    C -.->|"authenticate + MFA"| EXT
+    APIM --> BFF
+    BFF --> QR
+    BFF --> PO
+    PO --> FR
+    FR --> AML
+    AML --> LED
+    LED --> ACC
+    LED --> PG
+    PO --> RED
+    LED -->|"outbox relay"| SB
+    SB --> ORD
+    ORD --> INV
+    ORD --> CAT
+    SB --> NOT
+    SB --> AUD
+    AUD --> ADLS
+    AUD --> ACL
+    SET --> INSTA
+    QR --> QRPH
+    AML --> AMLC
+
+    classDef crit fill:#ddffdd,stroke:#008800,stroke-width:3px,color:#000
+    class LED,PO,QR crit
