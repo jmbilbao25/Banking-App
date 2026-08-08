@@ -48,29 +48,51 @@ STAMP = 1735689600000   # 2025-01-01T00:00:00Z -- deterministic build output
 FONT = 6          # Nunito -- clean sans, high legibility
 LH = 1.25         # Excalidraw line height for this family
 
-# Semantic fill / stroke pairs. Darker stroke always paired with a light fill.
+VERSION = "2.0"
+UPDATED = "2026-08-08"
+
+# One taxonomy, six meanings, applied identically on every page. Kept
+# deliberately small: colour is reinforcement, and the icon plus the label
+# always carry the meaning on their own so the set stays readable without it.
 SEM = {
-    "edge":    ("#FFEDD5", "#C2410C"),   # internet / edge / entry
-    "net":     ("#E0F2FE", "#0369A1"),   # networking, hub, transit
-    "compute": ("#DBEAFE", "#1D4ED8"),   # AKS, workloads
-    "data":    ("#EDE9FE", "#6D28D9"),   # stateful services
-    "sec":     ("#FEF3C7", "#B45309"),   # identity, keys, policy
-    "ops":     ("#D1FAE5", "#047857"),   # observability, governance
-    "bad":     ("#FECACA", "#B91C1C"),   # removed / anti-pattern
-    "ext":     ("#F1F5F9", "#475569"),   # external / on-prem / neutral
+    "edge":     ("#FFEDD5", "#C2410C"),   # public entry point
+    "platform": ("#DBEAFE", "#1D4ED8"),   # Azure service on the request path
+    "data":     ("#EDE9FE", "#6D28D9"),   # holds state
+    "security": ("#FEF3C7", "#B45309"),   # identity, keys, confidential compute
+    "ops":      ("#D1FAE5", "#047857"),   # build, deploy, observe, govern
+    "external": ("#F1F5F9", "#475569"),   # outside our control -- NOT standby
+}
+
+# The one authoritative wording for each colour. Pages name the keys they use
+# and never their own labels, so a colour cannot come to mean two things in two
+# places -- which is the failure mode when a diagram set grows.
+#
+# The wording is chosen to be *decidable*: for any element there is exactly one
+# key that fits, so the same component cannot drift colour between pages.
+#   edge      the public entry point
+#   platform  an Azure service ON the request path
+#   data      anything that holds state
+#   security  identity, keys, confidential compute
+#   ops       used to build, deploy, observe or govern -- off the request path
+#   external  outside our control (actors, third parties, on-premises)
+LEGEND = {
+    "edge":     "Internet edge",
+    "platform": "Azure service on the request path",
+    "data":     "Data and state",
+    "security": "Identity, keys, confidential compute",
+    "ops":      "Build, deploy, observe, govern",
+    "external": "Outside our control",
 }
 
 # Zone (container) tints -- lighter than card fills so cards read on top.
 ZONE = {
-    "edge":    ("#FFF7ED", "#EA580C"),
-    "net":     ("#F0F9FF", "#0284C7"),
-    "compute": ("#EFF6FF", "#2563EB"),
-    "data":    ("#F5F3FF", "#7C3AED"),
-    "sec":     ("#FFFBEB", "#D97706"),
-    "ops":     ("#ECFDF5", "#059669"),
-    "bad":     ("#FEF2F2", "#DC2626"),
-    "ext":     ("#F8FAFC", "#64748B"),
-    "plain":   ("transparent", "#94A3B8"),
+    "edge":     ("#FFF7ED", "#EA580C"),
+    "platform": ("#EFF6FF", "#2563EB"),
+    "data":     ("#F5F3FF", "#7C3AED"),
+    "security": ("#FFFBEB", "#D97706"),
+    "ops":      ("#ECFDF5", "#059669"),
+    "external": ("#F8FAFC", "#64748B"),
+    "plain":    ("transparent", "#94A3B8"),
 }
 
 TITLE = "#0F172A"
@@ -179,7 +201,7 @@ class Scene:
         return el
 
     # -- primitives --------------------------------------------------------
-    def rect(self, x, y, w, h, sem="ext", *, radius=8, sw=2, style="solid",
+    def rect(self, x, y, w, h, sem="external", *, radius=8, sw=2, style="solid",
              fill=None, stroke=None, palette=None):
         pal = palette or SEM
         f, s = pal[sem]
@@ -190,12 +212,12 @@ class Scene:
             roundness={"type": 3} if radius else None,
         )
 
-    def ellipse(self, x, y, w, h, sem="ext", *, sw=2, fill=None, stroke=None):
+    def ellipse(self, x, y, w, h, sem="external", *, sw=2, fill=None, stroke=None):
         f, s = SEM[sem]
         return self._base("ellipse", x, y, w, h, stroke or s,
                           fill if fill is not None else f, strokeWidth=sw)
 
-    def diamond(self, x, y, w, h, sem="sec", *, sw=2):
+    def diamond(self, x, y, w, h, sem="security", *, sw=2):
         f, s = SEM[sem]
         return self._base("diamond", x, y, w, h, s, f, strokeWidth=sw)
 
@@ -231,7 +253,12 @@ class Scene:
         )
 
     def arrow(self, pts, *, color="#334155", sw=2, style="solid",
-              start=None, end="arrow", src=None, dst=None, gap=4):
+              start=None, end="arrow", src=None, dst=None, gap=4,
+              sharp=False):
+        """`sharp=True` gives square elbows. Excalidraw's rounded corners bulge
+        outward from the declared path, which can reach into a nearby label on a
+        long multi-segment route -- and the geometry lint only sees the straight
+        segments, so the bulge would not be caught."""
         xs = [p[0] for p in pts]
         ys = [p[1] for p in pts]
         x0, y0 = xs[0], ys[0]
@@ -244,7 +271,7 @@ class Scene:
             endBinding={"elementId": dst["id"], "focus": 0, "gap": gap} if dst else None,
             startArrowhead=start, endArrowhead=end,
             elbowed=False,
-            roundness={"type": 2},
+            roundness=None if sharp else {"type": 2},
         )
         for peer, key in ((src, "src"), (dst, "dst")):
             if peer is not None:
@@ -281,28 +308,38 @@ class Scene:
 
     # -- composites --------------------------------------------------------
     def zone(self, x, y, w, h, label, sem="plain", *, sub=None, style="solid",
-             sw=2, label_size=15):
+             sw=2, label_size=15, label_align="left"):
         """A labelled grouping region. Label sits above the top edge so it can
-        never collide with the contents."""
+        never collide with the contents. `label_align="right"` moves it out of
+        the way when arrows need to enter from the top left."""
         f, s = ZONE[sem]
         r = self._base("rectangle", x, y, w, h, s, f,
                        strokeWidth=sw, strokeStyle=style,
                        roundness={"type": 3}, role="zone")
         self.text(label, x + 14, y - label_size * LH - 7, w - 28,
-                  label_size, color=s, align="left", role="zonelabel")
+                  label_size, color=s, align=label_align, role="zonelabel")
         if sub:
             self.text(sub, x + 14, y + 10, w - 28, 11, color=BODY, align="left")
         return r
 
-    def card(self, x, y, w, h, icon_key, title, sem="compute", *, sub=None,
-             icon_size=26, title_size=13, sub_size=11, sw=2, style="solid"):
-        """Icon + label card. Represents one discrete deployed resource."""
+    def card(self, x, y, w, h, icon_key, title, sem="platform", *, sub=None,
+             icon_size=26, title_size=14, sub_size=12, sw=2, style="solid"):
+        """One discrete thing in the system.
+
+        `icon_key=None` renders the card without an icon. That is reserved for
+        services this team builds and runs: an official product icon would
+        misrepresent them, and the absence of one is a content-level signal
+        rather than a colour-only one.
+        """
         f, s = SEM[sem]
         r = self._base("rectangle", x, y, w, h, s, f, strokeWidth=sw,
                        strokeStyle=style, roundness={"type": 3}, role="card")
-        iy = y + (h - icon_size) / 2
-        self.icon(icon_key, x + 11, iy, icon_size)
-        tx = x + 11 + icon_size + 10
+        if icon_key is None:
+            tx = x + 14
+        else:
+            iy = y + (h - icon_size) / 2
+            self.icon(icon_key, x + 11, iy, icon_size)
+            tx = x + 11 + icon_size + 10
         tw = w - (tx - x) - 10
         if sub:
             th = title_size * LH
@@ -347,19 +384,24 @@ class Scene:
         return h
 
     # -- page furniture ----------------------------------------------------
-    def header(self, x, y, title, subtitle, tag, *, w=1100):
+    def header(self, x, y, title, subtitle, tag, kind, *, w=1100):
+        """Title block with the metadata a reader needs to trust the diagram:
+        what it is, which standard diagram type it is, and how fresh it is."""
         self.text(title, x, y, w, 30, color=TITLE, align="left", role="header")
         self.text(subtitle, x, y + 42, w, 14, color=SUBTLE, align="left",
                   role="header")
-        self.text(tag, x + w - 420, y + 6, 420, 14, color="#94A3B8",
+        self.text(tag, x + w - 520, y + 2, 520, 14, color="#94A3B8",
+                  align="right", role="header")
+        self.text(f"{kind}  \u00b7  v{VERSION}  \u00b7  updated {UPDATED}",
+                  x + w - 520, y + 24, 520, 11, color="#94A3B8",
                   align="right", role="header")
         self.line([(x, y + 74), (x + w, y + 74)], color="#CBD5E1", sw=2)
 
     def note(self, x, y, w, s, *, size=12, color=BODY, align="left"):
         return self.text(s, x, y, w, size, color=color, align=align)
 
-    def legend(self, x, y, items, *, w=170, gap=26, size=12):
-        """items = [(sem, label)]"""
+    def legend(self, x, y, items, *, w=200, gap=26, size=12):
+        """Vertical legend. items = [(sem, label)]"""
         for i, (sem, label) in enumerate(items):
             yy = y + i * gap
             f, s = SEM[sem]
@@ -367,6 +409,44 @@ class Scene:
                        roundness={"type": 3}, role="swatch")
             self.text(label, x + 24, yy + 1, w, size, color=SUBTLE,
                       align="left", role="legendlabel")
+
+    def legend_row(self, x, y, keys, *, size=12, swatch=15, gap=26,
+                   lines=True, services=True):
+        """Compact single-line legend.
+
+        `keys` are semantic names; the wording comes from LEGEND so it is
+        identical on every page. Every page carries one, because the set
+        introduces colour and line semantics that a reader should not have to
+        infer.
+        """
+        cx = x
+        for sem in keys:
+            label = LEGEND[sem]
+            f, s = SEM[sem]
+            self._base("rectangle", cx, y, swatch, swatch, s, f, strokeWidth=2,
+                       roundness={"type": 3}, role="swatch")
+            lw = text_width(label, size)
+            self.text(label, cx + swatch + 7, y, lw + 4, size, color=SUBTLE,
+                      align="left", role="legendlabel")
+            cx += swatch + 7 + lw + gap
+
+        if lines:
+            for style, label in (("solid", "synchronous call"),
+                                 ("dashed", "asynchronous or control")):
+                self.arrow([(cx, y + 8), (cx + 32, y + 8)], color=SUBTLE,
+                           sw=2, style=style)
+                lw = text_width(label, size)
+                self.text(label, cx + 40, y, lw + 4, size, color=SUBTLE,
+                          align="left", role="legendlabel")
+                cx += 40 + lw + gap
+
+        if services:
+            label = "no icon = not an Azure service (our code, or a third party)"
+            lw = text_width(label, size)
+            self.text(label, cx, y, lw + 4, size, color=SUBTLE, align="left",
+                      role="legendlabel")
+            cx += lw
+        return cx
 
     # -- output ------------------------------------------------------------
     def write(self, filename: str):
