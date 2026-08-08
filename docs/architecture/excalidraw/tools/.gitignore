@@ -1,0 +1,14 @@
+# icon sources -- fetched on demand by _icons/collect.py
+_icons/flat/
+_icons/Azure_Public_Service_Icons/
+_icons/*.zip
+_icons/*.txt
+
+# renderer build output -- produced by render/build-bundle.sh
+render/build/
+render/web/bundle.js
+render/web/fonts/
+render/.venv/
+render/uv.lock
+
+__pycache__/
