@@ -1,9 +1,8 @@
-"""Page 1 -- system context.
+"""Page 1 -- capstone context.
 
-The platform is one black box. Only the actors and the external systems it
-depends on appear; internal structure is deliberately omitted so the reader
-settles the scope boundary before any implementation detail. Everything that
-follows is a progressively narrower view of the box drawn here.
+The job of this page is to fix the scope boundary before anyone looks at Azure
+detail. EastWest bought Temenos SaaS for core banking, so the honest scope for a
+trainee project is the channel layer in front of it -- not a replacement core.
 """
 import os
 import sys
@@ -15,72 +14,67 @@ s = Scene("context")
 
 s.header(
     60, 50,
-    "QR Payment Platform \u2014 System Context",
-    "Who uses the platform and what it depends on. One box, no internals \u2014 the scope boundary comes first.",
-    "PAGE 1 of 6  \u00b7  CONTEXT",
+    "EastWest Digital Channels \u2014 Capstone Context",
+    "Core banking is Temenos SaaS, so our scope is the channel layer in front of it. This page fixes that boundary before any Azure detail.",
+    "PAGE 1 of 4  \u00b7  CONTEXT",
     "Context diagram",
-    w=1500,
+    w=1600,
 )
 
+PLAT = SEM["platform"][1]
 SECU = SEM["security"][1]
 EXT = SEM["external"][1]
 
-# ---------------------------------------------------------------- actors
-cust = s.icon("browser", 150, 300, 44)
-s.text("Customer\nmobile and web", 80, 352, 180, 13, color=SUBTLE,
+# ---------------------------------------------------------------- customers
+retail = s.icon("browser", 160, 320, 40)
+s.text("Retail customer\nEasyWay web and app", 80, 370, 200, 13, color=SUBTLE,
        align="center")
-merch = s.icon("devices", 150, 470, 44)
-s.text("Merchant\nPOS and storefront", 80, 522, 180, 13, color=SUBTLE,
+biz = s.icon("devices", 160, 500, 40)
+s.text("Business customer\nEasyBiz app", 80, 550, 200, 13, color=SUBTLE,
        align="center")
 
-# ---------------------------------------------------------------- the system
-s.zone(400, 250, 600, 392, "QR Payment Platform", "plain", sw=3,
-       label_size=18)
+# ---------------------------------------------------------------- our scope
+s.zone(420, 260, 600, 400, "IN SCOPE \u2014 the channel layer we designed",
+       "plain", sw=3, label_size=16)
+s.card(440, 310, 560, 66, None, "EasyWay web and mobile API", "platform",
+       sub="sign-in, account view, transfers")
+s.card(440, 390, 560, 66, None, "Transfer service", "platform",
+       sub="checks a request, then calls the core")
+s.card(440, 470, 560, 66, "botservice", "ESTA chatbot", "platform",
+       sub="existing bot \u2014 we add a transfer-status reply")
+s.card(440, 550, 560, 66, "externalid", "Customer sign-in", "security",
+       sub="Entra External ID, MFA, trusted device")
 
-s.text("Accepts QR Ph payments, moves money between customer\nand merchant accounts, and settles to the merchant bank.",
-       430, 300, 540, 15, color=INK, align="left")
+s.arrow([(204, 340), (416, 340)], src=retail, color=SUBTLE)
+s.arrow([(204, 520), (416, 520)], src=biz, color=SUBTLE)
 
-s.line([(430, 360), (970, 360)], color="#CBD5E1", sw=1)
-
-s.text("Runs on Azure in Southeast Asia (Singapore), with a warm\nstandby in East Asia (Hong Kong).",
-       430, 382, 540, 13, color=BODY, align="left")
-s.text("Two trust zones sit inside this boundary: the banking domain\nowns the ledger, the commerce domain owns orders and stock.",
-       430, 440, 540, 13, color=BODY, align="left")
-s.text("Internal structure is deliberately left out here. Pages 2 to 6\nopen the box one layer at a time.",
-       430, 500, 540, 13, color=BODY, align="left")
-
-# ---------------------------------------------------------------- dependencies
+# ---------------------------------------------------------------- out of scope
+s.text("OUT OF SCOPE \u2014 we integrate with these, we do not build them",
+       1110, 266, 560, 13, color=BODY)
 DEPS = [
-    ("externalid", "Microsoft Entra External ID",
-     "customer identity, MFA, passkeys", "security", "authenticates", "dashed"),
-    (None, "QR Ph switch",
-     "BSP-mandated national QR standard", "external", "QR standard", "solid"),
-    (None, "InstaPay and PESONet",
-     "interbank settlement rails", "external", "settles funds", "solid"),
-    (None, "AMLC reporting",
-     "CTR and STR submissions", "external", "reports", "dashed"),
-    (None, "Core banking system",
-     "on-premises system of record", "external", "ExpressRoute", "solid"),
+    ("Temenos SaaS core banking", "accounts, balances and postings \u2014 the system of record", "accounts"),
+    ("InstaPay and PESONet", "the BSP-regulated transfer rails", "transfers"),
+    ("Infobip and MoEngage", "SMS, push and e-mail delivery", "notify"),
 ]
+for i, (title, sub, label) in enumerate(DEPS):
+    y = 320 + i * 100
+    cy = y + 33
+    c = s.card(1110, y, 540, 66, None, title, "external", sub=sub)
+    s.arrow([(1024, cy), (1106, cy)], dst=c, color=EXT)
+    s.text(label, 1028, cy - 20, 80, 11, color=EXT, align="left")
 
-for i, (ik, title, sub, sem, label, style) in enumerate(DEPS):
-    y = 250 + i * 82
-    cy = y + 32
-    card = s.card(1140, y, 420, 64, ik, title, sem, sub=sub)
-    colour = SECU if sem == "security" else EXT
-    s.arrow([(1004, cy), (1136, cy)], dst=card, color=colour, style=style)
-    s.text(label, 1010, cy - 22, 130, 11, color=colour, align="left")
+# ---------------------------------------------------------------- why
+s.text("Why we drew the boundary here", 60, 700, 700, 14, color=INK)
+s.text("EastWest selected Temenos SaaS for core banking in 2025. Their Head of Enterprise\nArchitecture describes the approach as \u201cback-to-core\u201d: keep the core standard and put\nchanges into configuration rather than custom code, so the core stays evergreen.\n\nWe followed that. Our design adds no logic to the core. The transfer service asks the\ncore to move money and treats the answer as final.",
+       60, 726, 1000, 13, color=BODY, align="left")
 
-# ---------------------------------------------------------------- actor flows
-s.arrow([(198, 322), (396, 322)], src=cust, color=SUBTLE)
-s.text("scans a QR code and pays", 210, 296, 190, 11, color=SUBTLE,
-       align="left")
-s.arrow([(198, 492), (396, 492)], src=merch, color=SUBTLE)
-s.text("displays a QR code", 210, 466, 190, 11, color=SUBTLE, align="left")
+s.text("Also unchanged by this project", 1110, 700, 560, 14, color=INK)
+s.text("EastWest stores and ATMs serve the same\ncustomers and are untouched here.\n\nKomo, the digital-only bank, runs on its own\napp and is a separate piece of work.",
+       1110, 726, 560, 13, color=BODY, align="left")
 
 # ---------------------------------------------------------------- legend
-s.legend_row(60, 700, ["security", "external"])
-s.text("Source: docs/architecture/target-azure-architecture.md", 60, 742, 900,
-       11, color="#94A3B8", align="left")
+s.legend_row(60, 880, ["platform", "security", "external"], services=True)
+s.text("Sources: EastWest EasyWay FAQ and komo.ph \u00b7 Temenos press release, 22 May 2025 \u00b7 Temenos Regional Forum, Manila",
+       60, 922, 1300, 11, color="#94A3B8", align="left")
 
 s.write("01-context.excalidraw")

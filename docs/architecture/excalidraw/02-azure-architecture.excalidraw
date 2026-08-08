@@ -8,7 +8,7 @@
       "type": "text",
       "x": 60.0,
       "y": 50.0,
-      "width": 2000.0,
+      "width": 1900.0,
       "height": 37.5,
       "angle": 0,
       "strokeColor": "#0F172A",
@@ -33,8 +33,8 @@
       "customData": {
         "role": "header"
       },
-      "text": "Resilience \u2014 Zone Redundancy and Regional Failover",
-      "originalText": "Resilience \u2014 Zone Redundancy and Regional Failover",
+      "text": "Azure Architecture \u2014 Channel Layer",
+      "originalText": "Azure Architecture \u2014 Channel Layer",
       "fontSize": 30,
       "fontFamily": 6,
       "textAlign": "left",
@@ -48,7 +48,7 @@
       "type": "text",
       "x": 60.0,
       "y": 92.0,
-      "width": 2000.0,
+      "width": 1900.0,
       "height": 17.5,
       "angle": 0,
       "strokeColor": "#334155",
@@ -73,8 +73,8 @@
       "customData": {
         "role": "header"
       },
-      "text": "Zone-redundant inside Singapore (RPO 0) \u00b7 warm standby in Hong Kong (RPO 60 s or better, RTO 15 min) \u00b7 immutable backups outside both",
-      "originalText": "Zone-redundant inside Singapore (RPO 0) \u00b7 warm standby in Hong Kong (RPO 60 s or better, RTO 15 min) \u00b7 immutable backups outside both",
+      "text": "One region (Southeast Asia), one virtual network, three subnets. EastWest already runs Azure Bot Service and Logic Apps in this region.",
+      "originalText": "One region (Southeast Asia), one virtual network, three subnets. EastWest already runs Azure Bot Service and Logic Apps in this region.",
       "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
@@ -86,7 +86,7 @@
     {
       "id": "text_3",
       "type": "text",
-      "x": 1540.0,
+      "x": 1440.0,
       "y": 52.0,
       "width": 520.0,
       "height": 17.5,
@@ -113,8 +113,8 @@
       "customData": {
         "role": "header"
       },
-      "text": "PAGE 6 of 6  \u00b7  RESILIENCE",
-      "originalText": "PAGE 6 of 6  \u00b7  RESILIENCE",
+      "text": "PAGE 2 of 4  \u00b7  AZURE ARCHITECTURE",
+      "originalText": "PAGE 2 of 4  \u00b7  AZURE ARCHITECTURE",
       "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "right",
@@ -126,7 +126,7 @@
     {
       "id": "text_4",
       "type": "text",
-      "x": 1540.0,
+      "x": 1440.0,
       "y": 74.0,
       "width": 520.0,
       "height": 13.75,
@@ -153,8 +153,8 @@
       "customData": {
         "role": "header"
       },
-      "text": "Availability and resilience map  \u00b7  v2.0  \u00b7  updated 2026-08-08",
-      "originalText": "Availability and resilience map  \u00b7  v2.0  \u00b7  updated 2026-08-08",
+      "text": "High-level system diagram  \u00b7  v2.0  \u00b7  updated 2026-08-08",
+      "originalText": "High-level system diagram  \u00b7  v2.0  \u00b7  updated 2026-08-08",
       "fontSize": 11,
       "fontFamily": 6,
       "textAlign": "right",
@@ -168,7 +168,7 @@
       "type": "line",
       "x": 60.0,
       "y": 124.0,
-      "width": 2000.0,
+      "width": 1900.0,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#CBD5E1",
@@ -197,7 +197,7 @@
           0
         ],
         [
-          2000,
+          1900,
           0
         ]
       ],
@@ -210,8 +210,8 @@
     {
       "id": "image_6",
       "type": "image",
-      "x": 100.0,
-      "y": 200.0,
+      "x": 110.0,
+      "y": 225.0,
       "width": 38.0,
       "height": 38.0,
       "angle": 0,
@@ -253,8 +253,8 @@
     {
       "id": "text_7",
       "type": "text",
-      "x": 50.0,
-      "y": 244.0,
+      "x": 60.0,
+      "y": 269.0,
       "width": 140.0,
       "height": 15.0,
       "angle": 0,
@@ -293,10 +293,10 @@
     {
       "id": "rectangle_8",
       "type": "rectangle",
-      "x": 300.0,
-      "y": 190.0,
-      "width": 480.0,
-      "height": 64.0,
+      "x": 240.0,
+      "y": 215.0,
+      "width": 340.0,
+      "height": 58.0,
       "angle": 0,
       "strokeColor": "#C2410C",
       "backgroundColor": "#FFEDD5",
@@ -321,11 +321,7 @@
           "type": "arrow"
         },
         {
-          "id": "arrow_70",
-          "type": "arrow"
-        },
-        {
-          "id": "arrow_72",
+          "id": "arrow_37",
           "type": "arrow"
         }
       ],
@@ -339,8 +335,8 @@
     {
       "id": "image_9",
       "type": "image",
-      "x": 311.0,
-      "y": 209.0,
+      "x": 251.0,
+      "y": 231.0,
       "width": 26.0,
       "height": 26.0,
       "angle": 0,
@@ -377,9 +373,9 @@
     {
       "id": "text_10",
       "type": "text",
-      "x": 347.0,
-      "y": 204.75,
-      "width": 423.0,
+      "x": 287.0,
+      "y": 226.75,
+      "width": 283.0,
       "height": 17.5,
       "angle": 0,
       "strokeColor": "#1E293B",
@@ -404,8 +400,8 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "Front Door Premium",
-      "originalText": "Front Door Premium",
+      "text": "Azure Front Door",
+      "originalText": "Azure Front Door",
       "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
@@ -417,9 +413,9 @@
     {
       "id": "text_11",
       "type": "text",
-      "x": 347.0,
-      "y": 224.25,
-      "width": 423.0,
+      "x": 287.0,
+      "y": 246.25,
+      "width": 283.0,
       "height": 15.0,
       "angle": 0,
       "strokeColor": "#64748B",
@@ -444,8 +440,8 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "health probes, automatic origin failover",
-      "originalText": "health probes, automatic origin failover",
+      "text": "WAF rules, TLS termination",
+      "originalText": "WAF rules, TLS termination",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -457,9 +453,9 @@
     {
       "id": "arrow_12",
       "type": "arrow",
-      "x": 142.0,
-      "y": 219.0,
-      "width": 154.0,
+      "x": 152.0,
+      "y": 244.0,
+      "width": 84.0,
       "height": 0.0,
       "angle": 0,
       "strokeColor": "#C2410C",
@@ -490,7 +486,7 @@
           0
         ],
         [
-          154,
+          84,
           0
         ]
       ],
@@ -512,10 +508,10 @@
     {
       "id": "text_13",
       "type": "text",
-      "x": 820.0,
-      "y": 196.0,
-      "width": 900.0,
-      "height": 30.0,
+      "x": 620.0,
+      "y": 236.0,
+      "width": 500.0,
+      "height": 15.0,
       "angle": 0,
       "strokeColor": "#334155",
       "backgroundColor": "transparent",
@@ -539,8 +535,8 @@
       "customData": {
         "role": "text"
       },
-      "text": "Front Door decides. Singapore is priority 1; if its health probe fails, traffic moves to\nHong Kong without a DNS change and without a client-side retry.",
-      "originalText": "Front Door decides. Singapore is priority 1; if its health probe fails, traffic moves to\nHong Kong without a DNS change and without a client-side retry.",
+      "text": "The only address open to the internet.",
+      "originalText": "The only address open to the internet.",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -553,14 +549,14 @@
       "id": "rectangle_14",
       "type": "rectangle",
       "x": 60.0,
-      "y": 350.0,
-      "width": 900.0,
-      "height": 400.0,
+      "y": 360.0,
+      "width": 1360.0,
+      "height": 290.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
-      "backgroundColor": "transparent",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#EFF6FF",
       "fillStyle": "solid",
-      "strokeWidth": 3,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -586,11 +582,11 @@
       "id": "text_15",
       "type": "text",
       "x": 74.0,
-      "y": 324.25,
-      "width": 872.0,
-      "height": 18.75,
+      "y": 333.0,
+      "width": 1332.0,
+      "height": 20.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
+      "strokeColor": "#2563EB",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -612,11 +608,11 @@
       "customData": {
         "role": "zonelabel"
       },
-      "text": "PRIMARY  \u00b7  Southeast Asia (Singapore)  \u00b7  ACTIVE",
-      "originalText": "PRIMARY  \u00b7  Southeast Asia (Singapore)  \u00b7  ACTIVE",
-      "fontSize": 15,
+      "text": "Virtual network   10.10.0.0/16   \u00b7   Southeast Asia",
+      "originalText": "Virtual network   10.10.0.0/16   \u00b7   Southeast Asia",
+      "fontSize": 16,
       "fontFamily": 6,
-      "textAlign": "left",
+      "textAlign": "right",
       "verticalAlign": "top",
       "containerId": null,
       "lineHeight": 1.25,
@@ -625,13 +621,13 @@
     {
       "id": "rectangle_16",
       "type": "rectangle",
-      "x": 80.0,
-      "y": 396.0,
-      "width": 420.0,
-      "height": 58.0,
+      "x": 90.0,
+      "y": 415.0,
+      "width": 400.0,
+      "height": 185.0,
       "angle": 0,
-      "strokeColor": "#1D4ED8",
-      "backgroundColor": "#DBEAFE",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#EFF6FF",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -647,28 +643,23 @@
       "version": 1,
       "versionNonce": 100224,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_70",
-          "type": "arrow"
-        }
-      ],
+      "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
+        "role": "zone"
       }
     },
     {
-      "id": "image_17",
-      "type": "image",
-      "x": 91.0,
-      "y": 412.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_17",
+      "type": "text",
+      "x": 104.0,
+      "y": 391.75,
+      "width": 372.0,
+      "height": 16.25,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#2563EB",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -688,49 +679,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "zonelabel"
       },
-      "fileId": "icon_apim",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
-    },
-    {
-      "id": "text_18",
-      "type": "text",
-      "x": 127.0,
-      "y": 407.75,
-      "width": 363.0,
-      "height": 17.5,
-      "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 100245,
-      "version": 1,
-      "versionNonce": 100252,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "cardtext"
-      },
-      "text": "API Management Premium",
-      "originalText": "API Management Premium",
-      "fontSize": 14,
+      "text": "Subnet: gateway   10.10.1.0/24",
+      "originalText": "Subnet: gateway   10.10.1.0/24",
+      "fontSize": 13,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -739,14 +692,56 @@
       "autoResize": false
     },
     {
-      "id": "text_19",
-      "type": "text",
-      "x": 127.0,
-      "y": 427.25,
-      "width": 363.0,
-      "height": 15.0,
+      "id": "rectangle_18",
+      "type": "rectangle",
+      "x": 105.0,
+      "y": 450.0,
+      "width": 370.0,
+      "height": 58.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#1D4ED8",
+      "backgroundColor": "#DBEAFE",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 100245,
+      "version": 1,
+      "versionNonce": 100252,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "arrow_37",
+          "type": "arrow"
+        },
+        {
+          "id": "arrow_38",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "card"
+      }
+    },
+    {
+      "id": "image_19",
+      "type": "image",
+      "x": 116.0,
+      "y": 466.0,
+      "width": 26.0,
+      "height": 26.0,
+      "angle": 0,
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -766,39 +761,35 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "icon"
       },
-      "text": "multi-region unit",
-      "originalText": "multi-region unit",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "fileId": "icon_apim",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
     },
     {
-      "id": "rectangle_20",
-      "type": "rectangle",
-      "x": 80.0,
-      "y": 466.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_20",
+      "type": "text",
+      "x": 152.0,
+      "y": 461.75,
+      "width": 313.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#1D4ED8",
-      "backgroundColor": "#DBEAFE",
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 2,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 100273,
       "version": 1,
       "versionNonce": 100280,
@@ -808,18 +799,27 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
-      }
+        "role": "cardtext"
+      },
+      "text": "API Management",
+      "originalText": "API Management",
+      "fontSize": 14,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "image_21",
-      "type": "image",
-      "x": 91.0,
-      "y": 482.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_21",
+      "type": "text",
+      "x": 152.0,
+      "y": 481.25,
+      "width": 313.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -839,25 +839,27 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_aks",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "one entry point for every API",
+      "originalText": "one entry point for every API",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
       "id": "text_22",
       "type": "text",
-      "x": 127.0,
-      "y": 477.75,
-      "width": 363.0,
-      "height": 17.5,
+      "x": 105.0,
+      "y": 520.0,
+      "width": 370.0,
+      "height": 30.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -877,50 +879,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "text"
       },
-      "text": "AKS",
-      "originalText": "AKS",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "text_23",
-      "type": "text",
-      "x": 127.0,
-      "y": 497.25,
-      "width": 363.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#64748B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 100315,
-      "version": 1,
-      "versionNonce": 100322,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "cardtext"
-      },
-      "text": "system and general pools across zones 1, 2, 3",
-      "originalText": "system and general pools across zones 1, 2, 3",
+      "text": "Also where the access token is\nchecked, before anything reaches the app.",
+      "originalText": "Also where the access token is\nchecked, before anything reaches the app.",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -930,15 +892,15 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_24",
+      "id": "rectangle_23",
       "type": "rectangle",
-      "x": 80.0,
-      "y": 536.0,
-      "width": 420.0,
-      "height": 58.0,
+      "x": 520.0,
+      "y": 415.0,
+      "width": 440.0,
+      "height": 185.0,
       "angle": 0,
-      "strokeColor": "#B45309",
-      "backgroundColor": "#FEF3C7",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#EFF6FF",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -950,27 +912,27 @@
       "roundness": {
         "type": 3
       },
-      "seed": 100329,
+      "seed": 100315,
       "version": 1,
-      "versionNonce": 100336,
+      "versionNonce": 100322,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
+        "role": "zone"
       }
     },
     {
-      "id": "image_25",
-      "type": "image",
-      "x": 91.0,
-      "y": 552.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_24",
+      "type": "text",
+      "x": 534.0,
+      "y": 391.75,
+      "width": 412.0,
+      "height": 16.25,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#2563EB",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -981,34 +943,82 @@
       "frameId": null,
       "index": null,
       "roundness": null,
-      "seed": 100343,
+      "seed": 100329,
       "version": 1,
-      "versionNonce": 100350,
+      "versionNonce": 100336,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "zonelabel"
       },
-      "fileId": "icon_hsm",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "Subnet: apps   10.10.2.0/24",
+      "originalText": "Subnet: apps   10.10.2.0/24",
+      "fontSize": 13,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_26",
-      "type": "text",
-      "x": 127.0,
-      "y": 547.75,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_25",
+      "type": "rectangle",
+      "x": 535.0,
+      "y": 450.0,
+      "width": 410.0,
+      "height": 58.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#1D4ED8",
+      "backgroundColor": "#DBEAFE",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 100343,
+      "version": 1,
+      "versionNonce": 100350,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "arrow_38",
+          "type": "arrow"
+        },
+        {
+          "id": "arrow_39",
+          "type": "arrow"
+        },
+        {
+          "id": "arrow_87",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "card"
+      }
+    },
+    {
+      "id": "image_26",
+      "type": "image",
+      "x": 546.0,
+      "y": 466.0,
+      "width": 26.0,
+      "height": 26.0,
+      "angle": 0,
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1028,27 +1038,25 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "icon"
       },
-      "text": "Managed HSM",
-      "originalText": "Managed HSM",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "fileId": "icon_aks",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
     },
     {
       "id": "text_27",
       "type": "text",
-      "x": 127.0,
-      "y": 567.25,
-      "width": 363.0,
-      "height": 15.0,
+      "x": 582.0,
+      "y": 461.75,
+      "width": 353.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1070,8 +1078,48 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "key shares spread across zones",
-      "originalText": "key shares spread across zones",
+      "text": "AKS cluster",
+      "originalText": "AKS cluster",
+      "fontSize": 14,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
+    },
+    {
+      "id": "text_28",
+      "type": "text",
+      "x": 582.0,
+      "y": 481.25,
+      "width": 353.0,
+      "height": 15.0,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 100385,
+      "version": 1,
+      "versionNonce": 100392,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "cardtext"
+      },
+      "text": "EasyWay API + transfer service",
+      "originalText": "EasyWay API + transfer service",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -1081,52 +1129,14 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_28",
-      "type": "rectangle",
-      "x": 520.0,
-      "y": 396.0,
-      "width": 420.0,
-      "height": 66.0,
+      "id": "text_29",
+      "type": "text",
+      "x": 535.0,
+      "y": 520.0,
+      "width": 280.0,
+      "height": 30.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 100385,
-      "version": 1,
-      "versionNonce": 100392,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_77",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_29",
-      "type": "image",
-      "x": 531.0,
-      "y": 416.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1146,35 +1156,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "text"
       },
-      "fileId": "icon_postgres",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "2 node pools, 3 nodes each,\nspread across 3 availability zones.",
+      "originalText": "2 node pools, 3 nodes each,\nspread across 3 availability zones.",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_30",
-      "type": "text",
-      "x": 567.0,
-      "y": 404.25,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_30",
+      "type": "rectangle",
+      "x": 990.0,
+      "y": 415.0,
+      "width": 400.0,
+      "height": 185.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#2563EB",
+      "backgroundColor": "#EFF6FF",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100413,
       "version": 1,
       "versionNonce": 100420,
@@ -1184,27 +1198,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "PostgreSQL Flexible",
-      "originalText": "PostgreSQL Flexible",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "zone"
+      }
     },
     {
       "id": "text_31",
       "type": "text",
-      "x": 567.0,
-      "y": 423.75,
-      "width": 363.0,
-      "height": 30.0,
+      "x": 1004.0,
+      "y": 391.75,
+      "width": 372.0,
+      "height": 16.25,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#2563EB",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1224,11 +1229,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "zonelabel"
       },
-      "text": "zone-redundant HA, synchronous standby\nRPO 0 inside the region",
-      "originalText": "zone-redundant HA, synchronous standby\nRPO 0 inside the region",
-      "fontSize": 12,
+      "text": "Subnet: private endpoints   10.10.3.0/24",
+      "originalText": "Subnet: private endpoints   10.10.3.0/24",
+      "fontSize": 13,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1239,13 +1244,13 @@
     {
       "id": "rectangle_32",
       "type": "rectangle",
-      "x": 520.0,
-      "y": 474.0,
-      "width": 420.0,
+      "x": 1005.0,
+      "y": 450.0,
+      "width": 370.0,
       "height": 58.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
+      "strokeColor": "#1D4ED8",
+      "backgroundColor": "#DBEAFE",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -1263,7 +1268,15 @@
       "isDeleted": false,
       "boundElements": [
         {
-          "id": "arrow_78",
+          "id": "arrow_39",
+          "type": "arrow"
+        },
+        {
+          "id": "arrow_63",
+          "type": "arrow"
+        },
+        {
+          "id": "arrow_75",
           "type": "arrow"
         }
       ],
@@ -1277,8 +1290,8 @@
     {
       "id": "image_33",
       "type": "image",
-      "x": 531.0,
-      "y": 490.0,
+      "x": 1016.0,
+      "y": 466.0,
       "width": 26.0,
       "height": 26.0,
       "angle": 0,
@@ -1304,7 +1317,7 @@
       "customData": {
         "role": "icon"
       },
-      "fileId": "icon_redis",
+      "fileId": "icon_privatelink",
       "status": "saved",
       "scale": [
         1,
@@ -1315,9 +1328,9 @@
     {
       "id": "text_34",
       "type": "text",
-      "x": 567.0,
-      "y": 485.75,
-      "width": 363.0,
+      "x": 1052.0,
+      "y": 461.75,
+      "width": 313.0,
       "height": 17.5,
       "angle": 0,
       "strokeColor": "#1E293B",
@@ -1342,8 +1355,8 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "Cache for Redis Enterprise",
-      "originalText": "Cache for Redis Enterprise",
+      "text": "Private endpoints",
+      "originalText": "Private endpoints",
       "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
@@ -1355,9 +1368,9 @@
     {
       "id": "text_35",
       "type": "text",
-      "x": 567.0,
-      "y": 505.25,
-      "width": 363.0,
+      "x": 1052.0,
+      "y": 481.25,
+      "width": 313.0,
       "height": 15.0,
       "angle": 0,
       "strokeColor": "#64748B",
@@ -1382,8 +1395,8 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "zone-redundant",
-      "originalText": "zone-redundant",
+      "text": "one for each service below",
+      "originalText": "one for each service below",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -1393,55 +1406,57 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_36",
-      "type": "rectangle",
-      "x": 520.0,
-      "y": 544.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_36",
+      "type": "text",
+      "x": 1005.0,
+      "y": 520.0,
+      "width": 370.0,
+      "height": 45.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
+      "strokeColor": "#64748B",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 2,
+      "strokeWidth": 1,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 100497,
       "version": 1,
       "versionNonce": 100504,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_79",
-          "type": "arrow"
-        }
-      ],
+      "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
-      }
+        "role": "text"
+      },
+      "text": "A private endpoint is a network card\nin our subnet. The service itself\nstays Azure-managed.",
+      "originalText": "A private endpoint is a network card\nin our subnet. The service itself\nstays Azure-managed.",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "image_37",
-      "type": "image",
-      "x": 531.0,
-      "y": 560.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "arrow_37",
+      "type": "arrow",
+      "x": 410.0,
+      "y": 275.0,
+      "width": 120.0,
+      "height": 171.0,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#C2410C",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -1457,36 +1472,61 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "icon"
-      },
-      "fileId": "icon_servicebus",
-      "status": "saved",
-      "scale": [
-        1,
-        1
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          125
+        ],
+        [
+          -120,
+          125
+        ],
+        [
+          -120,
+          171
+        ]
       ],
-      "crop": null
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_8",
+        "focus": 0,
+        "gap": 4
+      },
+      "endBinding": {
+        "elementId": "rectangle_18",
+        "focus": 0,
+        "gap": 4
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
-      "id": "text_38",
-      "type": "text",
-      "x": 567.0,
-      "y": 555.75,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "arrow_38",
+      "type": "arrow",
+      "x": 479.0,
+      "y": 479.0,
+      "width": 52.0,
+      "height": 0.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#1D4ED8",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 2
+      },
       "seed": 100525,
       "version": 1,
       "versionNonce": 100532,
@@ -1495,38 +1535,53 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "cardtext"
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          52,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_18",
+        "focus": 0,
+        "gap": 4
       },
-      "text": "Service Bus Premium",
-      "originalText": "Service Bus Premium",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "endBinding": {
+        "elementId": "rectangle_25",
+        "focus": 0,
+        "gap": 4
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
-      "id": "text_39",
-      "type": "text",
-      "x": 567.0,
-      "y": 575.25,
-      "width": 363.0,
-      "height": 15.0,
+      "id": "arrow_39",
+      "type": "arrow",
+      "x": 949.0,
+      "y": 479.0,
+      "width": 52.0,
+      "height": 0.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#1D4ED8",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 2
+      },
       "seed": 100539,
       "version": 1,
       "versionNonce": 100546,
@@ -1535,38 +1590,53 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "cardtext"
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          52,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_25",
+        "focus": 0,
+        "gap": 4
       },
-      "text": "geo-DR primary alias",
-      "originalText": "geo-DR primary alias",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "endBinding": {
+        "elementId": "rectangle_32",
+        "focus": 0,
+        "gap": 4
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
-      "id": "text_40",
-      "type": "text",
-      "x": 80.0,
-      "y": 626.0,
-      "width": 860.0,
-      "height": 45.0,
+      "id": "rectangle_40",
+      "type": "rectangle",
+      "x": 60.0,
+      "y": 730.0,
+      "width": 1360.0,
+      "height": 200.0,
       "angle": 0,
-      "strokeColor": "#64748B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#7C3AED",
+      "backgroundColor": "#F5F3FF",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100553,
       "version": 1,
       "versionNonce": 100560,
@@ -1576,27 +1646,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
-      },
-      "text": "Losing one availability zone costs nothing here: the database fails over to its\nsynchronous standby, and the general pool already holds replicas in the other two\nzones. The confidential pool spans two zones, so a ledger replica keeps serving.",
-      "originalText": "Losing one availability zone costs nothing here: the database fails over to its\nsynchronous standby, and the general pool already holds replicas in the other two\nzones. The confidential pool spans two zones, so a ledger replica keeps serving.",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "zone"
+      }
     },
     {
       "id": "text_41",
       "type": "text",
-      "x": 80.0,
-      "y": 694.0,
-      "width": 860.0,
-      "height": 30.0,
+      "x": 74.0,
+      "y": 704.25,
+      "width": 1332.0,
+      "height": 18.75,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#7C3AED",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1616,11 +1677,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "zonelabel"
       },
-      "text": "An availability zone is a separate datacentre with independent power and cooling,\nso this is real fault isolation rather than a rack label.",
-      "originalText": "An availability zone is a separate datacentre with independent power and cooling,\nso this is real fault isolation rather than a rack label.",
-      "fontSize": 12,
+      "text": "Azure data and messaging \u2014 reached only through those private endpoints",
+      "originalText": "Azure data and messaging \u2014 reached only through those private endpoints",
+      "fontSize": 15,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1631,16 +1692,16 @@
     {
       "id": "rectangle_42",
       "type": "rectangle",
-      "x": 1160.0,
-      "y": 350.0,
-      "width": 900.0,
-      "height": 400.0,
+      "x": 80.0,
+      "y": 770.0,
+      "width": 255.0,
+      "height": 66.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
-      "backgroundColor": "transparent",
+      "strokeColor": "#6D28D9",
+      "backgroundColor": "#EDE9FE",
       "fillStyle": "solid",
-      "strokeWidth": 3,
-      "strokeStyle": "dashed",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -1658,18 +1719,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "zone"
+        "role": "card"
       }
     },
     {
-      "id": "text_43",
-      "type": "text",
-      "x": 1174.0,
-      "y": 324.25,
-      "width": 872.0,
-      "height": 18.75,
+      "id": "image_43",
+      "type": "image",
+      "x": 91.0,
+      "y": 790.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1689,11 +1750,49 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "zonelabel"
+        "role": "icon"
       },
-      "text": "SECONDARY  \u00b7  East Asia (Hong Kong)  \u00b7  WARM STANDBY",
-      "originalText": "SECONDARY  \u00b7  East Asia (Hong Kong)  \u00b7  WARM STANDBY",
-      "fontSize": 15,
+      "fileId": "icon_postgres",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    },
+    {
+      "id": "text_44",
+      "type": "text",
+      "x": 127.0,
+      "y": 785.75,
+      "width": 198.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 100609,
+      "version": 1,
+      "versionNonce": 100616,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "cardtext"
+      },
+      "text": "Azure PostgreSQL",
+      "originalText": "Azure PostgreSQL",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1702,52 +1801,14 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_44",
-      "type": "rectangle",
-      "x": 1180.0,
-      "y": 396.0,
-      "width": 420.0,
-      "height": 66.0,
+      "id": "text_45",
+      "type": "text",
+      "x": 127.0,
+      "y": 805.25,
+      "width": 198.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 100609,
-      "version": 1,
-      "versionNonce": 100616,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_77",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_45",
-      "type": "image",
-      "x": 1191.0,
-      "y": 416.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1767,35 +1828,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_postgres",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "channel data, not the ledger",
+      "originalText": "channel data, not the ledger",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_46",
-      "type": "text",
-      "x": 1227.0,
-      "y": 404.25,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_46",
+      "type": "rectangle",
+      "x": 350.0,
+      "y": 770.0,
+      "width": 255.0,
+      "height": 66.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#6D28D9",
+      "backgroundColor": "#EDE9FE",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100637,
       "version": 1,
       "versionNonce": 100644,
@@ -1805,27 +1870,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "Read replica",
-      "originalText": "Read replica",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "card"
+      }
     },
     {
-      "id": "text_47",
-      "type": "text",
-      "x": 1227.0,
-      "y": 423.75,
-      "width": 363.0,
-      "height": 30.0,
+      "id": "image_47",
+      "type": "image",
+      "x": 361.0,
+      "y": 790.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1845,11 +1901,49 @@
       "link": null,
       "locked": false,
       "customData": {
+        "role": "icon"
+      },
+      "fileId": "icon_redis",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    },
+    {
+      "id": "text_48",
+      "type": "text",
+      "x": 397.0,
+      "y": 785.75,
+      "width": 198.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 100665,
+      "version": 1,
+      "versionNonce": 100672,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
         "role": "cardtext"
       },
-      "text": "asynchronous, promotable\nRPO 60 s or better",
-      "originalText": "asynchronous, promotable\nRPO 60 s or better",
-      "fontSize": 12,
+      "text": "Azure Cache for Redis",
+      "originalText": "Azure Cache for Redis",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -1858,52 +1952,14 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_48",
-      "type": "rectangle",
-      "x": 1180.0,
-      "y": 474.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_49",
+      "type": "text",
+      "x": 397.0,
+      "y": 805.25,
+      "width": 198.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 100665,
-      "version": 1,
-      "versionNonce": 100672,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_78",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_49",
-      "type": "image",
-      "x": 1191.0,
-      "y": 490.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -1923,35 +1979,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_redis",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "sessions and rate limits",
+      "originalText": "sessions and rate limits",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_50",
-      "type": "text",
-      "x": 1227.0,
-      "y": 485.75,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_50",
+      "type": "rectangle",
+      "x": 620.0,
+      "y": 770.0,
+      "width": 255.0,
+      "height": 66.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#6D28D9",
+      "backgroundColor": "#EDE9FE",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100693,
       "version": 1,
       "versionNonce": 100700,
@@ -1961,27 +2021,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "Redis geo-replica",
-      "originalText": "Redis geo-replica",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "card"
+      }
     },
     {
-      "id": "text_51",
-      "type": "text",
-      "x": 1227.0,
-      "y": 505.25,
-      "width": 363.0,
-      "height": 15.0,
+      "id": "image_51",
+      "type": "image",
+      "x": 631.0,
+      "y": 790.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2001,11 +2052,49 @@
       "link": null,
       "locked": false,
       "customData": {
+        "role": "icon"
+      },
+      "fileId": "icon_servicebus",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    },
+    {
+      "id": "text_52",
+      "type": "text",
+      "x": 667.0,
+      "y": 785.75,
+      "width": 198.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 100721,
+      "version": 1,
+      "versionNonce": 100728,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
         "role": "cardtext"
       },
-      "text": "read-only until promoted",
-      "originalText": "read-only until promoted",
-      "fontSize": 12,
+      "text": "Azure Service Bus",
+      "originalText": "Azure Service Bus",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2014,52 +2103,14 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_52",
-      "type": "rectangle",
-      "x": 1180.0,
-      "y": 544.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_53",
+      "type": "text",
+      "x": 667.0,
+      "y": 805.25,
+      "width": 198.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 100721,
-      "version": 1,
-      "versionNonce": 100728,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_79",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_53",
-      "type": "image",
-      "x": 1191.0,
-      "y": 560.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2079,35 +2130,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_servicebus",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "notification queue",
+      "originalText": "notification queue",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_54",
-      "type": "text",
-      "x": 1227.0,
-      "y": 555.75,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_54",
+      "type": "rectangle",
+      "x": 890.0,
+      "y": 770.0,
+      "width": 255.0,
+      "height": 66.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#6D28D9",
+      "backgroundColor": "#EDE9FE",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100749,
       "version": 1,
       "versionNonce": 100756,
@@ -2117,27 +2172,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "Service Bus geo-DR",
-      "originalText": "Service Bus geo-DR",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "card"
+      }
     },
     {
-      "id": "text_55",
-      "type": "text",
-      "x": 1227.0,
-      "y": 575.25,
-      "width": 363.0,
-      "height": 15.0,
+      "id": "image_55",
+      "type": "image",
+      "x": 901.0,
+      "y": 790.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2157,11 +2203,49 @@
       "link": null,
       "locked": false,
       "customData": {
+        "role": "icon"
+      },
+      "fileId": "icon_storage",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    },
+    {
+      "id": "text_56",
+      "type": "text",
+      "x": 937.0,
+      "y": 785.75,
+      "width": 198.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 100777,
+      "version": 1,
+      "versionNonce": 100784,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
         "role": "cardtext"
       },
-      "text": "secondary namespace",
-      "originalText": "secondary namespace",
-      "fontSize": 12,
+      "text": "Azure Blob Storage",
+      "originalText": "Azure Blob Storage",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2170,52 +2254,14 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_56",
-      "type": "rectangle",
-      "x": 1620.0,
-      "y": 396.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_57",
+      "type": "text",
+      "x": 937.0,
+      "y": 805.25,
+      "width": 198.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#1D4ED8",
-      "backgroundColor": "#DBEAFE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 100777,
-      "version": 1,
-      "versionNonce": 100784,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_72",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_57",
-      "type": "image",
-      "x": 1631.0,
-      "y": 412.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2235,35 +2281,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_apim",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "uploaded documents",
+      "originalText": "uploaded documents",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_58",
-      "type": "text",
-      "x": 1667.0,
-      "y": 407.75,
-      "width": 363.0,
-      "height": 17.5,
+      "id": "rectangle_58",
+      "type": "rectangle",
+      "x": 1160.0,
+      "y": 770.0,
+      "width": 255.0,
+      "height": 66.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#B45309",
+      "backgroundColor": "#FEF3C7",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 100805,
       "version": 1,
       "versionNonce": 100812,
@@ -2273,27 +2323,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "API Management Premium",
-      "originalText": "API Management Premium",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "card"
+      }
     },
     {
-      "id": "text_59",
-      "type": "text",
-      "x": 1667.0,
-      "y": 427.25,
-      "width": 363.0,
-      "height": 15.0,
+      "id": "image_59",
+      "type": "image",
+      "x": 1171.0,
+      "y": 790.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2313,39 +2354,35 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "icon"
       },
-      "text": "second gateway unit of the same resource",
-      "originalText": "second gateway unit of the same resource",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "fileId": "icon_keyvault",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
     },
     {
-      "id": "rectangle_60",
-      "type": "rectangle",
-      "x": 1620.0,
-      "y": 466.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "text_60",
+      "type": "text",
+      "x": 1207.0,
+      "y": 785.75,
+      "width": 198.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#1D4ED8",
-      "backgroundColor": "#DBEAFE",
+      "strokeColor": "#1E293B",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": {
-        "type": 3
-      },
+      "roundness": null,
       "seed": 100833,
       "version": 1,
       "versionNonce": 100840,
@@ -2355,18 +2392,27 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
-      }
+        "role": "cardtext"
+      },
+      "text": "Azure Key Vault",
+      "originalText": "Azure Key Vault",
+      "fontSize": 14,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "image_61",
-      "type": "image",
-      "x": 1631.0,
-      "y": 482.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_61",
+      "type": "text",
+      "x": 1207.0,
+      "y": 805.25,
+      "width": 198.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2386,25 +2432,27 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "cardtext"
       },
-      "fileId": "icon_aks",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "secrets and certificates",
+      "originalText": "secrets and certificates",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
       "id": "text_62",
       "type": "text",
-      "x": 1667.0,
-      "y": 477.75,
-      "width": 363.0,
-      "height": 17.5,
+      "x": 80.0,
+      "y": 862.0,
+      "width": 1340.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2424,50 +2472,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "text"
       },
-      "text": "AKS",
-      "originalText": "AKS",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "text_63",
-      "type": "text",
-      "x": 1667.0,
-      "y": 497.25,
-      "width": 363.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#64748B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 100875,
-      "version": 1,
-      "versionNonce": 100882,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "cardtext"
-      },
-      "text": "minimum size, manifests synced by Argo CD",
-      "originalText": "minimum size, manifests synced by Argo CD",
+      "text": "None of these has a public endpoint. The app signs in with its managed identity, so there is no database password in our code.",
+      "originalText": "None of these has a public endpoint. The app signs in with its managed identity, so there is no database password in our code.",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -2477,18 +2485,69 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_64",
-      "type": "rectangle",
-      "x": 1620.0,
-      "y": 536.0,
-      "width": 420.0,
-      "height": 58.0,
+      "id": "arrow_63",
+      "type": "arrow",
+      "x": 1190.0,
+      "y": 602.0,
+      "width": 0.0,
+      "height": 124.0,
       "angle": 0,
-      "strokeColor": "#B45309",
-      "backgroundColor": "#FEF3C7",
+      "strokeColor": "#6D28D9",
+      "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 2,
-      "strokeStyle": "dashed",
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 100875,
+      "version": 1,
+      "versionNonce": 100882,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          124
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_32",
+        "focus": 0,
+        "gap": 4
+      },
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
+      "id": "rectangle_64",
+      "type": "rectangle",
+      "x": 1480.0,
+      "y": 360.0,
+      "width": 480.0,
+      "height": 290.0,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "#F8FAFC",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -2506,18 +2565,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
+        "role": "zone"
       }
     },
     {
-      "id": "image_65",
-      "type": "image",
-      "x": 1631.0,
-      "y": 552.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_65",
+      "type": "text",
+      "x": 1494.0,
+      "y": 334.25,
+      "width": 452.0,
+      "height": 18.75,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2537,49 +2596,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "zonelabel"
       },
-      "fileId": "icon_hsm",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
-    },
-    {
-      "id": "text_66",
-      "type": "text",
-      "x": 1667.0,
-      "y": 547.75,
-      "width": 363.0,
-      "height": 17.5,
-      "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 100917,
-      "version": 1,
-      "versionNonce": 100924,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "cardtext"
-      },
-      "text": "Managed HSM",
-      "originalText": "Managed HSM",
-      "fontSize": 14,
+      "text": "Outside our network",
+      "originalText": "Outside our network",
+      "fontSize": 15,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2588,14 +2609,52 @@
       "autoResize": false
     },
     {
+      "id": "rectangle_66",
+      "type": "rectangle",
+      "x": 1500.0,
+      "y": 400.0,
+      "width": 440.0,
+      "height": 66.0,
+      "angle": 0,
+      "strokeColor": "#475569",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 100917,
+      "version": 1,
+      "versionNonce": 100924,
+      "isDeleted": false,
+      "boundElements": [
+        {
+          "id": "arrow_75",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "card"
+      }
+    },
+    {
       "id": "text_67",
       "type": "text",
-      "x": 1667.0,
-      "y": 567.25,
-      "width": 363.0,
-      "height": 15.0,
+      "x": 1514.0,
+      "y": 408.25,
+      "width": 416.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2617,9 +2676,9 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "same security domain",
-      "originalText": "same security domain",
-      "fontSize": 12,
+      "text": "Temenos SaaS core banking",
+      "originalText": "Temenos SaaS core banking",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2630,9 +2689,9 @@
     {
       "id": "text_68",
       "type": "text",
-      "x": 1180.0,
-      "y": 626.0,
-      "width": 860.0,
+      "x": 1514.0,
+      "y": 427.75,
+      "width": 416.0,
       "height": 30.0,
       "angle": 0,
       "strokeColor": "#64748B",
@@ -2655,10 +2714,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "cardtext"
       },
-      "text": "Warm, not idle. Argo CD keeps the manifests identical, so failover is a promote-and-\nscale operation rather than a rebuild.",
-      "originalText": "Warm, not idle. Argo CD keeps the manifests identical, so failover is a promote-and-\nscale operation rather than a rebuild.",
+      "text": "accounts and postings\nreached over a private link",
+      "originalText": "accounts and postings\nreached over a private link",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -2668,14 +2727,47 @@
       "autoResize": false
     },
     {
-      "id": "text_69",
-      "type": "text",
-      "x": 1180.0,
-      "y": 694.0,
-      "width": 860.0,
-      "height": 30.0,
+      "id": "rectangle_69",
+      "type": "rectangle",
+      "x": 1500.0,
+      "y": 485.0,
+      "width": 440.0,
+      "height": 58.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#475569",
+      "backgroundColor": "#F1F5F9",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 100959,
+      "version": 1,
+      "versionNonce": 100966,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "card"
+      }
+    },
+    {
+      "id": "text_70",
+      "type": "text",
+      "x": 1514.0,
+      "y": 496.75,
+      "width": 416.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2686,48 +2778,6 @@
       "frameId": null,
       "index": null,
       "roundness": null,
-      "seed": 100959,
-      "version": 1,
-      "versionNonce": 100966,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "text"
-      },
-      "text": "What this deliberately is not is active-active: two regions writing one ledger would\nneed consensus on every posting, and that latency is not worth paying here.",
-      "originalText": "What this deliberately is not is active-active: two regions writing one ledger would\nneed consensus on every posting, and that latency is not worth paying here.",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "arrow_70",
-      "type": "arrow",
-      "x": 440.0,
-      "y": 256.0,
-      "width": 0.0,
-      "height": 136.0,
-      "angle": 0,
-      "strokeColor": "#C2410C",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
       "seed": 100973,
       "version": 1,
       "versionNonce": 100980,
@@ -2736,41 +2786,28 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          0,
-          136
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_8",
-        "focus": 0,
-        "gap": 4
+      "customData": {
+        "role": "cardtext"
       },
-      "endBinding": {
-        "elementId": "rectangle_16",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
+      "text": "InstaPay and PESONet",
+      "originalText": "InstaPay and PESONet",
+      "fontSize": 14,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
       "id": "text_71",
       "type": "text",
-      "x": 452.0,
-      "y": 296.0,
-      "width": 140.0,
-      "height": 13.75,
+      "x": 1514.0,
+      "y": 516.25,
+      "width": 416.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#C2410C",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2790,11 +2827,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "cardtext"
       },
-      "text": "priority 1",
-      "originalText": "priority 1",
-      "fontSize": 11,
+      "text": "via the bank's payment gateway",
+      "originalText": "via the bank's payment gateway",
+      "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2803,24 +2840,26 @@
       "autoResize": false
     },
     {
-      "id": "arrow_72",
-      "type": "arrow",
-      "x": 782.0,
-      "y": 240.0,
-      "width": 918.0,
-      "height": 152.0,
+      "id": "rectangle_72",
+      "type": "rectangle",
+      "x": 1500.0,
+      "y": 555.0,
+      "width": 440.0,
+      "height": 58.0,
       "angle": 0,
-      "strokeColor": "#B91C1C",
-      "backgroundColor": "transparent",
+      "strokeColor": "#475569",
+      "backgroundColor": "#F1F5F9",
       "fillStyle": "solid",
       "strokeWidth": 2,
-      "strokeStyle": "dashed",
+      "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 101001,
       "version": 1,
       "versionNonce": 101008,
@@ -2829,45 +2868,19 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          918,
-          0
-        ],
-        [
-          918,
-          152
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_8",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_56",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
+      "customData": {
+        "role": "card"
+      }
     },
     {
       "id": "text_73",
       "type": "text",
-      "x": 1710.0,
-      "y": 264.0,
-      "width": 300.0,
-      "height": 13.75,
+      "x": 1514.0,
+      "y": 566.75,
+      "width": 416.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#B91C1C",
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2887,11 +2900,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "cardtext"
       },
-      "text": "priority 2, on probe failure",
-      "originalText": "priority 2, on probe failure",
-      "fontSize": 11,
+      "text": "Infobip and MoEngage",
+      "originalText": "Infobip and MoEngage",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2902,12 +2915,12 @@
     {
       "id": "text_74",
       "type": "text",
-      "x": 962.0,
-      "y": 403.0,
-      "width": 200.0,
-      "height": 13.75,
+      "x": 1514.0,
+      "y": 586.25,
+      "width": 416.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
+      "strokeColor": "#64748B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -2927,11 +2940,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "cardtext"
       },
-      "text": "asynchronous replication",
-      "originalText": "asynchronous replication",
-      "fontSize": 11,
+      "text": "SMS and push delivery",
+      "originalText": "SMS and push delivery",
+      "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -2940,17 +2953,17 @@
       "autoResize": false
     },
     {
-      "id": "text_75",
-      "type": "text",
-      "x": 962.0,
-      "y": 477.0,
-      "width": 200.0,
-      "height": 13.75,
+      "id": "arrow_75",
+      "type": "arrow",
+      "x": 1392.0,
+      "y": 470.0,
+      "width": 104.0,
+      "height": 37.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
+      "strokeColor": "#475569",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
@@ -2966,28 +2979,49 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "text"
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          48,
+          0
+        ],
+        [
+          48,
+          -37
+        ],
+        [
+          104,
+          -37
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_32",
+        "focus": 0,
+        "gap": 4
       },
-      "text": "geo-replication",
-      "originalText": "geo-replication",
-      "fontSize": 11,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "endBinding": {
+        "elementId": "rectangle_66",
+        "focus": 0,
+        "gap": 4
+      },
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
       "id": "text_76",
       "type": "text",
-      "x": 962.0,
-      "y": 547.0,
-      "width": 200.0,
+      "x": 1396.0,
+      "y": 492.0,
+      "width": 90.0,
       "height": 13.75,
       "angle": 0,
-      "strokeColor": "#6D28D9",
+      "strokeColor": "#475569",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3009,8 +3043,8 @@
       "customData": {
         "role": "text"
       },
-      "text": "geo-DR pairing",
-      "originalText": "geo-DR pairing",
+      "text": "private link",
+      "originalText": "private link",
       "fontSize": 11,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3020,180 +3054,15 @@
       "autoResize": false
     },
     {
-      "id": "arrow_77",
-      "type": "arrow",
-      "x": 944.0,
-      "y": 429.0,
-      "width": 232.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101071,
-      "version": 1,
-      "versionNonce": 101078,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          232,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_28",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_44",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "arrow_78",
-      "type": "arrow",
-      "x": 944.0,
-      "y": 503.0,
-      "width": 232.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101085,
-      "version": 1,
-      "versionNonce": 101092,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          232,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_32",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_48",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "arrow_79",
-      "type": "arrow",
-      "x": 944.0,
-      "y": 573.0,
-      "width": 232.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101099,
-      "version": 1,
-      "versionNonce": 101106,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          232,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_36",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_52",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "rectangle_80",
+      "id": "rectangle_77",
       "type": "rectangle",
-      "x": 60.0,
-      "y": 850.0,
-      "width": 1180.0,
-      "height": 220.0,
+      "x": 1480.0,
+      "y": 730.0,
+      "width": 480.0,
+      "height": 200.0,
       "angle": 0,
-      "strokeColor": "#7C3AED",
-      "backgroundColor": "#F5F3FF",
+      "strokeColor": "#059669",
+      "backgroundColor": "#ECFDF5",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -3205,9 +3074,9 @@
       "roundness": {
         "type": 3
       },
-      "seed": 101113,
+      "seed": 101071,
       "version": 1,
-      "versionNonce": 101120,
+      "versionNonce": 101078,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -3218,14 +3087,125 @@
       }
     },
     {
-      "id": "text_81",
+      "id": "text_78",
       "type": "text",
-      "x": 74.0,
-      "y": 824.25,
-      "width": 1152.0,
+      "x": 1494.0,
+      "y": 704.25,
+      "width": 452.0,
       "height": 18.75,
       "angle": 0,
-      "strokeColor": "#7C3AED",
+      "strokeColor": "#059669",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 101085,
+      "version": 1,
+      "versionNonce": 101092,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "zonelabel"
+      },
+      "text": "Monitoring",
+      "originalText": "Monitoring",
+      "fontSize": 15,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
+    },
+    {
+      "id": "rectangle_79",
+      "type": "rectangle",
+      "x": 1500.0,
+      "y": 770.0,
+      "width": 440.0,
+      "height": 58.0,
+      "angle": 0,
+      "strokeColor": "#047857",
+      "backgroundColor": "#D1FAE5",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 101099,
+      "version": 1,
+      "versionNonce": 101106,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "card"
+      }
+    },
+    {
+      "id": "image_80",
+      "type": "image",
+      "x": 1511.0,
+      "y": 786.0,
+      "width": 26.0,
+      "height": 26.0,
+      "angle": 0,
+      "strokeColor": "transparent",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 101113,
+      "version": 1,
+      "versionNonce": 101120,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "icon"
+      },
+      "fileId": "icon_monitor",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
+    },
+    {
+      "id": "text_81",
+      "type": "text",
+      "x": 1547.0,
+      "y": 781.75,
+      "width": 383.0,
+      "height": 17.5,
+      "angle": 0,
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3245,11 +3225,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "zonelabel"
+        "role": "cardtext"
       },
-      "text": "Backup and archive \u2014 a separate fault domain from both regions",
-      "originalText": "Backup and archive \u2014 a separate fault domain from both regions",
-      "fontSize": 15,
+      "text": "Azure Monitor",
+      "originalText": "Azure Monitor",
+      "fontSize": 14,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -3258,15 +3238,55 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_82",
-      "type": "rectangle",
-      "x": 80.0,
-      "y": 890.0,
-      "width": 350.0,
-      "height": 62.0,
+      "id": "text_82",
+      "type": "text",
+      "x": 1547.0,
+      "y": 801.25,
+      "width": 383.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
+      "strokeColor": "#64748B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 101141,
+      "version": 1,
+      "versionNonce": 101148,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "cardtext"
+      },
+      "text": "metrics, logs and alerts",
+      "originalText": "metrics, logs and alerts",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
+    },
+    {
+      "id": "rectangle_83",
+      "type": "rectangle",
+      "x": 1500.0,
+      "y": 840.0,
+      "width": 440.0,
+      "height": 58.0,
+      "angle": 0,
+      "strokeColor": "#047857",
+      "backgroundColor": "#D1FAE5",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -3278,42 +3298,6 @@
       "roundness": {
         "type": 3
       },
-      "seed": 101141,
-      "version": 1,
-      "versionNonce": 101148,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_94",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_83",
-      "type": "image",
-      "x": 91.0,
-      "y": 908.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
       "seed": 101155,
       "version": 1,
       "versionNonce": 101162,
@@ -3323,25 +3307,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
-      },
-      "fileId": "icon_backupvault",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+        "role": "card"
+      }
     },
     {
-      "id": "text_84",
-      "type": "text",
-      "x": 127.0,
-      "y": 896.25,
-      "width": 293.0,
-      "height": 17.5,
+      "id": "image_84",
+      "type": "image",
+      "x": 1511.0,
+      "y": 856.0,
+      "width": 26.0,
+      "height": 26.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "transparent",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3361,27 +3338,25 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "icon"
       },
-      "text": "Backup Vault",
-      "originalText": "Backup Vault",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+      "fileId": "icon_appinsights",
+      "status": "saved",
+      "scale": [
+        1,
+        1
+      ],
+      "crop": null
     },
     {
       "id": "text_85",
       "type": "text",
-      "x": 127.0,
-      "y": 915.75,
-      "width": 293.0,
-      "height": 30.0,
+      "x": 1547.0,
+      "y": 851.75,
+      "width": 383.0,
+      "height": 17.5,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#1E293B",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3403,8 +3378,48 @@
       "customData": {
         "role": "cardtext"
       },
-      "text": "immutable, soft delete\npoint-in-time restore 35 days",
-      "originalText": "immutable, soft delete\npoint-in-time restore 35 days",
+      "text": "Application Insights",
+      "originalText": "Application Insights",
+      "fontSize": 14,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
+    },
+    {
+      "id": "text_86",
+      "type": "text",
+      "x": 1547.0,
+      "y": 871.25,
+      "width": 383.0,
+      "height": 15.0,
+      "angle": 0,
+      "strokeColor": "#64748B",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 1,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": null,
+      "seed": 101197,
+      "version": 1,
+      "versionNonce": 101204,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "cardtext"
+      },
+      "text": "request traces from the app",
+      "originalText": "request traces from the app",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3414,60 +3429,18 @@
       "autoResize": false
     },
     {
-      "id": "rectangle_86",
-      "type": "rectangle",
-      "x": 470.0,
-      "y": 890.0,
-      "width": 350.0,
-      "height": 62.0,
+      "id": "arrow_87",
+      "type": "arrow",
+      "x": 930.0,
+      "y": 602.0,
+      "width": 790.0,
+      "height": 124.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101197,
-      "version": 1,
-      "versionNonce": 101204,
-      "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_94",
-          "type": "arrow"
-        },
-        {
-          "id": "arrow_95",
-          "type": "arrow"
-        }
-      ],
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "card"
-      }
-    },
-    {
-      "id": "image_87",
-      "type": "image",
-      "x": 481.0,
-      "y": 908.0,
-      "width": 26.0,
-      "height": 26.0,
-      "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#047857",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
@@ -3482,26 +3455,45 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "icon"
-      },
-      "fileId": "icon_storage",
-      "status": "saved",
-      "scale": [
-        1,
-        1
+      "customData": null,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          88
+        ],
+        [
+          790,
+          88
+        ],
+        [
+          790,
+          124
+        ]
       ],
-      "crop": null
+      "lastCommittedPoint": null,
+      "startBinding": {
+        "elementId": "rectangle_25",
+        "focus": 0,
+        "gap": 4
+      },
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
       "id": "text_88",
       "type": "text",
-      "x": 517.0,
-      "y": 896.25,
-      "width": 293.0,
-      "height": 17.5,
+      "x": 950.0,
+      "y": 666.0,
+      "width": 220.0,
+      "height": 13.75,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#047857",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3521,11 +3513,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "text"
       },
-      "text": "ADLS Gen2, WORM",
-      "originalText": "ADLS Gen2, WORM",
-      "fontSize": 14,
+      "text": "logs and metrics",
+      "originalText": "logs and metrics",
+      "fontSize": 11,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -3536,9 +3528,9 @@
     {
       "id": "text_89",
       "type": "text",
-      "x": 517.0,
-      "y": 915.75,
-      "width": 293.0,
+      "x": 60.0,
+      "y": 960.0,
+      "width": 1400.0,
       "height": 30.0,
       "angle": 0,
       "strokeColor": "#64748B",
@@ -3561,10 +3553,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "text"
       },
-      "text": "legal hold\n7-year retention",
-      "originalText": "legal hold\n7-year retention",
+      "text": "In production this network would sit as a spoke off the bank's existing hub. We drew one virtual network because that is the part we\ncould design and defend ourselves.",
+      "originalText": "In production this network would sit as a spoke off the bank's existing hub. We drew one virtual network because that is the part we\ncould design and defend ourselves.",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3576,13 +3568,13 @@
     {
       "id": "rectangle_90",
       "type": "rectangle",
-      "x": 860.0,
-      "y": 890.0,
-      "width": 360.0,
-      "height": 62.0,
+      "x": 60.0,
+      "y": 1030.0,
+      "width": 15.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
+      "strokeColor": "#C2410C",
+      "backgroundColor": "#FFEDD5",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -3598,28 +3590,23 @@
       "version": 1,
       "versionNonce": 101260,
       "isDeleted": false,
-      "boundElements": [
-        {
-          "id": "arrow_95",
-          "type": "arrow"
-        }
-      ],
+      "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
+        "role": "swatch"
       }
     },
     {
-      "id": "image_91",
-      "type": "image",
-      "x": 871.0,
-      "y": 908.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_91",
+      "type": "text",
+      "x": 82.0,
+      "y": 1030.0,
+      "width": 75.904,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3639,35 +3626,39 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "icon"
+        "role": "legendlabel"
       },
-      "fileId": "icon_ledger",
-      "status": "saved",
-      "scale": [
-        1,
-        1
-      ],
-      "crop": null
+      "text": "Internet edge",
+      "originalText": "Internet edge",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
     },
     {
-      "id": "text_92",
-      "type": "text",
-      "x": 907.0,
-      "y": 903.75,
-      "width": 303.0,
-      "height": 17.5,
+      "id": "rectangle_92",
+      "type": "rectangle",
+      "x": 179.904,
+      "y": 1030.0,
+      "width": 15.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
+      "strokeColor": "#1D4ED8",
+      "backgroundColor": "#DBEAFE",
       "fillStyle": "solid",
-      "strokeWidth": 1,
+      "strokeWidth": 2,
       "strokeStyle": "solid",
       "roughness": 0,
       "opacity": 100,
       "groupIds": [],
       "frameId": null,
       "index": null,
-      "roundness": null,
+      "roundness": {
+        "type": 3
+      },
       "seed": 101281,
       "version": 1,
       "versionNonce": 101288,
@@ -3677,27 +3668,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
-      },
-      "text": "Confidential Ledger",
-      "originalText": "Confidential Ledger",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
+        "role": "swatch"
+      }
     },
     {
       "id": "text_93",
       "type": "text",
-      "x": 907.0,
-      "y": 923.25,
-      "width": 303.0,
+      "x": 201.904,
+      "y": 1030.0,
+      "width": 185.10999999999996,
       "height": 15.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3717,10 +3699,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "legendlabel"
       },
-      "text": "independent integrity anchor",
-      "originalText": "independent integrity anchor",
+      "text": "Azure service on the request path",
+      "originalText": "Azure service on the request path",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3730,15 +3712,15 @@
       "autoResize": false
     },
     {
-      "id": "arrow_94",
-      "type": "arrow",
-      "x": 434.0,
-      "y": 921.0,
-      "width": 32.0,
-      "height": 0.0,
+      "id": "rectangle_94",
+      "type": "rectangle",
+      "x": 409.01399999999995,
+      "y": 1030.0,
+      "width": 15.0,
+      "height": 15.0,
       "angle": 0,
       "strokeColor": "#6D28D9",
-      "backgroundColor": "transparent",
+      "backgroundColor": "#EDE9FE",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -3748,7 +3730,7 @@
       "frameId": null,
       "index": null,
       "roundness": {
-        "type": 2
+        "type": 3
       },
       "seed": 101309,
       "version": 1,
@@ -3758,96 +3740,19 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          32,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_82",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_86",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
+      "customData": {
+        "role": "swatch"
+      }
     },
     {
-      "id": "arrow_95",
-      "type": "arrow",
-      "x": 824.0,
-      "y": 921.0,
-      "width": 32.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101323,
-      "version": 1,
-      "versionNonce": 101330,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0,
-          0
-        ],
-        [
-          32,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": {
-        "elementId": "rectangle_86",
-        "focus": 0,
-        "gap": 4
-      },
-      "endBinding": {
-        "elementId": "rectangle_90",
-        "focus": 0,
-        "gap": 4
-      },
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "text_96",
+      "id": "text_95",
       "type": "text",
-      "x": 80.0,
-      "y": 980.0,
-      "width": 1140.0,
-      "height": 30.0,
+      "x": 431.01399999999995,
+      "y": 1030.0,
+      "width": 82.876,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3858,19 +3763,19 @@
       "frameId": null,
       "index": null,
       "roundness": null,
-      "seed": 101337,
+      "seed": 101323,
       "version": 1,
-      "versionNonce": 101344,
+      "versionNonce": 101330,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "legendlabel"
       },
-      "text": "Immutability is the point: ransomware that reaches the subscription still cannot delete or rewrite these\ncopies, and the ledger anchor lets an examiner prove a receipt was never edited after the fact.",
-      "originalText": "Immutability is the point: ransomware that reaches the subscription still cannot delete or rewrite these\ncopies, and the ledger anchor lets an examiner prove a receipt was never edited after the fact.",
+      "text": "Data and state",
+      "originalText": "Data and state",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3880,14 +3785,47 @@
       "autoResize": false
     },
     {
-      "id": "text_97",
-      "type": "text",
-      "x": 80.0,
-      "y": 1024.0,
-      "width": 1140.0,
+      "id": "rectangle_96",
+      "type": "rectangle",
+      "x": 535.89,
+      "y": 1030.0,
+      "width": 15.0,
       "height": 15.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#B45309",
+      "backgroundColor": "#FEF3C7",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 101337,
+      "version": 1,
+      "versionNonce": 101344,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "swatch"
+      }
+    },
+    {
+      "id": "text_97",
+      "type": "text",
+      "x": 557.89,
+      "y": 1030.0,
+      "width": 140.33799999999997,
+      "height": 15.0,
+      "angle": 0,
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3907,10 +3845,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
+        "role": "legendlabel"
       },
-      "text": "A copy is replicated on to the PH co-location so a BSP examiner can inspect records in country.",
-      "originalText": "A copy is replicated on to the PH co-location so a BSP examiner can inspect records in country.",
+      "text": "Identity, keys and secrets",
+      "originalText": "Identity, keys and secrets",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -3922,13 +3860,13 @@
     {
       "id": "rectangle_98",
       "type": "rectangle",
-      "x": 1300.0,
-      "y": 850.0,
-      "width": 760.0,
-      "height": 220.0,
+      "x": 720.228,
+      "y": 1030.0,
+      "width": 15.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
-      "backgroundColor": "transparent",
+      "strokeColor": "#047857",
+      "backgroundColor": "#D1FAE5",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -3949,18 +3887,18 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "zone"
+        "role": "swatch"
       }
     },
     {
       "id": "text_99",
       "type": "text",
-      "x": 1314.0,
-      "y": 824.25,
-      "width": 732.0,
-      "height": 18.75,
+      "x": 742.228,
+      "y": 1030.0,
+      "width": 168.24399999999997,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#94A3B8",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -3980,11 +3918,11 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "zonelabel"
+        "role": "legendlabel"
       },
-      "text": "Targets, and how they are proven",
-      "originalText": "Targets, and how they are proven",
-      "fontSize": 15,
+      "text": "Build, deploy, observe, govern",
+      "originalText": "Build, deploy, observe, govern",
+      "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
       "verticalAlign": "top",
@@ -3993,55 +3931,15 @@
       "autoResize": false
     },
     {
-      "id": "text_100",
-      "type": "text",
-      "x": 1320.0,
-      "y": 890.0,
-      "width": 720.0,
-      "height": 35.0,
-      "angle": 0,
-      "strokeColor": "#1E293B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101393,
-      "version": 1,
-      "versionNonce": 101400,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "text"
-      },
-      "text": "RPO    0 inside the region, 60 seconds or better cross-region\nRTO    15 minutes to serve traffic from Hong Kong",
-      "originalText": "RPO    0 inside the region, 60 seconds or better cross-region\nRTO    15 minutes to serve traffic from Hong Kong",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_101",
+      "id": "rectangle_100",
       "type": "rectangle",
-      "x": 1320.0,
-      "y": 950.0,
-      "width": 720.0,
-      "height": 58.0,
+      "x": 932.472,
+      "y": 1030.0,
+      "width": 15.0,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#047857",
-      "backgroundColor": "#D1FAE5",
+      "strokeColor": "#475569",
+      "backgroundColor": "#F1F5F9",
       "fillStyle": "solid",
       "strokeWidth": 2,
       "strokeStyle": "solid",
@@ -4053,27 +3951,27 @@
       "roundness": {
         "type": 3
       },
-      "seed": 101407,
+      "seed": 101393,
       "version": 1,
-      "versionNonce": 101414,
+      "versionNonce": 101400,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
       "link": null,
       "locked": false,
       "customData": {
-        "role": "card"
+        "role": "swatch"
       }
     },
     {
-      "id": "image_102",
-      "type": "image",
-      "x": 1331.0,
-      "y": 966.0,
-      "width": 26.0,
-      "height": 26.0,
+      "id": "text_101",
+      "type": "text",
+      "x": 954.472,
+      "y": 1030.0,
+      "width": 108.07000000000002,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "transparent",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -4084,6 +3982,48 @@
       "frameId": null,
       "index": null,
       "roundness": null,
+      "seed": 101407,
+      "version": 1,
+      "versionNonce": 101414,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": {
+        "role": "legendlabel"
+      },
+      "text": "Outside our control",
+      "originalText": "Outside our control",
+      "fontSize": 12,
+      "fontFamily": 6,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "lineHeight": 1.25,
+      "autoResize": false
+    },
+    {
+      "id": "arrow_102",
+      "type": "arrow",
+      "x": 1084.542,
+      "y": 1038.0,
+      "width": 32.0,
+      "height": 0.0,
+      "angle": 0,
+      "strokeColor": "#334155",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 2
+      },
       "seed": 101421,
       "version": 1,
       "versionNonce": 101428,
@@ -4092,26 +4032,33 @@
       "updated": 1,
       "link": null,
       "locked": false,
-      "customData": {
-        "role": "icon"
-      },
-      "fileId": "icon_chaos",
-      "status": "saved",
-      "scale": [
-        1,
-        1
+      "customData": null,
+      "points": [
+        [
+          0.0,
+          0
+        ],
+        [
+          32.0,
+          0
+        ]
       ],
-      "crop": null
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
     },
     {
       "id": "text_103",
       "type": "text",
-      "x": 1367.0,
-      "y": 961.75,
-      "width": 663.0,
-      "height": 17.5,
+      "x": 1124.542,
+      "y": 1030.0,
+      "width": 94.83999999999999,
+      "height": 15.0,
       "angle": 0,
-      "strokeColor": "#1E293B",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -4131,50 +4078,10 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "cardtext"
+        "role": "legendlabel"
       },
-      "text": "Azure Chaos Studio",
-      "originalText": "Azure Chaos Studio",
-      "fontSize": 14,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "text_104",
-      "type": "text",
-      "x": 1367.0,
-      "y": 981.25,
-      "width": 663.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#64748B",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101449,
-      "version": 1,
-      "versionNonce": 101456,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "cardtext"
-      },
-      "text": "runs the failover drill quarterly and records the evidence",
-      "originalText": "runs the failover drill quarterly and records the evidence",
+      "text": "synchronous call",
+      "originalText": "synchronous call",
       "fontSize": 12,
       "fontFamily": 6,
       "textAlign": "left",
@@ -4184,14 +4091,61 @@
       "autoResize": false
     },
     {
+      "id": "arrow_104",
+      "type": "arrow",
+      "x": 1241.3819999999998,
+      "y": 1038.0,
+      "width": 32.0,
+      "height": 0.0,
+      "angle": 0,
+      "strokeColor": "#334155",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "dashed",
+      "roughness": 0,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 2
+      },
+      "seed": 101449,
+      "version": 1,
+      "versionNonce": 101456,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1,
+      "link": null,
+      "locked": false,
+      "customData": null,
+      "points": [
+        [
+          0.0,
+          0
+        ],
+        [
+          32.0,
+          0
+        ]
+      ],
+      "lastCommittedPoint": null,
+      "startBinding": null,
+      "endBinding": null,
+      "startArrowhead": null,
+      "endArrowhead": "arrow",
+      "elbowed": false
+    },
+    {
       "id": "text_105",
       "type": "text",
-      "x": 1320.0,
-      "y": 1024.0,
-      "width": 720.0,
+      "x": 1281.3819999999998,
+      "y": 1030.0,
+      "width": 134.09200000000004,
       "height": 15.0,
       "angle": 0,
-      "strokeColor": "#64748B",
+      "strokeColor": "#334155",
       "backgroundColor": "transparent",
       "fillStyle": "solid",
       "strokeWidth": 1,
@@ -4211,545 +4165,6 @@
       "link": null,
       "locked": false,
       "customData": {
-        "role": "text"
-      },
-      "text": "The numbers above are measured by that drill rather than asserted in a document.",
-      "originalText": "The numbers above are measured by that drill rather than asserted in a document.",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_106",
-      "type": "rectangle",
-      "x": 60.0,
-      "y": 1120.0,
-      "width": 15.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#C2410C",
-      "backgroundColor": "#FFEDD5",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101477,
-      "version": 1,
-      "versionNonce": 101484,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "swatch"
-      }
-    },
-    {
-      "id": "text_107",
-      "type": "text",
-      "x": 82.0,
-      "y": 1120.0,
-      "width": 75.904,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101491,
-      "version": 1,
-      "versionNonce": 101498,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "Internet edge",
-      "originalText": "Internet edge",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_108",
-      "type": "rectangle",
-      "x": 179.904,
-      "y": 1120.0,
-      "width": 15.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#1D4ED8",
-      "backgroundColor": "#DBEAFE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101505,
-      "version": 1,
-      "versionNonce": 101512,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "swatch"
-      }
-    },
-    {
-      "id": "text_109",
-      "type": "text",
-      "x": 201.904,
-      "y": 1120.0,
-      "width": 185.10999999999996,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101519,
-      "version": 1,
-      "versionNonce": 101526,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "Azure service on the request path",
-      "originalText": "Azure service on the request path",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_110",
-      "type": "rectangle",
-      "x": 409.01399999999995,
-      "y": 1120.0,
-      "width": 15.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#6D28D9",
-      "backgroundColor": "#EDE9FE",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101533,
-      "version": 1,
-      "versionNonce": 101540,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "swatch"
-      }
-    },
-    {
-      "id": "text_111",
-      "type": "text",
-      "x": 431.01399999999995,
-      "y": 1120.0,
-      "width": 82.876,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101547,
-      "version": 1,
-      "versionNonce": 101554,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "Data and state",
-      "originalText": "Data and state",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_112",
-      "type": "rectangle",
-      "x": 535.89,
-      "y": 1120.0,
-      "width": 15.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#B45309",
-      "backgroundColor": "#FEF3C7",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101561,
-      "version": 1,
-      "versionNonce": 101568,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "swatch"
-      }
-    },
-    {
-      "id": "text_113",
-      "type": "text",
-      "x": 557.89,
-      "y": 1120.0,
-      "width": 194.36799999999997,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101575,
-      "version": 1,
-      "versionNonce": 101582,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "Identity, keys, confidential compute",
-      "originalText": "Identity, keys, confidential compute",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "rectangle_114",
-      "type": "rectangle",
-      "x": 774.2579999999999,
-      "y": 1120.0,
-      "width": 15.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#047857",
-      "backgroundColor": "#D1FAE5",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 3
-      },
-      "seed": 101589,
-      "version": 1,
-      "versionNonce": 101596,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "swatch"
-      }
-    },
-    {
-      "id": "text_115",
-      "type": "text",
-      "x": 796.2579999999999,
-      "y": 1120.0,
-      "width": 168.24399999999997,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101603,
-      "version": 1,
-      "versionNonce": 101610,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "Build, deploy, observe, govern",
-      "originalText": "Build, deploy, observe, govern",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "arrow_116",
-      "type": "arrow",
-      "x": 986.502,
-      "y": 1128.0,
-      "width": 32.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101617,
-      "version": 1,
-      "versionNonce": 101624,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0.0,
-          0
-        ],
-        [
-          32.0,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "text_117",
-      "type": "text",
-      "x": 1026.502,
-      "y": 1120.0,
-      "width": 94.83999999999999,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101631,
-      "version": 1,
-      "versionNonce": 101638,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "legendlabel"
-      },
-      "text": "synchronous call",
-      "originalText": "synchronous call",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "arrow_118",
-      "type": "arrow",
-      "x": 1143.3419999999999,
-      "y": 1128.0,
-      "width": 32.0,
-      "height": 0.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 2,
-      "strokeStyle": "dashed",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": {
-        "type": 2
-      },
-      "seed": 101645,
-      "version": 1,
-      "versionNonce": 101652,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": null,
-      "points": [
-        [
-          0.0,
-          0
-        ],
-        [
-          32.0,
-          0
-        ]
-      ],
-      "lastCommittedPoint": null,
-      "startBinding": null,
-      "endBinding": null,
-      "startArrowhead": null,
-      "endArrowhead": "arrow",
-      "elbowed": false
-    },
-    {
-      "id": "text_119",
-      "type": "text",
-      "x": 1183.3419999999999,
-      "y": 1120.0,
-      "width": 134.09200000000004,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101659,
-      "version": 1,
-      "versionNonce": 101666,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
         "role": "legendlabel"
       },
       "text": "asynchronous or control",
@@ -4763,10 +4178,10 @@
       "autoResize": false
     },
     {
-      "id": "text_120",
+      "id": "text_106",
       "type": "text",
-      "x": 1339.434,
-      "y": 1120.0,
+      "x": 1437.474,
+      "y": 1030.0,
       "width": 309.07,
       "height": 15.0,
       "angle": 0,
@@ -4781,9 +4196,9 @@
       "frameId": null,
       "index": null,
       "roundness": null,
-      "seed": 101673,
+      "seed": 101477,
       "version": 1,
-      "versionNonce": 101680,
+      "versionNonce": 101484,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -4803,51 +4218,11 @@
       "autoResize": false
     },
     {
-      "id": "text_121",
+      "id": "text_107",
       "type": "text",
       "x": 60.0,
-      "y": 1160.0,
-      "width": 700.0,
-      "height": 15.0,
-      "angle": 0,
-      "strokeColor": "#334155",
-      "backgroundColor": "transparent",
-      "fillStyle": "solid",
-      "strokeWidth": 1,
-      "strokeStyle": "solid",
-      "roughness": 0,
-      "opacity": 100,
-      "groupIds": [],
-      "frameId": null,
-      "index": null,
-      "roundness": null,
-      "seed": 101687,
-      "version": 1,
-      "versionNonce": 101694,
-      "isDeleted": false,
-      "boundElements": null,
-      "updated": 1,
-      "link": null,
-      "locked": false,
-      "customData": {
-        "role": "text"
-      },
-      "text": "Dashed border = warm standby, not serving traffic until promoted.",
-      "originalText": "Dashed border = warm standby, not serving traffic until promoted.",
-      "fontSize": 12,
-      "fontFamily": 6,
-      "textAlign": "left",
-      "verticalAlign": "top",
-      "containerId": null,
-      "lineHeight": 1.25,
-      "autoResize": false
-    },
-    {
-      "id": "text_122",
-      "type": "text",
-      "x": 60.0,
-      "y": 1194.0,
-      "width": 900.0,
+      "y": 1072.0,
+      "width": 1300.0,
       "height": 13.75,
       "angle": 0,
       "strokeColor": "#94A3B8",
@@ -4861,9 +4236,9 @@
       "frameId": null,
       "index": null,
       "roundness": null,
-      "seed": 101701,
+      "seed": 101491,
       "version": 1,
-      "versionNonce": 101708,
+      "versionNonce": 101498,
       "isDeleted": false,
       "boundElements": null,
       "updated": 1,
@@ -4872,8 +4247,8 @@
       "customData": {
         "role": "text"
       },
-      "text": "Source: docs/architecture/target-azure-architecture.md",
-      "originalText": "Source: docs/architecture/target-azure-architecture.md",
+      "text": "Region confirmed from EastWest's own ESTA chatbot, which calls prod-04.southeastasia.logic.azure.com",
+      "originalText": "Region confirmed from EastWest's own ESTA chatbot, which calls prod-04.southeastasia.logic.azure.com",
       "fontSize": 11,
       "fontFamily": 6,
       "textAlign": "left",
@@ -4918,10 +4293,10 @@
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     },
-    "icon_hsm": {
+    "icon_privatelink": {
       "mimeType": "image/svg+xml",
-      "id": "icon_hsm",
-      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJkOWRkOTJkLTllMzQtNGNhYi04NTdlLWEyYTJmZGViZmE2YyIgeDE9IjkiIHkxPSIxNy4wNTIiIHgyPSI5IiB5Mj0iMTAuMjkyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDA3OGQ0IiAvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzVlYTBlZiIgLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYWFkMDgzOWUtODNjMS00NWFjLWFhOTctMDY4YzgwMGQ5ZWE2IiB4MT0iOC44MiIgeTE9IjE1LjYxMiIgeDI9IjguODIiIHkyPSIwLjUyOCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2ZlYTExYiIgLz48c3RvcCBvZmZzZXQ9IjAuNzM0IiBzdG9wLWNvbG9yPSIjZmZkNzBmIiAvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxnIGlkPSJmZTFmOTY0OS0xZWVkLTQ1ZDEtYTdhZC04ZTYzMDEzYTdkODgiPjxwYXRoIGQ9Ik0xNy40LDEwLjI5MkgxMC4yNDV2NS4xN2EuNjc2LjY3NiwwLDAsMS0uNjc1LjY3NUg4LjA3YS42NzYuNjc2LDAsMCwxLS42NzUtLjY3NVYxNC43SDYuMjdhLjY3Ni42NzYsMCwwLDEtLjY3NS0uNjc1di0xLjVhLjY3Ni42NzYsMCwwLDEsLjY3NS0uNjc1SDcuNFYxMC4yOTJILjZhLjYuNiwwLDAsMC0uNi42djUuNTZhLjYuNiwwLDAsMCwuNi42SDE3LjRhLjYuNiwwLDAsMCwuNi0uNnYtNS41NkEuNi42LDAsMCwwLDE3LjQsMTAuMjkyWiIgZmlsbD0idXJsKCNiZDlkZDkyZC05ZTM0LTRjYWItODU3ZS1hMmEyZmRlYmZhNmMpIiAvPjxwYXRoIGQ9Ik0xNS42MywxMS42NTJoLjc4YS4xNS4xNSwwLDAsMSwuMTUuMTV2Ljc4YS4xNS4xNSwwLDAsMS0uMTUuMTVoLS43OGEuMTUuMTUsMCwwLDEtLjE1LS4xNVYxMS44QS4xNS4xNSwwLDAsMSwxNS42MywxMS42NTJabS0yLjE2LDBoLjc4YS4xNS4xNSwwLDAsMSwuMTUuMTV2Ljc4YS4xNS4xNSwwLDAsMS0uMTUuMTVoLS43OGEuMTUuMTUsMCwwLDEtLjE1LS4xNVYxMS44QS4xNS4xNSwwLDAsMSwxMy40NywxMS42NTJabS0yLjE2LDBoLjc4YS4xNS4xNSwwLDAsMSwuMTUuMTV2Ljc4YS4xNS4xNSwwLDAsMS0uMTUuMTVoLS43OGEuMTUuMTUsMCwwLDEtLjE1LS4xNVYxMS44QS4xNS4xNSwwLDAsMSwxMS4zMSwxMS42NTJaIiBmaWxsPSIjYzNmMWZmIiAvPjxwYXRoIGQ9Ik0xMi41NjQsNC4yNzJBMy43NDQsMy43NDQsMCwxLDAsNy45Miw3Ljl2NC4zMTlhLjE1LjE1LDAsMCwxLS4xNS4xNUg2LjI3YS4xNS4xNSwwLDAsMC0uMTUuMTV2MS41YS4xNS4xNSwwLDAsMCwuMTUuMTVoMS41YS4xNS4xNSwwLDAsMSwuMTUuMTV2MS4xNGEuMTUuMTUsMCwwLDAsLjE1LjE1aDEuNWEuMTUuMTUsMCwwLDAsLjE1LS4xNVY3LjlBMy43NDMsMy43NDMsMCwwLDAsMTIuNTY0LDQuMjcyWk05LjA3Niw2LjIxN2ExLjk2MiwxLjk2MiwwLDEsMSwxLjY4OS0xLjY4OUExLjk2MywxLjk2MywwLDAsMSw5LjA3Niw2LjIxN1oiIGZpbGw9InVybCgjYWFkMDgzOWUtODNjMS00NWFjLWFhOTctMDY4YzgwMGQ5ZWE2KSIgLz48L2c+PC9zdmc+",
+      "id": "icon_privatelink",
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImZkMDYxMjI4LTIyYmUtNDI1ZS05MTMxLTBiOGNjYTBlNWQxNyIgeDE9IjcuNjk5IiB5MT0iMjU5LjIyIiB4Mj0iNy42OTkiIHkyPSIyNjMuNzExIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTI1MCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAuMjMiIHN0b3AtY29sb3I9IiM1ZWEwZWYiIC8+PHN0b3Agb2Zmc2V0PSIwLjMyIiBzdG9wLWNvbG9yPSIjNWI5ZmVlIiAvPjxzdG9wIG9mZnNldD0iMC40OCIgc3RvcC1jb2xvcj0iIzUwOWFlYiIgLz48c3RvcCBvZmZzZXQ9IjAuNTciIHN0b3AtY29sb3I9IiMzZjkyZTYiIC8+PHN0b3Agb2Zmc2V0PSIwLjc1IiBzdG9wLWNvbG9yPSIjMjY4OGRmIiAvPjxzdG9wIG9mZnNldD0iMC45MyIgc3RvcC1jb2xvcj0iIzEyN2ZkOSIgLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iZWE5NjQ5YTYtMDRiNS00N2Q2LTgyNDctZWQzYWI5ZmY5ZDA2IiB4MT0iOS45MjciIHkxPSIyNjEuMDkxIiB4Mj0iOS45MjciIHkyPSIyNjUuNTgyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTI1MCkiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAuMDIiIHN0b3AtY29sb3I9IiM1ZWEwZWYiIC8+PHN0b3Agb2Zmc2V0PSIwLjE0IiBzdG9wLWNvbG9yPSIjNWI5ZmVlIiAvPjxzdG9wIG9mZnNldD0iMC4yMyIgc3RvcC1jb2xvcj0iIzViOWZlZSIgLz48c3RvcCBvZmZzZXQ9IjAuMzQiIHN0b3AtY29sb3I9IiM1MDlhZWIiIC8+PHN0b3Agb2Zmc2V0PSIwLjQ0IiBzdG9wLWNvbG9yPSIjM2Y5MmU2IiAvPjxzdG9wIG9mZnNldD0iMC42MyIgc3RvcC1jb2xvcj0iIzI2ODhkZiIgLz48c3RvcCBvZmZzZXQ9IjAuOTMiIHN0b3AtY29sb3I9IiMxMjdmZDkiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZD0iTTguMjUyLDIuNTIxSDkuMzc0VjkuNTk0SDguMjUyWiIgZmlsbD0iIzdhN2E3YSIgLz48cGF0aCBkPSJNMTAuNDU5LDIuM0ExLjY0NywxLjY0NywwLDEsMSw4LjgxMy42NWgwQTEuNjQ2LDEuNjQ2LDAsMCwxLDEwLjQ1OSwyLjNaIiBmaWxsPSIjMTQ5MGRmIiAvPjxwYXRoIGQ9Ik04LjU4OCw5LjIyaC0xLjhhMi4yNDYsMi4yNDYsMCwwLDAtLjM0OCw0LjQ2MSwyLjQxNSwyLjQxNSwwLDAsMSwuMDIyLS44MzUsMS40MTgsMS40MTgsMCwwLDEsLjMyNi0yLjhoMS44YTEuNDIyLDEuNDIyLDAsMCwxLDAsMi44NDRIOC4wOTRhMS4wNzgsMS4wNzgsMCwwLDAtLjEuNDUsMS4wMjIsMS4wMjIsMCwwLDAsLjA3MS4zNzRoLjUyN2EyLjI0NiwyLjI0NiwwLDEsMCwwLTQuNDkxWiIgZmlsbD0idXJsKCNmZDA2MTIyOC0yMmJlLTQyNWUtOTEzMS0wYjhjY2EwZTVkMTcpIiAvPjxwYXRoIGQ9Ik0xMS4xODIsMTEuMTIxYTIuNjQyLDIuNjQyLDAsMCwxLC4wMjYuMzQ0LDIuMzE3LDIuMzE3LDAsMCwxLS4wNDkuNDkxLDEuNDE4LDEuNDE4LDAsMCwxLS4zMjUsMi44aC0xLjhhMS40MjMsMS40MjMsMCwwLDEsMC0yLjg0NWguNDk0YTEuMDQyLDEuMDQyLDAsMCwwLC4xLS40NDksMS4wMTgsMS4wMTgsMCwwLDAtLjA3MS0uMzc0SDkuMDM3YTIuMjQ2LDIuMjQ2LDAsMCwwLDAsNC40OTFoMS44YTIuMjQ2LDIuMjQ2LDAsMCwwLC4zNDgtNC40NjFaIiBmaWxsPSJ1cmwoI2VhOTY0OWE2LTA0YjUtNDdkNi04MjQ3LWVkM2FiOWZmOWQwNikiIC8+PHBhdGggZD0iTTUuNTgsMTYuNTI1bC0uNDEyLjQxNWEuMjguMjgsMCwwLDEtLjQsMGwtNC42MDctNC42YS41NjYuNTY2LDAsMCwxLDAtLjhsLjQxNi0uNDEyLDUsNC45OTJhLjI3Ni4yNzYsMCwwLDEsMCwuMzkxaDBaIiBmaWxsPSIjNTBlNmZmIiAvPjxwYXRoIGQ9Ik01LjA4Miw3LjAybC40Ni40NmEuMjgyLjI4MiwwLDAsMSwwLC40TC42MjUsMTIuODA5bC0uNDYxLS40NTdhLjU2Ni41NjYsMCwwLDEsMC0uOEw0LjY4NSw3LjAyQS4yOC4yOCwwLDAsMSw1LjA4Miw3LjAyWiIgZmlsbD0iIzE0OTBkZiIgLz48cGF0aCBkPSJNMTIuNDE3LDE2Ljg1MWEuMjc4LjI3OCwwLDAsMS0uMDA2LS4zOTJoMGwuMDA2LDAsNS00Ljk4OS40MTYuNDE2YS41NjYuNTY2LDAsMCwxLDAsLjhsLTQuNjExLDQuNTg4YS4yNzcuMjc3LDAsMCwxLS4zOTEuMDA2aDBsLS4wMDYtLjAwNVoiIGZpbGw9IiM1MGU2ZmYiIC8+PHBhdGggZD0iTTEzLjMxMSw3LjM0OWw0LjUyNSw0LjUzNmEuNTYzLjU2MywwLDAsMSwwLC43OTNsLS40NjEuNDZMMTIuNDU0LDguMjA2YS4yODkuMjg5LDAsMCwxLDAtLjRsLjQ2LS40NTZBLjI4Mi4yODIsMCwwLDEsMTMuMzExLDcuMzQ5WiIgZmlsbD0iIzE0OTBkZiIgLz48L3N2Zz4=",
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     },
@@ -4946,13 +4321,6 @@
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     },
-    "icon_backupvault": {
-      "mimeType": "image/svg+xml",
-      "id": "icon_backupvault",
-      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImUzYTE5MjlmLTIzNWUtNGJmMC05MTJlLWUzMmVjNDcyZDljYSIgeDE9IjExLjQ2MiIgeTE9IjEwLjUzNiIgeDI9IjExLjQ2MiIgeTI9IjEuNDIzIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMDA3OGQ0IiAvPjxzdG9wIG9mZnNldD0iMC4xNDkiIHN0b3AtY29sb3I9IiMxODgyZGIiIC8+PHN0b3Agb2Zmc2V0PSIwLjM3MyIgc3RvcC1jb2xvcj0iIzM3OGZlNCIgLz48c3RvcCBvZmZzZXQ9IjAuNTk0IiBzdG9wLWNvbG9yPSIjNGM5OWVhIiAvPjxzdG9wIG9mZnNldD0iMC44MDYiIHN0b3AtY29sb3I9IiM1YTllZWUiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNWVhMGVmIiAvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJhNThhYzAzMy0xMjZkLTQ1ZjAtYjkxNi0yNWZkNmQzNTc3NDEiIHgxPSI2LjQ4NCIgeTE9IjE2LjU3NyIgeDI9IjYuNDg0IiB5Mj0iNy40NjEiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiMzMmJlZGQiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNTBlNmZmIiAvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxnIGlkPSJiY2EyOTgxYy00MTYxLTQxMWQtOGM2OS1jNjU3YmViOWVmNjUiPjxnPjxwYXRoIGQ9Ik0xNy44OTEsNy42ODFhMi44ODksMi44ODksMCwwLDAtMi41MDgtMi43NzYsMy42NDEsMy42NDEsMCwwLDAtMy43NS0zLjQ4MiwzLjczNSwzLjczNSwwLDAsMC0zLjU3LDIuNDM0LDMuNDQ3LDMuNDQ3LDAsMCwwLTMuMDMsMy4zMTcsMy41LDMuNSwwLDAsMCwzLjYyLDMuMzYyYy4xMDgsMCwuMjE0LDAsLjMxOS0uMDE0aDUuODYzYS42MTEuNjExLDAsMCwwLC4xNTUtLjAyM0EyLjkyMywyLjkyMywwLDAsMCwxNy44OTEsNy42ODFaIiBmaWxsPSJ1cmwoI2UzYTE5MjlmLTIzNWUtNGJmMC05MTJlLWUzMmVjNDcyZDljYSkiIC8+PHBhdGggZD0iTTkuODM1LDExbC4wMTguNDE0LjQxLjA1NWEyLjM3MSwyLjM3MSwwLDAsMSwyLjA1OCwyLjMsMi40MDksMi40MDksMCwwLDEtMi4zODQsMi4zNzloLTYuM0EyLjk3NiwyLjk3NiwwLDAsMSwuNTYsMTMuMjYyYTIuOTE5LDIuOTE5LDAsMCwxLDIuNTcxLTIuOGwuMy0uMDM3LjEtLjI4NUEzLjIxNiwzLjIxNiwwLDAsMSw2LjYwOSw4LjAyMWguMDIyQTMuMTE2LDMuMTE2LDAsMCwxLDkuODM1LDExWiIgZmlsbD0iI2ZmZiIgLz48cGF0aCBkPSJNMTMuNiw1LjY2LDEyLjAxMyw0LjEyMmMtLjE3My0uMTczLS4zMTktLjExMi0uMzE5LjE1NnYuNjkxYS4xOTQuMTk0LDAsMCwxLS4wMTYuMDc1LjE4My4xODMsMCwwLDEtLjEwOC4xLjE5NC4xOTQsMCwwLDEtLjA3NS4wMTJjLTEuMDIsMC0zLjg2NC4yNjgtMy45NjcsNC4xNTdhLjIuMiwwLDAsMCwuMi4ySDguNzM4YS4yLjIsMCwwLDAsLjA4LS4wMTcuMjA4LjIwOCwwLDAsMCwuMDY3LS4wNDcuMjIyLjIyMiwwLDAsMCwuMDQyLS4wNzEuMi4yLDAsMCwwLC4wMS0uMDgxLDIuMzg2LDIuMzg2LDAsMCwxLDIuNTkyLTIuODc4LjIuMiwwLDAsMSwuMi4ydi42MzljMCwuMzIuMS4zNzIuMzIuMTU2TDEzLjYsNS45ODlhLjE5My4xOTMsMCwwLDAsLjA2NC0uMDcyLjIuMiwwLDAsMCwwLS4xODVBLjIuMiwwLDAsMCwxMy42LDUuNjZaIiBmaWxsPSIjZmZmIiAvPjxwYXRoIGQ9Ik0zLjU3OCwxNi41NzdBMy40NjksMy40NjksMCwwLDEsLjExLDEzLjIxM3YtLjAzMUEzLjQxNywzLjQxNywwLDAsMSwzLjExNiw5LjlhMy43MTMsMy43MTMsMCwwLDEsMy41NDUtMi40NCwzLjYwOCwzLjYwOCwwLDAsMSwzLjcxMiwzLjQ1MmgwYTIuODY1LDIuODY1LDAsMCwxLDIuNDg2LDIuNzc1di4wMTdhMi45LDIuOSwwLDAsMS0yLjg3NCwyLjg2OEgzLjdDMy42NTksMTYuNTc3LDMuNjE4LDE2LjU3NywzLjU3OCwxNi41NzdaTTEuMSwxMy4yYTIuNDgzLDIuNDgzLDAsMCwwLDIuNTY3LDIuMzg5SDkuOThBMS45MTQsMS45MTQsMCwwLDAsMTEuODcsMTMuNywxLjg3NiwxLjg3NiwwLDAsMCwxMC4yNDIsMTEuOWwtLjgyMi0uMTEtLjAzNS0uODI4QTIuNjIyLDIuNjIyLDAsMCwwLDYuNjksOC40NTFINi42NThhMi43MiwyLjcyLDAsMCwwLTIuNjEzLDEuNzlsLS4yMDguNTcxLS42LjA3MkEyLjQyNSwyLjQyNSwwLDAsMCwxLjEsMTMuMloiIGZpbGw9InVybCgjYTU4YWMwMzMtMTI2ZC00NWYwLWI5MTYtMjVmZDZkMzU3NzQxKSIgLz48L2c+PC9nPjwvc3ZnPg==",
-      "created": 1735689600000,
-      "lastRetrieved": 1735689600000
-    },
     "icon_storage": {
       "mimeType": "image/svg+xml",
       "id": "icon_storage",
@@ -4960,17 +4328,24 @@
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     },
-    "icon_ledger": {
+    "icon_keyvault": {
       "mimeType": "image/svg+xml",
-      "id": "icon_ledger",
-      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImI4YmU5MGNhLWI1MTMtNDg5MC1hYzQyLWI3ZmMzYjM5NmI3MSIgeDE9IjExLjU2NSIgeTE9IjE0LjcyOSIgeDI9IjEyLjU3NyIgeTI9IjE0LjcyOSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4wMDEiIHN0b3AtY29sb3I9IiM3NzNhZGMiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNTUyZjk5IiAvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJhYjFjODA1OS04M2I4LTRjMzgtOWQ4ZC1hNTQ1YjA3ZmE4ZDEiIHgxPSI2LjQxNSIgeTE9IjUuNzMzIiB4Mj0iNy40MjciIHkyPSI1LjczMyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4wMDEiIHN0b3AtY29sb3I9IiM3NzNhZGMiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNTUyZjk5IiAvPjwvbGluZWFyR3JhZGllbnQ+PGxpbmVhckdyYWRpZW50IGlkPSJlYmVkNTBiOS1iYzIxLTRhYjAtYTA1My0zOWU4NWJiOWVkZjkiIHgxPSIxLjI2NSIgeTE9IjE0LjcyOSIgeDI9IjIuMjc4IiB5Mj0iMTQuNzI5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwLjAwMSIgc3RvcC1jb2xvcj0iIzc3M2FkYyIgLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM1NTJmOTkiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PGcgaWQ9ImYxNjkyODIwLTFjYWItNDMzOC1iMDlhLTkyZThiYTM5OTExMCI+PHBhdGggZD0iTTEyLjg1LDIuMjU3LDksNC41MTcsNS4xNSwyLjI1Nyw5LDBabS02LjcsOC4wOTEtLjczLS40M0wzLjg1NCw5LDAsMTEuMjQ4bDMuODUsMi4yNiwzLjg1LTIuMjZabTgtMS4zNS0xLjU3LjkyLS43My40My0xLjU1LjksMy4xMSwxLjgzLjc0LjQzLjM2LS4yMUwxOCwxMS4yNDhaIiBmaWxsPSIjYjc5NmY5IiAvPjxwYXRoIGQ9Ik05LDQuNTE4VjlsLTEuNTYtLjkxLS43My0uNDMtMS41Ni0uOTFWMi4yNThsMy40OSwyLjA1Wk0wLDExLjI1M3Y0LjQ5TDMuODU0LDE4VjEzLjUxM1ptMTMuNDE0LDEuODI1di0uMDFsLTMuMTEtMS44MnY0LjVMMTQuMTU0LDE4di00LjQ5WiIgZmlsbD0iI2E2N2FmNCIgLz48cGF0aCBkPSJNMTIuMDgxLDEzLjQ5YTEuMDgxLDEuMDgxLDAsMCwxLC40OTIuOTM1LjI4NS4yODUsMCwwLDEtLjI0OC4yODdsLS4wMjQsMGMuMDY5LjMwNi4xMzcuNjA5LjIwNi45MTIuMDIuMDkzLjA0MS4xODYuMDYyLjI3OC4wMjIuMTA4LS4wMzUuMTY1LS4xMTkuMTE2bC0uMTM5LS4wNzktLjEzOC0uMDhxLS4yNDItLjE0MS0uNDgzLS4yNzhhLjI3My4yNzMsMCwwLDEtLjExOS0uMjZjLjA5LS4yNzcuMTc1LS41NTcuMjYyLS44MzYuMDA5LS4wMjcuMDA3LS4wNDMtLjAxOS0uMDc4YS45OS45OSwwLDAsMS0uMjM4LS43Yy4wMjMtLjIxNy4xMzctLjMxNS4zMjQtLjI4NkEuNTQ1LjU0NSwwLDAsMSwxMi4wODEsMTMuNDlaIiBmaWxsPSJ1cmwoI2I4YmU5MGNhLWI1MTMtNDg5MC1hYzQyLWI3ZmMzYjM5NmI3MSkiIC8+PHBhdGggZD0iTTEyLjg1NCwyLjI1OHY0LjQ5bC0xLjU2LjkxLS43My40M0w5LDlWNC41MDhabS04LjI2LDEwLjgxdi4wMWwtLjc0LjQzVjE4bDMuODUtMi4yNXYtNC41Wm05LjU2LjQzN1YxOEwxOCwxNS43NDN2LTQuNDlaTTcuNywxMy4wODh2Ljg1aDIuNnYtLjg1Wm0tLjk5LTUuNDMtMS4yOSwyLjI2LjczLjQzLDEuMjktMi4yNlptNC41OCwwLS43My40MywxLjI5LDIuMjYuNzMtLjQzWiIgZmlsbD0iIzc3M2FkYyIgLz48cGF0aCBkPSJNNi45MzIsNC41YTEuMDgsMS4wOCwwLDAsMSwuNDkxLjkzNS4yODUuMjg1LDAsMCwxLS4yNDcuMjg2bC0uMDI1LDBjLjA2OS4zMDYuMTM3LjYwOS4yMDYuOTEyLjAyLjA5My4wNDIuMTg2LjA2Mi4yNzlzLS4wMzUuMTY0LS4xMTkuMTE1bC0uMTM5LS4wNzktLjEzOC0uMDhMNi41NCw2LjU4OGEuMjczLjI3MywwLDAsMS0uMTE5LS4yNmMuMDktLjI3Ny4xNzUtLjU1Ny4yNjItLjgzNi4wMDktLjAyNy4wMDctLjA0My0uMDE5LS4wNzhhLjk5Ljk5LDAsMCwxLS4yMzgtLjdjLjAyMy0uMjE3LjEzOC0uMzE1LjMyNS0uMjg1QS41MzkuNTM5LDAsMCwxLDYuOTMyLDQuNVoiIGZpbGw9InVybCgjYWIxYzgwNTktODNiOC00YzM4LTlkOGQtYTU0NWIwN2ZhOGQxKSIgLz48cGF0aCBkPSJNMS43ODIsMTMuNDlhMS4wODIsMS4wODIsMCwwLDEsLjQ5MS45MzUuMjg1LjI4NSwwLDAsMS0uMjQ3LjI4N2wtLjAyNSwwYy4wNjkuMzA2LjEzNy42MDkuMjA2LjkxMi4wMi4wOTMuMDQyLjE4Ni4wNjIuMjc4LjAyMy4xMDgtLjAzNS4xNjUtLjExOS4xMTZsLS4xMzktLjA3OS0uMTM4LS4wOHEtLjI0Mi0uMTQxLS40ODMtLjI3OGEuMjczLjI3MywwLDAsMS0uMTE5LS4yNmMuMDktLjI3Ny4xNzUtLjU1Ny4yNjMtLjgzNi4wMDktLjAyNy4wMDYtLjA0My0uMDItLjA3OGEuOTkuOTksMCwwLDEtLjIzOC0uN2MuMDIzLS4yMTcuMTM4LS4zMTUuMzI1LS4yODZBLjU2Mi41NjIsMCwwLDEsMS43ODIsMTMuNDlaIiBmaWxsPSJ1cmwoI2ViZWQ1MGI5LWJjMjEtNGFiMC1hMDUzLTM5ZTg1YmI5ZWRmOSkiIC8+PC9nPjwvc3ZnPg==",
+      "id": "icon_keyvault",
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyBpZD0iYmM5MzE2OWEtMjRjNC00Njg2LTlmMzctYzdlNGY1M2IzZDM0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImZiMTE0YzkzLTdjMTYtNDU0MC04OTlhLTA3OTYwNDE2MjllNiIgY3g9IjkiIGN5PSI5IiByPSI4LjUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj48c3RvcCBvZmZzZXQ9IjAuMTgiIHN0b3AtY29sb3I9IiM1ZWEwZWYiIC8+PHN0b3Agb2Zmc2V0PSIwLjU2IiBzdG9wLWNvbG9yPSIjNWM5ZmVlIiAvPjxzdG9wIG9mZnNldD0iMC42OSIgc3RvcC1jb2xvcj0iIzU1OWNlZCIgLz48c3RvcCBvZmZzZXQ9IjAuNzgiIHN0b3AtY29sb3I9IiM0YTk3ZTkiIC8+PHN0b3Agb2Zmc2V0PSIwLjg2IiBzdG9wLWNvbG9yPSIjMzk5MGU0IiAvPjxzdG9wIG9mZnNldD0iMC45MyIgc3RvcC1jb2xvcj0iIzIzODdkZSIgLz48c3RvcCBvZmZzZXQ9IjAuOTkiIHN0b3AtY29sb3I9IiMwODdiZDYiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMDA3OGQ0IiAvPjwvcmFkaWFsR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJlYzQ3OGJkMy01YjM4LTRlN2YtYjY2MS0xMWYzNTU1NzhiZmYiIGN4PSIzOC45NSIgY3k9IjE4Mi4wNyIgcj0iOS44OCIgZ3JhZGllbnRUcmFuc2Zvcm09InRyYW5zbGF0ZSgtMjguNzEgLTE2My4yNCkgc2NhbGUoMC45NCAwLjk0KSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4yNyIgc3RvcC1jb2xvcj0iI2ZmZDcwZiIgLz48c3RvcCBvZmZzZXQ9IjAuNDkiIHN0b3AtY29sb3I9IiNmZmNiMTIiIC8+PHN0b3Agb2Zmc2V0PSIwLjg4IiBzdG9wLWNvbG9yPSIjZmVhYzE5IiAvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI2ZlYTExYiIgLz48L3JhZGlhbEdyYWRpZW50PjwvZGVmcz48dGl0bGU+SWNvbi1zZWN1cml0eS0yNDU8L3RpdGxlPjxwYXRoIGlkPSJhYWNmODMxMS1hMzE3LTQwMGYtYjYxMy03NGJkMDBkYTVjZTMiIGQ9Ik05LC41QTguNSw4LjUsMCwxLDAsMTcuNSw5LDguNTEsOC41MSwwLDAsMCw5LC41Wk05LDE2LjM0QTcuMzQsNy4zNCwwLDEsMSwxNi4zNCw5LDcuMzQsNy4zNCwwLDAsMSw5LDE2LjM0WiIgZmlsbD0idXJsKCNmYjExNGM5My03YzE2LTQ1NDAtODk5YS0wNzk2MDQxNjI5ZTYpIiAvPjxjaXJjbGUgY3g9IjkiIGN5PSI5IiByPSI3LjM0IiBmaWxsPSIjZmZmIiAvPjxnPjxwYXRoIGlkPSJiZDk4M2M0MS1kYjczLTQwZWMtYTRmNC1kYTEyMTNmYzk5MjQiIGQ9Ik0xMy40NCw3LjMzYTEuODQsMS44NCwwLDAsMCwwLTIuNTloMEwxMC4yOSwxLjU4YTEuODMsMS44MywwLDAsMC0yLjU4LDBoMEw0LjU2LDQuNzRhMS44NCwxLjg0LDAsMCwwLDAsMi41OUw3LjE4LDEwYS41MS41MSwwLDAsMSwuMTUuMzZ2NC44OGEuNjMuNjMsMCwwLDAsLjE4LjQ0bDEuMiwxLjJhLjQxLjQxLDAsMCwwLC41OCwwbDEuMTYtMS4xNmgwbC42OC0uNjhhLjI1LjI1LDAsMCwwLDAtLjM0bC0uNDktLjQ5YS4yNy4yNywwLDAsMSwwLS4zN2wuNDktLjQ5YS4yNS4yNSwwLDAsMCwwLS4zNGwtLjQ5LS40OWEuMjcuMjcsMCwwLDEsMC0uMzdsLjQ5LS40OWEuMjUuMjUsMCwwLDAsMC0uMzRsLS42OC0uNjl2LS4yNVpNOSwyLjM1QTEsMSwwLDAsMSw5LDQuNDIsMSwxLDAsMSwxLDksMi4zNVoiIGZpbGw9InVybCgjZWM0NzhiZDMtNWIzOC00ZTdmLWI2NjEtMTFmMzU1NTc4YmZmKSIgLz48cGF0aCBpZD0iYWQyZTdlNDQtOWJmZC00Nzc1LThiZjQtOGVmMjZhNTQ0OTIxIiBkPSJNOC4xOCwxNS4zaDBhLjIzLjIzLDAsMCwwLC4zOC0uMTd2LTRhLjI0LjI0LDAsMCwwLS4xMS0uMmgwYS4yMi4yMiwwLDAsMC0uMzQuMnY0QS4yOC4yOCwwLDAsMCw4LjE4LDE1LjNaIiBmaWxsPSIjZmY5MzAwIiBvcGFjaXR5PSIwLjc1IiAvPjxyZWN0IGlkPSJhOTk2ZmJmZi0zOTM2LTRiMjQtYjQwNy0zNjkzMzZjMTQzYmEiIHg9IjYuNDgiIHk9IjUuNzkiIHdpZHRoPSI1LjE3IiBoZWlnaHQ9IjAuNjEiIHJ4PSIwLjI4IiBmaWxsPSIjZmY5MzAwIiBvcGFjaXR5PSIwLjc1IiAvPjxyZWN0IGlkPSJiYjEyZDMxYy0zMzUyLTRhMTgtODdkZC1hMTY5YTRhODcyMWQiIHg9IjYuNDgiIHk9IjYuNzgiIHdpZHRoPSI1LjE3IiBoZWlnaHQ9IjAuNjEiIHJ4PSIwLjI4IiBmaWxsPSIjZmY5MzAwIiBvcGFjaXR5PSIwLjc1IiAvPjwvZz48L3N2Zz4=",
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     },
-    "icon_chaos": {
+    "icon_monitor": {
       "mimeType": "image/svg+xml",
-      "id": "icon_chaos",
-      "dataURL": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImJlNDk4NDcyLTI5MGEtNGM1Yy1iYzlkLTVjYmJiODdjZmZkOCIgeDE9IjkiIHgyPSI5IiB5Mj0iMTMuNSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI2U4MzIzMSIgLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNjZTE4MTciIC8+PC9saW5lYXJHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImI4MmM5YmIyLWYxNzYtNDNjNy1iZmNhLWNkMTQwM2NlNTBiNCIgeDE9IjE2LjYxIiB5MT0iMTYuNzUiIHgyPSI0LjM4IiB5Mj0iNC4zIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwLjA0IiBzdG9wLWNvbG9yPSIjYTgwMDAwIiAvPjxzdG9wIG9mZnNldD0iMC4zMiIgc3RvcC1jb2xvcj0iI2EzMDMwMiIgLz48c3RvcCBvZmZzZXQ9IjAuNjMiIHN0b3AtY29sb3I9IiM5NjBjMDYiIC8+PHN0b3Agb2Zmc2V0PSIwLjcxIiBzdG9wLWNvbG9yPSIjOTEwZjA4IiAvPjxzdG9wIG9mZnNldD0iMC43NCIgc3RvcC1jb2xvcj0iIzhiMGUwNyIgLz48c3RvcCBvZmZzZXQ9IjAuNzkiIHN0b3AtY29sb3I9IiM3OTBhMDUiIC8+PHN0b3Agb2Zmc2V0PSIwLjg1IiBzdG9wLWNvbG9yPSIjNWIwNTAyIiAvPjxzdG9wIG9mZnNldD0iMC44OSIgc3RvcC1jb2xvcj0iIzQwMCIgLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0iYmM0YWVkMzgtZjVhZS00NDFiLWJiYjQtZjY5ZWI1NWZjZWNmIiB4MT0iMTcuMzgiIHkxPSIxNi4zMiIgeDI9IjExLjYxIiB5Mj0iNy42NCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4zNSIgc3RvcC1jb2xvcj0iI2E4MDAwMCIgLz48c3RvcCBvZmZzZXQ9IjAuNTIiIHN0b3AtY29sb3I9IiNhMjA0MDIiIC8+PHN0b3Agb2Zmc2V0PSIwLjc1IiBzdG9wLWNvbG9yPSIjOTEwZjA4IiAvPjxzdG9wIG9mZnNldD0iMC44IiBzdG9wLWNvbG9yPSIjOGIwZTA3IiAvPjxzdG9wIG9mZnNldD0iMC44NyIgc3RvcC1jb2xvcj0iIzc5MGEwNSIgLz48c3RvcCBvZmZzZXQ9IjAuOTQiIHN0b3AtY29sb3I9IiM1YjA1MDIiIC8+PHN0b3Agb2Zmc2V0PSIwLjk5IiBzdG9wLWNvbG9yPSIjNDAwIiAvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGQ9Ik0xMC4xOCw5VjMuMzJMMCwxMy41VjRBNC45LDQuOSwwLDAsMSwxLjMzLDEuMzEsNC40Myw0LjQzLDAsMCwxLDQuMjcsMEgxMy41TDE4LDQuNSwxMy41LDlaIiBmaWxsPSJ1cmwoI2JlNDk4NDcyLTI5MGEtNGM1Yy1iYzlkLTVjYmJiODdjZmZkOCkiIC8+PHBhdGggZD0iTTcuODIsOXY1LjY4TDE4LDQuNVYxNGE0LjksNC45LDAsMCwxLTEuMzMsMi43MUE0LjQ5LDQuNDksMCwwLDEsMTMuNzMsMThINC41TDAsMTMuNSw0LjUsOVoiIGZpbGw9InVybCgjYjgyYzliYjItZjE3Ni00M2M3LWJmY2EtY2QxNDAzY2U1MGI0KSIgLz48cGF0aCBkPSJNNy44MiwxNC42OCwxOCw0LjVWMTRhNC45LDQuOSwwLDAsMS0xLjMzLDIuNzFBNC40OSw0LjQ5LDAsMCwxLDEzLjczLDE4WiIgZmlsbD0idXJsKCNiYzRhZWQzOC1mNWFlLTQ0MWItYmJiNC1mNjllYjU1ZmNlY2YpIiAvPjwvc3ZnPg==",
+      "id": "icon_monitor",
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyBpZD0iZTRlNzY0Y2QtMmU3My00NzJmLWI4OGEtYmY4YmZjMmMyOTk0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImFjOGIzMmRhLTMwY2EtNGI5Mi04ZDBmLThkMmQ1ZWYyNzhhMCIgY3g9IjUuNzIiIGN5PSI3LjQ1IiByPSI4LjQyIiBncmFkaWVudFRyYW5zZm9ybT0idHJhbnNsYXRlKDMuMjMgMS41MSkgc2NhbGUoMS4wMSAxLjAxKSIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPjxzdG9wIG9mZnNldD0iMC4xOCIgc3RvcC1jb2xvcj0iIzVlYTBlZiIgLz48c3RvcCBvZmZzZXQ9IjAuNTYiIHN0b3AtY29sb3I9IiM1YzlmZWUiIC8+PHN0b3Agb2Zmc2V0PSIwLjY5IiBzdG9wLWNvbG9yPSIjNTU5Y2VkIiAvPjxzdG9wIG9mZnNldD0iMC43OCIgc3RvcC1jb2xvcj0iIzRhOTdlOSIgLz48c3RvcCBvZmZzZXQ9IjAuODYiIHN0b3AtY29sb3I9IiMzOTkwZTQiIC8+PHN0b3Agb2Zmc2V0PSIwLjkzIiBzdG9wLWNvbG9yPSIjMjM4N2RlIiAvPjxzdG9wIG9mZnNldD0iMC45OSIgc3RvcC1jb2xvcj0iIzA4N2JkNiIgLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwMDc4ZDQiIC8+PC9yYWRpYWxHcmFkaWVudD48cmFkaWFsR3JhZGllbnQgaWQ9ImE5OTU0ODIwLWNiMzgtNDk0My05ODQyLWYwYTU2OGQyYjAxNSIgY3g9IjI4LjE4IiBjeT0iMjAyLjI5IiByPSIyLjciIGdyYWRpZW50VHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTE3Ljc3IC0xODUuMDEpIHNjYWxlKDAuOTUpIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwLjE5IiBzdG9wLWNvbG9yPSIjOGM4ZTkwIiAvPjxzdG9wIG9mZnNldD0iMC4zNSIgc3RvcC1jb2xvcj0iIzg0ODY4OCIgLz48c3RvcCBvZmZzZXQ9IjAuNiIgc3RvcC1jb2xvcj0iIzZlNzA3MSIgLz48c3RvcCBvZmZzZXQ9IjAuOTEiIHN0b3AtY29sb3I9IiM0YTRiNGMiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM2UzZjNmIiAvPjwvcmFkaWFsR3JhZGllbnQ+PC9kZWZzPjx0aXRsZT5JY29uLW1hbmFnZS0zMTc8L3RpdGxlPjxlbGxpcHNlIGN4PSI5IiBjeT0iOSIgcng9IjguNSIgcnk9IjguNDciIGZpbGw9InVybCgjYWM4YjMyZGEtMzBjYS00YjkyLThkMGYtOGQyZDVlZjI3OGEwKSIgLz48ZWxsaXBzZSBjeD0iOSIgY3k9IjkiIHJ4PSI3LjQiIHJ5PSI3LjM3IiBmaWxsPSIjZmZmIiAvPjxwYXRoIGQ9Ik0yLjcyLDkuNDRhNi4yNCw2LjI0LDAsMCwwLDEuODIsNGwyLTJhMy41MywzLjUzLDAsMCwxLTEtMloiIGZpbGw9IiM5Y2ViZmYiIC8+PHBhdGggZD0iTTEzLjEzLDQuMjdBNi4yNSw2LjI1LDAsMCwwLDkuNDQsMi43NFY1LjUzYTMuNDEsMy40MSwwLDAsMSwxLjcxLjdaIiBmaWxsPSIjMzJiZWRkIiAvPjxwYXRoIGQ9Ik00Ljg3LDQuMjdsMiwyYTMuNDEsMy40MSwwLDAsMSwxLjcxLS43VjIuNzRBNi4yNSw2LjI1LDAsMCwwLDQuODcsNC4yN1oiIGZpbGw9IiMzMmJlZGQiIC8+PHBhdGggZD0iTTExLjc4LDYuODVhMy42LDMuNiwwLDAsMSwuNzEsMS43MWgyLjc5YTYuMTYsNi4xNiwwLDAsMC0xLjUzLTMuNjdaIiBmaWxsPSIjMzJiZWRkIiAvPjxwYXRoIGQ9Ik02LjIyLDYuODVsLTItMkE2LjE2LDYuMTYsMCwwLDAsMi43Miw4LjU2SDUuNTFBMy42LDMuNiwwLDAsMSw2LjIyLDYuODVaIiBmaWxsPSIjNTBlNmZmIiAvPjxwYXRoIGQ9Ik0xNC4xNCw3YS40NS40NSwwLDAsMC0uNTctLjI1TDkuNDUsOC40MWwuMzIuODEsNC4xMi0xLjYzQS40NC40NCwwLDAsMCwxNC4xNCw3WiIgZmlsbD0iI2YwNDA0OSIgLz48ZWxsaXBzZSBjeD0iOSIgY3k9IjkiIHJ4PSIxLjIiIHJ5PSIxLjIiIGZpbGw9InVybCgjYTk5NTQ4MjAtY2IzOC00OTQzLTk4NDItZjBhNTY4ZDJiMDE1KSIgLz48L3N2Zz4=",
+      "created": 1735689600000,
+      "lastRetrieved": 1735689600000
+    },
+    "icon_appinsights": {
+      "mimeType": "image/svg+xml",
+      "id": "icon_appinsights",
+      "dataURL": "data:image/svg+xml;base64,PHN2ZyBpZD0iYjZmNmQ5OWUtZjMzMC00ODFkLTgzNmYtZWE1OGNjNDIyMTdmIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOCIgaGVpZ2h0PSIxOCIgdmlld0JveD0iMCAwIDE4IDE4Ij48ZGVmcz48cmFkaWFsR3JhZGllbnQgaWQ9ImE3YTFjNDMxLTZjNmQtNGE4Zi05YTY5LThkYTQzN2U1YjBjNSIgY3g9IjkiIGN5PSI3LjM1IiByPSI2LjQyIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjYjc3YWY0IiAvPjxzdG9wIG9mZnNldD0iMC4yMSIgc3RvcC1jb2xvcj0iI2IzNzhmMiIgLz48c3RvcCBvZmZzZXQ9IjAuNDMiIHN0b3AtY29sb3I9IiNhNjcyZWQiIC8+PHN0b3Agb2Zmc2V0PSIwLjY1IiBzdG9wLWNvbG9yPSIjOTI2N2U0IiAvPjxzdG9wIG9mZnNldD0iMC44OCIgc3RvcC1jb2xvcj0iIzc1NTlkOCIgLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiM2MjRmZDAiIC8+PC9yYWRpYWxHcmFkaWVudD48bGluZWFyR3JhZGllbnQgaWQ9ImVjMGM0ZjBkLTVjOGUtNDg4Mi05NmExLTg5ZDYxODA4ZWI0OSIgeDE9IjkuMDIiIHkxPSIzLjkxIiB4Mj0iOS4wOCIgeTI9IjExLjQ5IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjZjJmMmYyIiAvPjxzdG9wIG9mZnNldD0iMC4yMyIgc3RvcC1jb2xvcj0iI2YxZjFmMiIgc3RvcC1vcGFjaXR5PSIwLjk5IiAvPjxzdG9wIG9mZnNldD0iMC4zNyIgc3RvcC1jb2xvcj0iI2VkZWRmMSIgc3RvcC1vcGFjaXR5PSIwLjk1IiAvPjxzdG9wIG9mZnNldD0iMC40OCIgc3RvcC1jb2xvcj0iI2U3ZTVmMCIgc3RvcC1vcGFjaXR5PSIwLjg5IiAvPjxzdG9wIG9mZnNldD0iMC41OCIgc3RvcC1jb2xvcj0iI2RlZGJlZSIgc3RvcC1vcGFjaXR5PSIwLjgxIiAvPjxzdG9wIG9mZnNldD0iMC42NyIgc3RvcC1jb2xvcj0iI2QzY2VlYiIgc3RvcC1vcGFjaXR5PSIwLjciIC8+PHN0b3Agb2Zmc2V0PSIwLjc2IiBzdG9wLWNvbG9yPSIjYzRiZWU4IiBzdG9wLW9wYWNpdHk9IjAuNTciIC8+PHN0b3Agb2Zmc2V0PSIwLjg0IiBzdG9wLWNvbG9yPSIjYjRhYmU1IiBzdG9wLW9wYWNpdHk9IjAuNDEiIC8+PHN0b3Agb2Zmc2V0PSIwLjkyIiBzdG9wLWNvbG9yPSIjYTA5NWUxIiBzdG9wLW9wYWNpdHk9IjAuMjIiIC8+PHN0b3Agb2Zmc2V0PSIwLjk5IiBzdG9wLWNvbG9yPSIjOGI3ZGRjIiBzdG9wLW9wYWNpdHk9IjAuMDIiIC8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjODk3YmRjIiBzdG9wLW9wYWNpdHk9IjAiIC8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHRpdGxlPkljb24tbWFuYWdlLTMxMDwvdGl0bGU+PHBhdGggZD0iTTEwLjIzLDE3LjM5bC44MS0uODdWMTQuMkg3djIuMzJsLjgxLjg3QS4zMi4zMiwwLDAsMCw4LDE3LjVoMkEuMzIuMzIsMCwwLDAsMTAuMjMsMTcuMzlaIiBmaWxsPSIjY2VjZWNlIiAvPjxwYXRoIGQ9Ik05LC41QTUuODksNS44OSwwLDAsMCwzLjA5LDcuMDdjLjI3LDIuNDcsMi42MiwzLjYyLDMuMjksNi43NWEuNDkuNDksMCwwLDAsLjQ3LjM4aDQuM2EuNDkuNDksMCwwLDAsLjQ3LS4zOGMuNjctMy4xMywzLTQuMjgsMy4yOS02Ljc1QTUuODksNS44OSwwLDAsMCw5LC41Wk03LDE0LjIiIGZpbGw9InVybCgjYTdhMWM0MzEtNmM2ZC00YThmLTlhNjktOGRhNDM3ZTViMGM1KSIgLz48cGF0aCBkPSJNMTEuNDYsMy43OWExLjQsMS40LDAsMCwwLTEuMzUsMS40NFY2SDhWNS4yM0ExLjQxLDEuNDEsMCwwLDAsNi41OSwzLjc5LDEuNCwxLjQsMCwwLDAsNS4yNCw1LjIzLDEuNDEsMS40MSwwLDAsMCw2LjU5LDYuNjhoLjY0djZhLjM2LjM2LDAsMCwwLC43Miwwdi02aDIuMTZ2NmEuMzYuMzYsMCwxLDAsLjcyLDB2LTZoLjYzYTEuNCwxLjQsMCwwLDAsMS4zNS0xLjQ1QTEuNCwxLjQsMCwwLDAsMTEuNDYsMy43OVpNNy4yMyw2SDYuNTVhLjc0Ljc0LDAsMCwxLS42OC0uNzcuNzQuNzQsMCwwLDEsLjY4LS43Ny43NC43NCwwLDAsMSwuNjguNzdabTQuMjgsMGgtLjY4VjUuMTlhLjY4LjY4LDAsMSwxLDEuMzUsMEEuNzMuNzMsMCwwLDEsMTEuNTEsNloiIGZpbGw9InVybCgjZWMwYzRmMGQtNWM4ZS00ODgyLTk2YTEtODlkNjE4MDhlYjQ5KSIgLz48cG9seWdvbiBwb2ludHM9IjYuOTYgMTUuOCAxMS4wNCAxNS4wMSAxMS4wNCAxNC41NiA2Ljk2IDE1LjM2IDYuOTYgMTUuOCIgZmlsbD0iIzk5OSIgLz48cG9seWdvbiBwb2ludHM9IjExLjA0IDE2LjExIDExLjA0IDE1LjY3IDYuOTYgMTYuNDggNi45NiAxNi41MiA3LjI3IDE2Ljg2IDExLjA0IDE2LjExIiBmaWxsPSIjOTk5IiAvPjwvc3ZnPg==",
       "created": 1735689600000,
       "lastRetrieved": 1735689600000
     }
