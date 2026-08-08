@@ -22,6 +22,8 @@ AZURE = {
 
     # ---- gateway / compute ----
     "apim":         "10042-icon-service-API-Management-Services.svg",
+    "botservice":   "10165-icon-service-Bot-Services.svg",
+    "logicapps":    "02631-icon-service-Logic-Apps.svg",
     "aks":          "10023-icon-service-Kubernetes-Services.svg",
     "acr":          "10105-icon-service-Container-Registries.svg",
     "vmss":         "10034-icon-service-VM-Scale-Sets.svg",

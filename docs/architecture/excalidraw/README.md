@@ -1,163 +1,144 @@
-# Azure Target Architecture — Excalidraw Diagrams
+# Capstone Architecture — EastWest Digital Channel Layer
 
-Six pages describing the Azure-native target for the QR payment platform. Each page is a
-standalone `.excalidraw` file: open it at [excalidraw.com](https://excalidraw.com) (File →
-Open) or in the Obsidian Excalidraw plugin. Icons are embedded in the file, so nothing
-needs to be fetched to view or edit them.
+Four diagrams for the capstone re-presentation. Each is a standalone `.excalidraw` file:
+open it at [excalidraw.com](https://excalidraw.com) (File → Open) or in the Obsidian
+Excalidraw plugin. Icons are embedded, so the files open with nothing to fetch.
 
-These are the visual companion to [`../target-azure-architecture.md`](../target-azure-architecture.md).
-The Mermaid sources in [`../diagrams/`](../diagrams/) remain the machine-readable version;
-these pages are the ones intended for a design review or a whiteboard walkthrough.
+## The scope decision behind these diagrams
 
-**Scope: these describe the target design only.** They do not document the current
-implementation, and they are not a migration plan. For what is wrong with the code today
-see [`../critical-findings.md`](../critical-findings.md); for sequencing see
-[`../migration-roadmap.md`](../migration-roadmap.md).
+EastWest selected **Temenos SaaS** for core banking in May 2025, for Retail, SME and
+Corporate. Their Head of Enterprise Architecture describes the approach as
+**"back-to-core"**: keep the core standard, express changes as configuration rather than
+custom code, and keep the core evergreen. He also said the bank got stuck previously
+because it had built "thousands" of customisations.
+
+So this design **does not touch the core.** The scope is the digital channel layer in front
+of it — the part a project team would actually be given. The earlier version of this
+architecture designed its own ledger, which both overstated our scope and pointed the
+opposite way from the bank's real strategy.
 
 ## Pages
 
-They are ordered by zoom level, so each one answers a question the previous one raised.
+| # | File | Question it answers |
+|---|------|---------------------|
+| 1 | [`01-context.excalidraw`](01-context.excalidraw) | What did we design, and what did we deliberately leave alone? |
+| 2 | [`02-azure-architecture.excalidraw`](02-azure-architecture.excalidraw) | What runs on Azure, in which network? |
+| 3 | [`03-transfer-flow.excalidraw`](03-transfer-flow.excalidraw) | What happens, step by step, in an InstaPay transfer? |
+| 4 | [`04-build-and-run.excalidraw`](04-build-and-run.excalidraw) | How do we ship it and know it is healthy? |
 
-| # | File | The question it answers |
-|---|------|-------------------------|
-| 1 | [`01-context.excalidraw`](01-context.excalidraw) | What is in scope, who uses it, and what does it depend on? One black box, no internals. |
-| 2 | [`02-network.excalidraw`](02-network.excalidraw) | How is the network shaped, and where can traffic actually enter? |
-| 3 | [`03-cluster.excalidraw`](03-cluster.excalidraw) | What runs where inside the cluster, and what keeps the ledger isolated? |
-| 4 | [`04-payment-flow.excalidraw`](04-payment-flow.excalidraw) | What happens, in order, when someone pays? |
-| 5 | [`05-delivery.excalidraw`](05-delivery.excalidraw) | How does code get from a pull request into production? |
-| 6 | [`06-resilience.excalidraw`](06-resilience.excalidraw) | What survives a zone failure, and what happens if a region goes? |
+### Page 1 — Context
+![Context](preview/01-context.png)
 
-PNG previews are in [`preview/`](preview/).
+### Page 2 — Azure architecture
+![Azure architecture](preview/02-azure-architecture.png)
 
-### Page 1 — System context
-![System context](preview/01-context.png)
+### Page 3 — Transfer flow
+![Transfer flow](preview/03-transfer-flow.png)
 
-### Page 2 — Network topology
-![Network topology](preview/02-network.png)
+### Page 4 — Build and run
+![Build and run](preview/04-build-and-run.png)
 
-### Page 3 — Cluster and node pools
-![Cluster and node pools](preview/03-cluster.png)
+## What we found out about EastWest before drawing anything
 
-### Page 4 — Payment runtime
-![Payment runtime](preview/04-payment-flow.png)
+This is the research the diagrams are built on, all from public sources.
 
-### Page 5 — Delivery
-![Delivery](preview/05-delivery.png)
+**They already run Azure.** Loading EastWest's own ESTA chatbot page shows it calling
+`directline.botframework.com` (Azure Bot Service, Direct Line channel),
+`prod-04.**southeastasia**.logic.azure.com` (Azure Logic Apps), and Blob Storage. That is
+why page 2 uses Southeast Asia and why ESTA appears as an existing Azure Bot Service
+rather than something we invented.
 
-### Page 6 — Resilience
-![Resilience](preview/06-resilience.png)
+**Their channels**, from their own FAQ and product pages:
+
+| Channel | What it is |
+|---------|-----------|
+| **EasyWay** | Retail online + mobile banking. Web at `ewonline.eastwestbanker.com`. Registration by deposit account, debit card or credit card. Biometrics or passcode, with a registered device used to verify web logins and transactions. |
+| **EasyBiz** | Business banking app. |
+| **Komo** | Digital-only bank, app only, links EastWest Rural Bank accounts, in-app loans. |
+| **ESTA** | "EastWest System Tech Assistant" chatbot on the consumer-lending site. |
+| **ECHO** | Newer AI assistant for business banking. |
+| **Stores and ATMs** | EastWest calls its branches *stores* — "store of account". |
+
+**EasyWay's transfer features** are the ones page 3 models: bills payment, transfers to
+other EastWest accounts, and **InstaPay** and **PESONet** to other banks.
+
+**Third parties they use:** Temenos (core), Infobip and MoEngage (messaging and push).
 
 ## Reading conventions
 
-The same taxonomy applies on every page. The wording lives in one place
-(`tools/exlib.py`, `LEGEND`) and the pages only name the keys, so a colour cannot come to
-mean two things in two places. The categories are written to be *decidable* — for any
-element exactly one of them fits:
+The same colours mean the same thing on all four pages.
 
 | Colour | Meaning |
 |--------|---------|
-| Orange | Internet edge — the public entry point |
+| Orange | Internet edge — the only address open to the public |
 | Blue | An Azure service **on** the request path |
 | Purple | Data and state |
-| Amber | Identity, keys, confidential compute |
+| Amber | Identity, keys and secrets |
 | Green | Build, deploy, observe, govern — **off** the request path |
-| Grey | Outside our control: actors, third parties, on-premises |
+| Grey | Outside our control: customers, third parties, the core |
 
 - **Solid arrow** — synchronous call. **Dashed arrow** — asynchronous or control.
-- **Dashed border** — warm standby, not serving traffic until promoted. Active versus
-  standby is carried by border style rather than colour, so the colour keeps its meaning
-  and the distinction survives being printed in greyscale.
-- **A card with no icon** is not an Azure service: either a service this team writes, or a
-  third party. Official product icons are never used to stand in for our own components.
-- Colour is reinforcement only. Every element is also labelled, so nothing depends on
-  distinguishing two hues.
+- **A card with no icon** is not an Azure service: either something we would write, or a
+  third party like Temenos.
+- Page 3, step 5 has a **thick border**. That is the handover to the core.
 
-## Two things worth knowing
+## What we deliberately did not draw
 
-**Managed data services are drawn outside the VNet.** PostgreSQL, Redis, Service Bus,
-Key Vault, Managed HSM and ADLS are Azure PaaS: a private endpoint puts a network
-interface in your subnet, but the service itself is not in the VNet. Page 2 shows the
-private endpoint subnet inside the data spoke and the services outside it, because
-[drawing a PaaS service inside a subnet is a specific inaccuracy the Well-Architected
-guidance calls out](https://learn.microsoft.com/en-us/azure/well-architected/architect-role/design-diagrams).
-The Mermaid source in `../diagrams/02-azure-network-topology.mmd` draws them inside the
-spoke; where the two disagree, these pages are the more literal reading of how Private
-Link works.
+Page 4 lists this, and it is worth stating here too. We left out service mesh,
+confidential computing, image-signing pipelines, and multi-region active-active. Not
+because they are wrong for a bank, but because we could not have operated or costed them,
+and drawing them would have claimed more than we did.
 
-**Node pool sizing follows the cost model** in `../target-azure-architecture.md` §8
-(3 × D4s v5 general, 2 × DC4as v5 confidential). The confidential pool spans two zones,
-which is why page 6 claims a surviving replica rather than two.
+We also drew **one virtual network** rather than a hub-and-spoke landing zone. In
+production this network would be a spoke off the bank's existing hub. We designed the part
+we could defend.
 
-## Regenerating
+## Regenerating the diagrams
 
-The pages are generated from Python so that layout is reviewable in a diff rather than
-being an opaque blob.
+The diagrams are generated from Python so the layout is reviewable and consistent.
 
 ```bash
 cd tools
 
-# 1. fetch icons — downloads the official Azure V24 set and the vendor marks.
-#    Fails loudly if any icon cannot be resolved.
+# 1. fetch the icons (official Azure set + vendor marks). Fails if any is missing.
 python3 _icons/collect.py
 
-# 2. build the .excalidraw files (written to the parent directory)
+# 2. build the .excalidraw files into the parent directory
 for f in pages/0*.py; do python3 "$f"; done
 
-# 3. geometry lint — must report zero issues
+# 3. check the geometry -- must report zero issues
 python3 lint.py
 ```
 
-Builds are deterministic: regenerating without changing a page produces byte-identical
-files, so a git diff only ever shows a real edit.
+`lint.py` catches the things that are invisible in the file and obvious on a screen:
+overlapping labels, arrows crossing boxes they do not connect to, and content spilling out
+of its container. Text width is measured against the real font, so a label that would
+overflow its box fails the build instead of shipping clipped.
 
 Rendering the PNG previews is optional and needs Node 20+ and
 [`uv`](https://docs.astral.sh/uv/):
 
 ```bash
 cd tools/render
-./build-bundle.sh                       # bundles Excalidraw + its webfonts locally
+./build-bundle.sh
 uv sync && uv run playwright install chromium
 uv run python render.py ../../0*.excalidraw --scale 1
-uv run python view.py ../../02-network.png full   # downscaled copy for review
 ```
 
-### What is checked automatically
+## Sources
 
-Overlapping labels and arrows through boxes are invisible in JSON and obvious in a render,
-so they are checked mechanically rather than by eye. `lint.py` reports:
-
-- `TEXT_OVERLAP`, `TEXT_ON_CARD` — labels colliding, or a label landing on a box it does
-  not belong to.
-- `ARROW_THRU_TEXT`, `ARROW_THRU_CARD` — an arrow crossing something it does not connect.
-- `CARD_OVERLAP`, `ESCAPES_ZONE` — boxes overlapping, or content spilling out of its
-  container.
-
-Text is measured, not estimated: `metrics.json` holds per-glyph advance widths sampled
-from the real Excalidraw Nunito face (`render/charmetrics.py`), so `exlib` fails the build
-if a string would overflow its box. It also rejects glyphs missing from the font subset —
-`→` renders as a blank gap, so arrows inside labels are written `->`.
-
-One limit worth knowing: the lint sees straight arrow segments, not Excalidraw's rendered
-corner curves, which bulge outward from the declared path. Long routed arrows therefore
-pass `sharp=True` for square elbows.
-
-## Icon provenance
-
-- **Azure services** — official [Azure architecture icons](https://learn.microsoft.com/en-us/azure/architecture/icons/)
-  (V24). Microsoft permits their use in architecture diagrams and documentation; icons are
-  not cropped, rotated, or recoloured.
-- **CNCF projects** (Kubernetes, Istio, Argo, Helm, Prometheus, Gatekeeper/OPA, KEDA,
-  Cilium) — [cncf/artwork](https://github.com/cncf/artwork).
-- **Other marks** (GitHub, Terraform, Docker, Trivy, Notary) —
-  [simple-icons](https://github.com/simple-icons/simple-icons), tinted to the documented
-  brand colour.
-
-`icons/collect.py` fails rather than substituting a placeholder if an icon cannot be
-resolved. There is no official Azure icon for Microsoft Purview, so page 2 names it in
-text instead of faking it with a similar mark.
+- EastWest EasyWay app FAQ — <https://www.eastwestbanker.com/easyway-app>
+- Komo — <https://www.komo.ph/about-us>
+- ESTA chatbot — <https://chatbot.ewbconsumerlending.com/>
+- Temenos press release, 22 May 2025 —
+  <https://www.temenos.com/press_release/philippines-eastwest-to-accelerate-core-banking-modernization-with-temenos-saas/>
+- "EastWest Bank's Journey to Cloud-Native Banking", Temenos Regional Forum, Manila —
+  <https://www.temenos.com/blog/eastwest-banks-journey-to-cloud-native-banking/>
+- Azure icons — <https://learn.microsoft.com/en-us/azure/architecture/icons/>
 
 ## Caveats
 
-Nothing here is provisioned. SKUs, sizing, subnet CIDRs and the RPO/RTO figures are design
-intent to be validated by load testing and DR drills. Node names, taints and the cluster
-name are proposed conventions, not deployed facts.
+Nothing here is deployed. Address ranges, node counts and sizes are our proposals, not
+EastWest's actual configuration — we only observed what is visible from the public
+internet. Anything about their internal network, core integration or production topology is
+our inference and should be treated as a student design, not as documentation of the bank.

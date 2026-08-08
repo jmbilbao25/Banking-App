@@ -58,7 +58,7 @@ SEM = {
     "edge":     ("#FFEDD5", "#C2410C"),   # public entry point
     "platform": ("#DBEAFE", "#1D4ED8"),   # Azure service on the request path
     "data":     ("#EDE9FE", "#6D28D9"),   # holds state
-    "security": ("#FEF3C7", "#B45309"),   # identity, keys, confidential compute
+    "security": ("#FEF3C7", "#B45309"),   # identity, keys and secrets
     "ops":      ("#D1FAE5", "#047857"),   # build, deploy, observe, govern
     "external": ("#F1F5F9", "#475569"),   # outside our control -- NOT standby
 }
@@ -72,14 +72,14 @@ SEM = {
 #   edge      the public entry point
 #   platform  an Azure service ON the request path
 #   data      anything that holds state
-#   security  identity, keys, confidential compute
+#   security  identity, keys and secrets
 #   ops       used to build, deploy, observe or govern -- off the request path
 #   external  outside our control (actors, third parties, on-premises)
 LEGEND = {
     "edge":     "Internet edge",
     "platform": "Azure service on the request path",
     "data":     "Data and state",
-    "security": "Identity, keys, confidential compute",
+    "security": "Identity, keys and secrets",
     "ops":      "Build, deploy, observe, govern",
     "external": "Outside our control",
 }
