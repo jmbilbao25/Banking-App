@@ -37,6 +37,55 @@
     --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+[data-theme="light"] {
+    --bg-dark: #f0f4f8;
+    --bg-gradient: radial-gradient(circle at top right, #e0c3fc 0%, #8ec5fc 100%);
+    --surface: rgba(255, 255, 255, 0.45);
+    --surface-card: rgba(255, 255, 255, 0.55);
+    --surface-border: rgba(255, 255, 255, 0.7);
+    --surface-hover: rgba(255, 255, 255, 0.85);
+    
+    --primary: #8b5cf6;
+    --primary-hover: #7c3aed;
+    --primary-gradient: linear-gradient(135deg, #a855f7 0%, #6366f1 100%);
+    --accent: #4f46e5;
+    --accent-glow: rgba(99, 102, 241, 0.25);
+    
+    --text-main: #0f172a;
+    --text-muted: #475569;
+    
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    --shadow-glow: 0 0 25px rgba(255, 255, 255, 0.5);
+}
+
+/* Light Mode Specific Font Overrides */
+[data-theme="light"] h1 {
+    background: linear-gradient(135deg, #3b0764 0%, #581c87 50%, #7e22ce 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .cta-banner-text h2 {
+    color: #4c1d95;
+}
+
+[data-theme="light"] .badge-admin {
+    background: rgba(180, 83, 9, 0.1);
+    color: #9a3412;
+    border-color: rgba(180, 83, 9, 0.3);
+}
+
+[data-theme="light"] .btn-outline {
+    color: #4c1d95;
+    border-color: rgba(76, 29, 149, 0.3);
+}
+
+[data-theme="light"] .btn-outline:hover {
+    background: rgba(76, 29, 149, 0.05);
+    border-color: #4c1d95;
+    color: #3b0764;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     background: var(--bg-gradient);
@@ -91,6 +140,18 @@ a:hover {
     padding: 2rem 1rem;
     box-sizing: border-box;
     width: 100%;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 992px) {
+    .dashboard-grid.with-sidebar {
+        grid-template-columns: 1fr 380px;
+    }
 }
 
 /* Header & Brand Navbar */
@@ -286,7 +347,7 @@ a:hover {
 .form-control {
     width: 100%;
     padding: 0.85rem 1.1rem;
-    background: rgba(11, 14, 20, 0.7);
+    background: var(--surface-card);
     border: 1px solid var(--surface-border);
     border-radius: 10px;
     color: var(--text-main);
@@ -300,7 +361,7 @@ a:hover {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.25);
-    background: rgba(17, 14, 28, 0.9);
+    background: var(--surface);
 }
 
 .form-control::placeholder {
@@ -308,8 +369,8 @@ a:hover {
 }
 
 select.form-control option {
-    background: #110e1c;
-    color: #fff;
+    background: var(--bg-dark);
+    color: var(--text-main);
 }
 
 /* Tables */
@@ -339,7 +400,7 @@ th {
 }
 
 td {
-    background: rgba(15, 11, 24, 0.5);
+    background: var(--surface-card);
     border-top: 1px solid var(--surface-border);
     border-bottom: 1px solid var(--surface-border);
 }
@@ -357,7 +418,7 @@ td:last-child {
 }
 
 tr:hover td {
-    background: rgba(28, 20, 46, 0.7);
+    background: var(--surface-hover);
 }
 
 .balance {
@@ -385,7 +446,7 @@ tr:hover td {
 /* Payment Summary Box */
 .payment-summary {
     text-align: left;
-    background: rgba(11, 14, 20, 0.6);
+    background: var(--surface-card);
     padding: 1.5rem;
     border-radius: var(--radius);
     border: 1px solid var(--surface-border);
@@ -472,4 +533,58 @@ tr:hover td {
     .glass-panel {
         padding: 1.5rem;
     }
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--surface);
+    border: 1px solid var(--surface-border);
+    color: var(--text-main);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+}
+
+.theme-toggle:hover {
+    background: var(--surface-hover);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.theme-toggle svg {
+    width: 20px;
+    height: 20px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.theme-toggle-absolute {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+}
+
+/* Light mode specific hide/show for icons */
+[data-theme="light"] .icon-moon {
+    display: block;
+}
+[data-theme="light"] .icon-sun {
+    display: none;
+}
+
+:root:not([data-theme="light"]) .icon-moon {
+    display: none;
+}
+:root:not([data-theme="light"]) .icon-sun {
+    display: block;
 }
