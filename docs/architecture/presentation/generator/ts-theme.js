@@ -7,6 +7,7 @@
  */
 
 const fs = require("fs");
+const path = require("path");
 
 const MAGENTA = "C2007B";
 const MAGENTA_DK = "9C0062";
@@ -34,39 +35,73 @@ const CX = 0.55;
 const CW = 12.23;
 const CY = 1.18;
 
-/* ── EastWest logo, drawn natively ─────────────────────────────────────── */
+/* ── EastWest logo ──────────────────────────────────────────────────────
+ * Drop the official artwork at generator/assets/eastwest-logo.png and it is
+ * used verbatim. Without it, a close native approximation is drawn: two-tone
+ * diamond mark with a lime core, and the "east"/"west" split wordmark.
+ * ---------------------------------------------------------------------- */
+const LOGO_PNG = path.join(__dirname, "assets", "eastwest-logo.png");
+const LOGO_WHITE_PNG = path.join(__dirname, "assets", "eastwest-logo-white.png");
+
+/** The banner lives in the repo already; don't duplicate it into assets/. */
+function resolveBanner() {
+  const candidates = [
+    path.join(__dirname, "assets", "techstart-banner.png"),
+    path.join(__dirname, "..", "..", "..", "LinkedInBanner_Revised (2).png"),
+    "/projects/sandbox/Banking-App/docs/LinkedInBanner_Revised (2).png",
+  ];
+  return candidates.find((p) => fs.existsSync(p)) || candidates[0];
+}
+const BANNER_PNG = resolveBanner();
+
 function ewLogo(slide, x, y, h, opts = {}) {
   const white = !!opts.white;
-  const d = h; // diamond box is square, same height as the lockup
-  slide.addShape("diamond", {
-    x,
-    y,
-    w: d,
-    h: d,
+  const asset = white ? LOGO_WHITE_PNG : LOGO_PNG;
+
+  if (fs.existsSync(asset)) {
+    const { w: iw, h: ih } = pngSize(asset);
+    slide.addImage({ path: asset, x, y, w: h * (iw / ih), h });
+    return;
+  }
+
+  const d = h * 1.18; // mark is slightly taller than the wordmark x-height
+
+  // two-tone diamond: purple upper half, magenta lower half
+  slide.addShape("triangle", {
+    x, y, w: d, h: d / 2,
+    fill: { color: white ? "FFFFFF" : PURPLE },
+    line: { type: "none" },
+  });
+  slide.addShape("triangle", {
+    x, y: y + d / 2, w: d, h: d / 2, rotate: 180,
     fill: { color: white ? "FFFFFF" : MAGENTA },
     line: { type: "none" },
   });
+  // lime core
   slide.addShape("diamond", {
-    x: x + d * 0.28,
-    y: y + d * 0.28,
-    w: d * 0.44,
-    h: d * 0.44,
+    x: x + d * 0.3, y: y + d * 0.3, w: d * 0.4, h: d * 0.4,
     fill: { color: white ? MAGENTA : LIME },
     line: { type: "none" },
   });
-  slide.addText("eastwest", {
-    x: x + d * 1.15,
-    y: y - h * 0.06,
-    w: h * 4.2,
-    h: d * 1.1,
-    fontFace: FONT,
-    fontSize: opts.fontSize || h * 26,
-    bold: true,
-    color: white ? "FFFFFF" : PURPLE,
-    valign: "middle",
-    margin: 0,
-    charSpacing: -0.2,
-  });
+
+  slide.addText(
+    [
+      { text: "east", options: { color: white ? "FFFFFF" : PURPLE } },
+      { text: "west", options: { color: white ? "FFFFFF" : MAGENTA } },
+    ],
+    {
+      x: x + d * 1.1,
+      y: y - h * 0.04,
+      w: h * 4.6,
+      h: d,
+      fontFace: FONT,
+      fontSize: opts.fontSize || h * 27,
+      bold: true,
+      valign: "middle",
+      margin: 0,
+      charSpacing: -0.3,
+    }
+  );
 }
 
 /* ── gold dot texture block (banner motif) ─────────────────────────────── */
@@ -124,11 +159,11 @@ function chrome(slide, pageNum, opts = {}) {
     fill: { color: MAGENTA }, line: { type: "none" },
   });
 
-  ewLogo(slide, 0.55, 7.07, 0.3, { white: true, fontSize: 11 });
+  ewLogo(slide, 0.55, 7.05, 0.32, { white: true, fontSize: 11.5 });
 
-  slide.addText("TechStart  ·  EastWest ITG", {
-    x: 10.0, y: 7.02, w: 2.55, h: 0.4,
-    fontFace: FONT, fontSize: 9, color: "FFFFFF",
+  slide.addText("TechStart", {
+    x: 10.2, y: 7.02, w: 2.35, h: 0.4,
+    fontFace: FONT, fontSize: 9.5, color: "FFFFFF",
     align: "right", valign: "middle", margin: 0,
   });
 
@@ -171,10 +206,12 @@ function chrome(slide, pageNum, opts = {}) {
   }
 
   // short lime rule under the title block
-  slide.addShape("rect", {
-    x: CX, y: subtitle ? ty + 0.8 : ty + 0.5, w: 0.62, h: 0.05,
-    fill: { color: LIME }, line: { type: "none" },
-  });
+  if (title) {
+    slide.addShape("rect", {
+      x: CX, y: subtitle ? ty + 0.8 : ty + 0.5, w: 0.62, h: 0.05,
+      fill: { color: LIME }, line: { type: "none" },
+    });
+  }
 }
 
 /* ── image placement that never distorts ───────────────────────────────── */
@@ -257,7 +294,7 @@ function card(slide, o) {
           options: {
             bullet: o.bullets !== false,
             breakLine: true,
-            paraSpaceAfter: 5,
+            paraSpaceAfter: o.spaceAfter != null ? o.spaceAfter : 5,
             color: isObj && l.color ? l.color : INK,
             bold: isObj ? !!l.bold : false,
           },
@@ -355,6 +392,7 @@ module.exports = {
   MAGENTA, MAGENTA_DK, PURPLE, PURPLE_DK, LIME, GOLD,
   INK, MUTED, HAIR, ALT, HDR, RED, AMBER, GREEN,
   FONT, W, H, CX, CW, CY,
+  BANNER_PNG, LOGO_PNG, LOGO_WHITE_PNG,
   chrome, ribbon, ewLogo, dotField,
   pngSize, fit, image,
   card, stat, table, pill, footnote,
