@@ -1,0 +1,62 @@
+%% Current-state INFRASTRUCTURE failure modes and blast radius.
+%% Component-level view: what fails, what the platform does about it today,
+%% and what an operator would actually see. Derived from docker-compose.*.yml,
+%% Jenkinsfile, k8s/ and the runtime configuration in both app.py files.
+flowchart TB
+    classDef spof fill:#ffdddd,stroke:#c62828,stroke-width:2px,color:#000
+    classDef gap fill:#fff4e5,stroke:#ef6c00,stroke-width:2px,color:#000
+    classDef ok fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000
+    classDef obs fill:#eceff1,stroke:#546e7a,stroke-width:1px,color:#000
+
+    subgraph EDGE["Edge tier"]
+        E1["Nginx :80 — single container<br/>no TLS termination<br/>no WAF, no rate limiting"]:::spof
+        E2["ACI publishes container port 80<br/>directly to a public DNS label<br/>no gateway in front"]:::spof
+    end
+
+    subgraph APP["Application tier"]
+        A1["Flask + Gunicorn<br/>2 ACI instances, no load balancer<br/>in front — clients hit one name"]:::spof
+        A2["Session key is app-local<br/>replicas cannot share sessions"]:::gap
+        A3["Cross-service calls are<br/>synchronous HTTP with 2/3/5s timeouts<br/>no retry, no circuit breaker, no queue"]:::spof
+        A4["/health exists and probes are wired<br/>in the unused k8s manifests"]:::ok
+    end
+
+    subgraph DATA["Data tier"]
+        D1["MySQL 5.7 — single container<br/>no replica, no automated backup<br/>no PITR, local docker volume"]:::spof
+        D2["Azure MySQL single server<br/>public endpoint, no private link"]:::spof
+        D3["Silent SQLite fallback when<br/>DB_HOST does not resolve"]:::spof
+        D4["Two independent databases<br/>no distributed transaction"]:::spof
+    end
+
+    subgraph DEL["Delivery tier"]
+        C1["Jenkins, agent any<br/>no pinned agent, no IaC"]:::gap
+        C2["Docker Hub :latest mutable tag<br/>unsigned, unscanned images"]:::gap
+        C3["az container delete then create<br/>= full downtime per release"]:::spof
+        C4["ssh StrictHostKeyChecking=no<br/>to a hardcoded EC2 IP"]:::gap
+        C5["Credentials inline in pipeline<br/>env vars, not a secret store"]:::gap
+    end
+
+    subgraph OBSV["Observability"]
+        O1["print() to stdout only<br/>no structured logs, no metrics<br/>no tracing, no correlation ID"]:::obs
+        O2["No dashboards, no alerting<br/>no SLO, no on-call signal"]:::obs
+    end
+
+    E1 -->|"container dies → total outage<br/>for that app, no failover"| A1
+    E2 -->|"no shield between internet<br/>and app process"| A1
+    A1 -->|"instance dies → clients pinned<br/>to that DNS label see errors"| D1
+    A2 -->|"user is silently logged out<br/>when routed to the other replica"| A1
+    A3 -->|"timeout mid-chain leaves the two<br/>databases disagreeing, permanently"| D4
+    D1 -->|"volume loss = ledger loss<br/>RPO undefined, RTO undefined"| LOSS["Unrecoverable data loss"]:::spof
+    D3 -->|"transient DNS blip converts a<br/>detectable outage into silent<br/>divergence; /health still returns ok"| LOSS
+    D2 -->|"public endpoint is the only<br/>network path"| A1
+    C3 -->|"every deploy is a planned outage"| E2
+    C2 -->|"cannot prove what is running<br/>rollback is not deterministic"| A1
+    A4 -.->|"probes never execute —<br/>the k8s manifests are not deployed"| O2
+    O1 -->|"an incident cannot be<br/>reconstructed after the fact"| O2
+
+    subgraph SUM["Blast radius summary"]
+        S1["Single container failure → full outage of that service"]:::spof
+        S2["Single volume failure → permanent ledger loss"]:::spof
+        S3["Single deploy → planned downtime"]:::spof
+        S4["Single timeout → permanent cross-database inconsistency"]:::spof
+        S5["No tier has a redundant instance actually load-balanced"]:::spof
+    end

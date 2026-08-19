@@ -1,0 +1,84 @@
+%% Current-state ("as-is") end-to-end runtime sequence for a QR payment.
+%% Infrastructure view: every network hop, port, protocol, timeout and state store
+%% is as deployed today. Reconstructed from ecommerce-app/app.py, banking-app/app.py,
+%% nginx/nginx.conf and docker-compose.*.yml.
+sequenceDiagram
+    autonumber
+    actor C as Customer device
+    participant EN as Nginx :80<br/>ecommerce edge
+    participant E as ecommerce-app<br/>Gunicorn/Flask :5000
+    participant ED as [(ecomdb<br/>MySQL 5.7 · single node)]
+    participant BN as Nginx :80<br/>banking edge
+    participant B as banking-app<br/>Gunicorn/Flask :5001
+    participant BD as [(bankdb<br/>MySQL 5.7 · single node)]
+
+    rect rgb(232,240,254)
+        Note over C,ED: STAGE 1 — Catalog and basket · merchant tier
+        C->>EN: HTTP GET / (cleartext :80, no TLS)
+        EN->>E: proxy_pass http://ecommerce:5000<br/>X-Forwarded-For / X-Forwarded-Proto set
+        E->>ED: SELECT * FROM products
+        ED-->>E: rows
+        E-->>C: store.html + Flask session cookie
+        Note over C,E: Basket state lives ONLY in the signed<br/>session cookie — no server-side store,<br/>so any container can serve any request.
+    end
+
+    rect rgb(255,244,229)
+        Note over C,ED: STAGE 2 — Order creation and QR presentment
+        C->>E: GET /checkout/create
+        E->>ED: INSERT orders (status=PENDING,<br/>expires_at = now + 300s) + order_items
+        E-->>C: 302 → /checkout/{order_id}
+        C->>E: GET /checkout/{order_id}
+        E-->>C: checkout.html
+        C->>E: GET /qr/{order_id}
+        E->>E: build payment_url from BANK_PUBLIC_BASE<br/>(env var, resolved at request time)
+        E-->>C: image/png QR
+        Note over C,E: QR encodes a plain HTTP URL to the bank tier.<br/>Cross-tier addressing is therefore a<br/>DEPLOY-TIME ENV VAR, not service discovery.
+    end
+
+    rect rgb(232,240,254)
+        Note over C,E: STAGE 3 — Client-side status polling
+        loop every 2000 ms until PAID or EXPIRED
+            C->>E: GET /api/orders/{order_id}/status
+            E->>ED: SELECT status (expiry evaluated lazily on read)
+            E-->>C: {"status":"PENDING"}
+        end
+        Note over C,ED: No websockets, no push. Every waiting checkout<br/>page adds 0.5 req/s of DB-backed load per tab.
+    end
+
+    rect rgb(255,244,229)
+        Note over C,BD: STAGE 4 — Payer authentication · bank tier
+        C->>BN: GET /pay?order_id&amount&merchant_account&expires
+        BN->>B: proxy_pass http://banking:5001
+        B->>B: no session → stash next_url
+        B-->>C: 302 → /login
+        C->>B: POST /login
+        B->>BD: SELECT accounts WHERE id = ?
+        BD-->>B: row
+        B-->>C: 302 → next_url + session cookie
+        Note over B,BD: Session signed with an app-local key.<br/>Two ACI replicas hold DIFFERENT keys unless<br/>injected, so sessions are not portable → the<br/>tier needs sticky routing it does not have.
+    end
+
+    rect rgb(255,235,238)
+        Note over C,ED: STAGE 5 — Settlement · synchronous cross-service call chain
+        C->>B: GET /pay (authenticated)
+        B->>BD: SELECT transactions WHERE order_id = ?
+        B->>E: GET /api/orders/{order_id} · timeout 2s
+        Note over B,E: East-west traffic over the PUBLIC internet<br/>in the ACI deployment — no VNet, no private<br/>endpoint, no mTLS, no service mesh.
+        E->>ED: SELECT order + items
+        E-->>B: order JSON
+        B-->>C: pay.html (payment form)
+
+        C->>B: POST /pay
+        B->>BD: SELECT consumer / merchant, balance check
+        B->>E: GET /api/orders/{order_id} · timeout 3s
+        E-->>B: {"status":"PENDING"}
+        B->>E: POST /api/orders/{order_id}/paid · timeout 5s
+        E->>ED: UPDATE orders status='PAID'<br/>UPDATE products stock = stock - qty
+        ED-->>E: COMMIT
+        E-->>B: 200
+        B->>BD: UPDATE balances; INSERT transactions
+        BD-->>B: COMMIT
+        B-->>C: success.html
+        Note over B,ED: TWO INDEPENDENT DATABASES, TWO COMMITS,<br/>NO DISTRIBUTED TRANSACTION.<br/>Ordering is fixed in code: the merchant DB commits<br/>first, the bank DB second. There is no queue,<br/>no retry, no outbox and no reconciliation job,<br/>so a fault between the commits is unrecoverable.
+        C->>E: next 2s poll returns PAID → checkout page updates
+    end
