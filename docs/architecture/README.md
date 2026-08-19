@@ -22,9 +22,11 @@ without copy-pasting out of Markdown:
 | `diagrams/02-azure-network-topology.mmd` | Hub-and-spoke landing zone |
 | `diagrams/03-azure-runtime-flow.mmd` | End-to-end request/data flow |
 | `diagrams/04-service-domain-map.mmd` | Microservice decomposition |
-| `diagrams/05-payment-saga.mmd` | Payment saga sequence |
+| `diagrams/05-payment-saga.mmd` | Payment saga sequence (target state) |
 | `diagrams/06-cicd-gitops.mmd` | Supply chain and delivery |
 | `diagrams/07-dr-topology.mmd` | Multi-region DR |
+| `diagrams/08-current-payment-sequence.mmd` | **Current-state** end-to-end runtime sequence |
+| `diagrams/09-current-failure-modes.mmd` | **Current-state** failure modes and blast radius |
 
 GitHub renders these inline in the Markdown files. For Miro, see
 [miro-board-spec.md](miro-board-spec.md).
