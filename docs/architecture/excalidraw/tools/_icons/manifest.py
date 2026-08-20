@@ -78,6 +78,10 @@ BRAND = {
     "python":     "#3776AB",
     "docker":     "#2496ED",
     "mysqllogo":  "#4479A1",
+    # ---- target-architecture stack marks (page 6) ----
+    "flask":           "#000000",
+    "sonarqubeserver": "#4E9BCD",
+    "flyway":          "#CC0200",
 }
 
 # key -> (url, filename) for non-Azure logos, fetched from official/CNCF sources
@@ -101,4 +105,14 @@ EXTERNAL = {
     "aws":        "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
     "jenkins":    "https://raw.githubusercontent.com/benc-uk/icon-collection/master/logos/jenkins.svg",
     "mysqllogo":  "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/mysql.svg",
+
+    # ---- target-architecture stack marks (page 6, the tech stack) ----
+    # The non-Azure tools named in the proposal paper's pipeline and workload.
+    # simple-icons ships them monochrome; BRAND above restores each vendor's
+    # documented colour so the row reads as one consistent set of flat logos
+    # rather than a mix of drawing styles. Everything else on that page is an
+    # official Azure V24 icon or a CNCF mark already listed above.
+    "flask":           "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/flask.svg",
+    "sonarqubeserver": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/sonarqubeserver.svg",
+    "flyway":          "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/flyway.svg",
 }
