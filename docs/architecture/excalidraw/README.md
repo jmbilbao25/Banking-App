@@ -26,11 +26,14 @@ opposite way from the bank's real strategy.
 | 3 | [`03-transfer-flow.excalidraw`](03-transfer-flow.excalidraw) | What happens, step by step, in an InstaPay transfer? |
 | 4 | [`04-build-and-run.excalidraw`](04-build-and-run.excalidraw) | How do we ship it and know it is healthy? |
 | 5 | [`05-network-topology.excalidraw`](05-network-topology.excalidraw) | Which network does each hop happen in, and what is reachable from where? |
-| 6 | [`06-tech-stack.excalidraw`](06-tech-stack.excalidraw) | What is the app in this repository actually built with today? |
+| 6 | [`06-tech-stack.excalidraw`](06-tech-stack.excalidraw) | Which technologies does the target design select, and in which domain? |
 
-Pages 1 to 5 are the **proposed** design. Page 6 is the **existing** app: it documents what
-is in this repository right now, so the proposal can be read against a known starting
-point.
+All six pages describe the **target** Azure-native design. Page 6 is the flat inventory of
+it: the same system as pages 2 and 5, but listed by technology instead of drawn by
+topology, so a reader can check the stack without tracing a request path.
+
+Its bands are the **cost domains from the proposal paper**, in the paper's own order, so
+the diagram and the cost model name the same things and cannot drift apart.
 
 ### Page 1 — Context
 ![Context](preview/01-context.png)
@@ -94,8 +97,8 @@ The same colours mean the same thing on all six pages.
   third party like Temenos.
 - Page 3, step 5 has a **thick border**. That is the handover to the core.
 - Page 6 keeps the same colour meanings but spells them out in its own words, because
-  "Azure service on the request path" does not describe Flask or Nginx. It has no arrows:
-  it is a stack, not a flow.
+  "Azure service on the request path" does not describe Flask, Helm or Trivy. It has no
+  arrows: it is a stack, not a flow.
 
 ## What we deliberately did not draw
 
@@ -151,9 +154,9 @@ uv run python render.py ../../0*.excalidraw --scale 1
   <https://www.temenos.com/blog/eastwest-banks-journey-to-cloud-native-banking/>
 - Azure icons — <https://learn.microsoft.com/en-us/azure/architecture/icons/>
 - CNCF project marks — <https://github.com/cncf/artwork>
-- Vendor marks on page 6 — [Simple Icons](https://github.com/simple-icons/simple-icons) and
-  [Devicon](https://github.com/devicons/devicon). Each logo is the vendor's own mark, tinted
-  to that vendor's documented brand colour, and remains the property of its owner.
+- Non-Azure vendor marks on page 6 —
+  [Simple Icons](https://github.com/simple-icons/simple-icons), tinted to each vendor's
+  documented brand colour. Every logo remains the property of its owner.
 
 ## Caveats
 
