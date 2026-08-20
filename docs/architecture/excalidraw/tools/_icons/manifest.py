@@ -78,6 +78,17 @@ BRAND = {
     "python":     "#3776AB",
     "docker":     "#2496ED",
     "mysqllogo":  "#4479A1",
+    # ---- application stack marks (page 6) ----
+    "flask":      "#000000",
+    "gunicorn":   "#499848",
+    "nginx":      "#009639",
+    "html5":      "#E34F26",
+    "css":        "#663399",
+    "javascript": "#F7DF1E",
+    "sqlite":     "#003B57",
+    "sqlalchemy": "#D71F00",
+    "jinja":      "#B41717",
+    "jenkinsci":  "#D24939",
 }
 
 # key -> (url, filename) for non-Azure logos, fetched from official/CNCF sources
@@ -101,4 +112,23 @@ EXTERNAL = {
     "aws":        "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
     "jenkins":    "https://raw.githubusercontent.com/benc-uk/icon-collection/master/logos/jenkins.svg",
     "mysqllogo":  "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/mysql.svg",
+
+    # ---- application stack marks (page 6, the tech stack) ----
+    # Official brand marks for the languages, frameworks and tools that are
+    # actually in this repository. simple-icons ships them monochrome; BRAND
+    # above restores each vendor's documented colour so the row reads as one
+    # consistent set of flat logos rather than a mix of drawing styles.
+    "flask":      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/flask.svg",
+    "gunicorn":   "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/gunicorn.svg",
+    "nginx":      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nginx.svg",
+    "html5":      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/html5.svg",
+    "css":        "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/css.svg",
+    "javascript": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/javascript.svg",
+    "sqlite":     "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/sqlite.svg",
+    "sqlalchemy": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/sqlalchemy.svg",
+    "jinja":      "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jinja.svg",
+    # flat single-colour Jenkins, to sit beside the other flat marks. The
+    # multi-colour butler stays available as "jenkins" for the other pages.
+    "jenkinsci":  "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/jenkins.svg",
+    "azure":      "https://raw.githubusercontent.com/devicons/devicon/master/icons/azure/azure-original.svg",
 }

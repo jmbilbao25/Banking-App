@@ -1,6 +1,6 @@
 # Capstone Architecture — EastWest Digital Channel Layer
 
-Four diagrams for the capstone re-presentation. Each is a standalone `.excalidraw` file:
+Six diagrams for the capstone re-presentation. Each is a standalone `.excalidraw` file:
 open it at [excalidraw.com](https://excalidraw.com) (File → Open) or in the Obsidian
 Excalidraw plugin. Icons are embedded, so the files open with nothing to fetch.
 
@@ -25,6 +25,12 @@ opposite way from the bank's real strategy.
 | 2 | [`02-azure-architecture.excalidraw`](02-azure-architecture.excalidraw) | What runs on Azure, in which network? |
 | 3 | [`03-transfer-flow.excalidraw`](03-transfer-flow.excalidraw) | What happens, step by step, in an InstaPay transfer? |
 | 4 | [`04-build-and-run.excalidraw`](04-build-and-run.excalidraw) | How do we ship it and know it is healthy? |
+| 5 | [`05-network-topology.excalidraw`](05-network-topology.excalidraw) | Which network does each hop happen in, and what is reachable from where? |
+| 6 | [`06-tech-stack.excalidraw`](06-tech-stack.excalidraw) | What is the app in this repository actually built with today? |
+
+Pages 1 to 5 are the **proposed** design. Page 6 is the **existing** app: it documents what
+is in this repository right now, so the proposal can be read against a known starting
+point.
 
 ### Page 1 — Context
 ![Context](preview/01-context.png)
@@ -37,6 +43,12 @@ opposite way from the bank's real strategy.
 
 ### Page 4 — Build and run
 ![Build and run](preview/04-build-and-run.png)
+
+### Page 5 — Network topology
+![Network topology](preview/05-network-topology.png)
+
+### Page 6 — Tech stack
+![Tech stack](preview/06-tech-stack.png)
 
 ## What we found out about EastWest before drawing anything
 
@@ -66,7 +78,7 @@ other EastWest accounts, and **InstaPay** and **PESONet** to other banks.
 
 ## Reading conventions
 
-The same colours mean the same thing on all four pages.
+The same colours mean the same thing on all six pages.
 
 | Colour | Meaning |
 |--------|---------|
@@ -81,6 +93,9 @@ The same colours mean the same thing on all four pages.
 - **A card with no icon** is not an Azure service: either something we would write, or a
   third party like Temenos.
 - Page 3, step 5 has a **thick border**. That is the handover to the core.
+- Page 6 keeps the same colour meanings but spells them out in its own words, because
+  "Azure service on the request path" does not describe Flask or Nginx. It has no arrows:
+  it is a stack, not a flow.
 
 ## What we deliberately did not draw
 
@@ -135,6 +150,10 @@ uv run python render.py ../../0*.excalidraw --scale 1
 - "EastWest Bank's Journey to Cloud-Native Banking", Temenos Regional Forum, Manila —
   <https://www.temenos.com/blog/eastwest-banks-journey-to-cloud-native-banking/>
 - Azure icons — <https://learn.microsoft.com/en-us/azure/architecture/icons/>
+- CNCF project marks — <https://github.com/cncf/artwork>
+- Vendor marks on page 6 — [Simple Icons](https://github.com/simple-icons/simple-icons) and
+  [Devicon](https://github.com/devicons/devicon). Each logo is the vendor's own mark, tinted
+  to that vendor's documented brand colour, and remains the property of its owner.
 
 ## Caveats
 
