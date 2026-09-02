@@ -11,6 +11,16 @@ Design-only deliverable. **No application code is changed by these documents.**
 | [migration-roadmap.md](migration-roadmap.md) | Phased plan, sequenced by risk reduction |
 | [miro-board-spec.md](miro-board-spec.md) | Board layout spec + import instructions |
 
+## Interactive diagrams
+
+[`interactive/`](interactive/) holds the target hub-and-spoke architecture as five explorable,
+self-contained HTML scenes — topology, payment sequence, audit and residency data flow, delivery
+workflow, and payment lifecycle. Same architecture as
+[`excalidraw/05-network-topology.excalidraw`](excalidraw/05-network-topology.excalidraw); each scene
+carries five guided chapters, node search, route tracing and PNG/SVG export. Start at
+[`interactive/index.html`](interactive/index.html), or read
+[`interactive/README.md`](interactive/README.md) first.
+
 ## Diagram sources
 
 Mermaid sources live in [`diagrams/`](diagrams/) so they can be imported into Miro

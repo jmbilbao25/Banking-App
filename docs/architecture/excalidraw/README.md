@@ -28,6 +28,12 @@ opposite way from the bank's real strategy.
 | 5 | [`05-network-topology.excalidraw`](05-network-topology.excalidraw) | Which network does each hop happen in, and what is reachable from where? |
 | 6 | [`06-tech-stack.excalidraw`](06-tech-stack.excalidraw) | Which technologies does the target design select, and in which domain? |
 
+Page 5 also exists as an **interactive, multi-scene version** in
+[`../interactive/`](../interactive/): the same topology plus a payment sequence, an audit and
+residency data flow, a delivery workflow and a payment lifecycle, each with five guided chapters.
+Use the Excalidraw files when you need to edit the drawing, and the interactive scenes when you
+need to explore or present it.
+
 All six pages describe the **target** Azure-native design. Page 6 is the flat inventory of
 it: the same system as pages 2 and 5, but listed by technology instead of drawn by
 topology, so a reader can check the stack without tracing a request path.

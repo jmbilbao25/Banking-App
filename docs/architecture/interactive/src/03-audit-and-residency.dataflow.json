@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "diagram_type": "dataflow",
+  "meta": {
+    "title": "Audit, Residency and BSP Examination",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "views": [
+      {
+        "id": "audit-spine",
+        "label": "1 \u00b7 The audit record",
+        "focus": [
+          "bankApp",
+          "workspace",
+          "classify",
+          "archive",
+          "phCopy"
+        ],
+        "note": "One path: a payment event becomes an immutable archived record and an in-country copy an examiner can read."
+      },
+      {
+        "id": "pii-boundary",
+        "label": "2 \u00b7 Where PII stops",
+        "focus": [
+          "classify",
+          "piiStore",
+          "compliance"
+        ],
+        "note": "Identity fields are separated at ingest and reached only through a logged, restricted path."
+      },
+      {
+        "id": "operational",
+        "label": "3 \u00b7 Operational telemetry",
+        "focus": [
+          "platform",
+          "workspace",
+          "metrics",
+          "sentinel",
+          "soc"
+        ],
+        "note": "Firewall, WAF and cluster logs feed dashboards and detections without touching the audit archive."
+      },
+      {
+        "id": "residency",
+        "label": "4 \u00b7 Residency",
+        "focus": [
+          "archive",
+          "phCopy",
+          "compliance"
+        ],
+        "note": "Processing is in Singapore because Azure has no Philippine region, so a cross-border basis is required."
+      },
+      {
+        "id": "retention",
+        "label": "5 \u00b7 Seven years, locked",
+        "focus": [
+          "archive",
+          "piiStore",
+          "compliance"
+        ],
+        "note": "Locked time-based retention cannot be lifted, which collides with erasure rights and needs a written position."
+      }
+    ],
+    "viewBox": [
+      1080,
+      520
+    ]
+  },
+  "stages": [
+    {
+      "label": "Sources"
+    },
+    {
+      "label": "Collect"
+    },
+    {
+      "label": "Classify"
+    },
+    {
+      "label": "Retain"
+    },
+    {
+      "label": "Examine"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "bankApp",
+      "type": "backend",
+      "label": "Banking service",
+      "stage": 0,
+      "row": 0,
+      "sublabel": "payments"
+    },
+    {
+      "id": "shopApp",
+      "type": "backend",
+      "label": "Shop service",
+      "stage": 0,
+      "row": 1,
+      "sublabel": "orders"
+    },
+    {
+      "id": "platform",
+      "type": "cloud",
+      "label": "Platform logs",
+      "stage": 0,
+      "row": 2,
+      "sublabel": "firewall, WAF, AKS"
+    },
+    {
+      "id": "workspace",
+      "type": "cloud",
+      "label": "Log Analytics",
+      "stage": 1,
+      "row": 1,
+      "sublabel": "Private Link scope"
+    },
+    {
+      "id": "classify",
+      "type": "security",
+      "label": "Classification gate",
+      "stage": 2,
+      "row": 0,
+      "sublabel": "PII guard"
+    },
+    {
+      "id": "metrics",
+      "type": "cloud",
+      "label": "Azure Monitor",
+      "stage": 2,
+      "row": 2,
+      "sublabel": "metrics + SLOs"
+    },
+    {
+      "id": "piiStore",
+      "type": "security",
+      "label": "Identity fields",
+      "stage": 3,
+      "row": 0,
+      "sublabel": "restricted"
+    },
+    {
+      "id": "archive",
+      "type": "database",
+      "label": "ADLS Gen2 archive",
+      "stage": 3,
+      "row": 1,
+      "sublabel": "locked 7 years"
+    },
+    {
+      "id": "sentinel",
+      "type": "cloud",
+      "label": "Microsoft Sentinel",
+      "stage": 3,
+      "row": 2,
+      "sublabel": "SIEM"
+    },
+    {
+      "id": "compliance",
+      "type": "external",
+      "label": "Compliance review",
+      "stage": 4,
+      "row": 0,
+      "sublabel": "RA 10173"
+    },
+    {
+      "id": "phCopy",
+      "type": "external",
+      "label": "In-country copy",
+      "stage": 4,
+      "row": 1,
+      "sublabel": "BSP examiner"
+    },
+    {
+      "id": "soc",
+      "type": "backend",
+      "label": "Security operations",
+      "stage": 4,
+      "row": 2,
+      "sublabel": "on-call"
+    }
+  ],
+  "flows": [
+    {
+      "id": "payment-audit",
+      "from": "bankApp",
+      "to": "workspace",
+      "label": "payment audit",
+      "classification": "PII touch",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          315,
+          157
+        ]
+      ]
+    },
+    {
+      "id": "order-events",
+      "from": "shopApp",
+      "to": "workspace",
+      "label": "order events",
+      "classification": "operational",
+      "route": "straight"
+    },
+    {
+      "id": "platform-logs",
+      "from": "platform",
+      "to": "workspace",
+      "label": "flow and WAF logs",
+      "classification": "operational",
+      "fromSide": "right",
+      "toSide": "bottom",
+      "via": [
+        [
+          315,
+          385
+        ]
+      ]
+    },
+    {
+      "id": "every-record",
+      "from": "workspace",
+      "to": "classify",
+      "label": "every record",
+      "variant": "emphasis"
+    },
+    {
+      "id": "pii-split",
+      "from": "classify",
+      "to": "piiStore",
+      "label": "encrypted PII",
+      "classification": "restricted PII",
+      "variant": "security",
+      "route": "straight",
+      "labelDy": -26
+    },
+    {
+      "id": "audit-write",
+      "from": "classify",
+      "to": "archive",
+      "label": "audit record",
+      "classification": "append-only",
+      "variant": "emphasis"
+    },
+    {
+      "id": "telemetry",
+      "from": "workspace",
+      "to": "metrics",
+      "label": "metrics + traces",
+      "classification": "non-PII",
+      "variant": "dashed"
+    },
+    {
+      "id": "detections",
+      "from": "metrics",
+      "to": "sentinel",
+      "label": "security signals",
+      "variant": "dashed",
+      "route": "straight"
+    },
+    {
+      "id": "in-country",
+      "from": "archive",
+      "to": "phCopy",
+      "label": "replicated to PH",
+      "classification": "zone-redundant",
+      "variant": "emphasis",
+      "route": "straight"
+    },
+    {
+      "id": "restricted-read",
+      "from": "piiStore",
+      "to": "compliance",
+      "label": "approved reads",
+      "classification": "restricted",
+      "variant": "security",
+      "route": "straight"
+    },
+    {
+      "id": "paging",
+      "from": "sentinel",
+      "to": "soc",
+      "label": "alerts a person",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "One record, two obligations",
+      "items": [
+        "Seven years, immutable, via locked time-based retention",
+        "An in-country copy so a BSP examiner can read it locally",
+        "A legal hold alone would not deliver the same guarantee"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Why the archive stays zone-redundant",
+      "items": [
+        "Geo-redundant storage replicates to the paired region by default",
+        "That would move the audit record across a border as a side effect",
+        "Zone-redundant keeps it in Singapore; the PH copy is handled separately"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Unresolved, and stated as such",
+      "items": [
+        "Locked retention blocks erasure requests under RA 10173",
+        "A cross-border transfer basis must be named, not gestured at",
+        "The BSP outsourcing circular reference needs compliance to confirm it"
+      ]
+    }
+  ]
+}
