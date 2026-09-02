@@ -91,7 +91,8 @@
       "size": [
         150,
         72
-      ]
+      ],
+      "tag": "unmanaged device, untrusted network"
     },
     {
       "id": "entra",
@@ -100,7 +101,7 @@
       "sublabel": "customers sign in here",
       "col": 1,
       "row": 0,
-      "tag": "MFA",
+      "tag": "MFA, conditional access, issues JWT",
       "size": [
         150,
         72
@@ -116,16 +117,17 @@
       "size": [
         150,
         72
-      ]
+      ],
+      "tag": "idempotency keys + distributed locks"
     },
     {
       "id": "core",
       "type": "external",
       "label": "Core banking, PH",
-      "sublabel": "system of record",
+      "sublabel": "the system of record",
       "col": 3,
       "row": 0,
-      "tag": "on-premises",
+      "tag": "on-premises; only over ExpressRoute",
       "size": [
         150,
         72
@@ -138,7 +140,7 @@
       "sublabel": "WAF; TLS ends here",
       "col": 0,
       "row": 1,
-      "tag": "only inbound path",
+      "tag": "the only inbound path from outside",
       "size": [
         150,
         72
@@ -151,7 +153,7 @@
       "sublabel": "the Private Link origin",
       "col": 1,
       "row": 1,
-      "tag": "internal",
+      "tag": "internal; terminates merchant mTLS",
       "size": [
         150,
         72
@@ -167,7 +169,8 @@
       "size": [
         150,
         72
-      ]
+      ],
+      "tag": "checks the token, then rate-limits"
     },
     {
       "id": "aksBank",
@@ -176,7 +179,7 @@
       "sublabel": "private cluster",
       "col": 3,
       "row": 1,
-      "tag": "no public API server",
+      "tag": "no public API server; KEDA autoscale",
       "size": [
         150,
         72
@@ -192,16 +195,17 @@
       "size": [
         150,
         72
-      ]
+      ],
+      "tag": "the only link between the two apps"
     },
     {
       "id": "ecomdb",
       "type": "database",
       "label": "PostgreSQL: ecomdb",
-      "sublabel": "products, orders",
+      "sublabel": "products, orders, stock",
       "col": 0,
       "row": 2,
-      "tag": "own server",
+      "tag": "own server; the shop's data only",
       "size": [
         150,
         72
@@ -217,7 +221,8 @@
       "size": [
         150,
         72
-      ]
+      ],
+      "tag": "reads ecomdb only, never bankdb"
     },
     {
       "id": "firewall",
@@ -226,7 +231,7 @@
       "sublabel": "Premium; hub egress",
       "col": 2,
       "row": 2,
-      "tag": "inspects HTTP/S",
+      "tag": "inspects HTTP/S; L4 rules elsewhere",
       "size": [
         150,
         72
@@ -236,10 +241,10 @@
       "id": "bankdb",
       "type": "database",
       "label": "PostgreSQL: bankdb",
-      "sublabel": "accounts, ledger",
+      "sublabel": "accounts, ledger, txns",
       "col": 3,
       "row": 2,
-      "tag": "own server",
+      "tag": "own server; NUMERIC(19,4) money",
       "size": [
         150,
         72
@@ -272,6 +277,14 @@
         "aksShop"
       ],
       "pad": 20
+    },
+    {
+      "kind": "region",
+      "label": "PH on-premises",
+      "wraps": [
+        "core"
+      ],
+      "pad": 20
     }
   ],
   "connections": [
@@ -279,7 +292,7 @@
       "id": "customer-request",
       "from": "customer",
       "to": "frontdoor",
-      "label": "HTTPS",
+      "label": "HTTPS 443, QR payload",
       "variant": "emphasis",
       "labelDy": 24
     },
@@ -287,7 +300,7 @@
       "id": "private-origin",
       "from": "frontdoor",
       "to": "appgw",
-      "label": "Private Link",
+      "label": "Private Link 443",
       "variant": "emphasis"
     },
     {
@@ -301,7 +314,7 @@
       "id": "token-check",
       "from": "entra",
       "to": "apim",
-      "label": "validates token",
+      "label": "OIDC token, then claims",
       "variant": "security",
       "fromSide": "right",
       "toSide": "top",
@@ -316,14 +329,14 @@
       "id": "to-cluster",
       "from": "apim",
       "to": "aksBank",
-      "label": "forwards request",
+      "label": "request + claims",
       "variant": "emphasis"
     },
     {
       "id": "bank-state",
       "from": "aksBank",
       "to": "bankdb",
-      "label": "private endpoint",
+      "label": "SQL 5432, private endpoint",
       "variant": "emphasis",
       "labelDy": 24
     },
@@ -337,14 +350,14 @@
       "id": "core-call",
       "from": "aksBank",
       "to": "core",
-      "label": "ExpressRoute",
+      "label": "ExpressRoute, never public",
       "variant": "security"
     },
     {
       "id": "outbox",
       "from": "aksBank",
       "to": "bus",
-      "label": "outbox events",
+      "label": "AMQP outbox rows",
       "variant": "dashed",
       "labelDy": 28
     },
@@ -352,7 +365,7 @@
       "id": "read-model",
       "from": "bus",
       "to": "aksShop",
-      "label": "order totals",
+      "label": "order totals, one way only",
       "variant": "dashed",
       "fromSide": "bottom",
       "toSide": "bottom",
@@ -371,7 +384,7 @@
       "id": "shop-ingress",
       "from": "frontdoor",
       "to": "aksShop",
-      "label": "shop traffic",
+      "label": "the shop's own route in",
       "variant": "emphasis",
       "fromSide": "bottom",
       "toSide": "top",
@@ -408,32 +421,31 @@
   "cards": [
     {
       "dot": "cyan",
-      "title": "How to read this",
+      "title": "Click any node",
       "items": [
-        "Bold line: one banking payment, phone to database",
-        "Each frame is a virtual network",
-        "Dashed: asynchronous, never a synchronous call",
-        "One region: Southeast Asia, three zones"
+        "The passport gives its kind, what it does, and the network holding it",
+        "Upstream and downstream list every line, and what each one carries",
+        "Zoom past 175% for the fine print; R traces a route, P plays chapters"
       ]
     },
     {
       "dot": "emerald",
       "title": "Isolation the platform enforces",
       "items": [
-        "Spokes peer with the hub only, never each other",
-        "Two servers, two managed identities, no password",
-        "Service Bus is the only link between the apps",
-        "No workload endpoint is reachable from outside"
+        "One region: Southeast Asia (Singapore), three availability zones",
+        "Spokes peer with the hub only, never with each other",
+        "Two servers, two managed identities, no password to leak",
+        "Order totals cross Service Bus as a read model, never as a call"
       ]
     },
     {
       "dot": "rose",
-      "title": "Corrections carried from review",
+      "title": "Corrections and open items",
       "items": [
         "App Gateway is the origin: Front Door cannot use VNet-injected APIM",
         "Database traffic is not firewall-inspected: /32 beats 0.0.0.0/0",
         "Private DNS zones resolve endpoints; the Resolver only forwards",
-        "99.99% and the USD 16k run rate are withdrawn"
+        "Only the two clusters and two databases exist as code; the rest is proposed"
       ]
     }
   ]

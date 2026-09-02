@@ -5036,25 +5036,27 @@
 
         <rect data-graph-role="structural-frame" data-composition-frame-kind="security-group" data-composition-frame-id="2" data-composition-frame-label="Spoke: e-commerce  10.2.0.0/16" x="300" y="440" width="190" height="116" rx="8" class="c-security-group" stroke-width="1"/>
 
+        <rect data-graph-role="structural-frame" data-composition-frame-kind="region" data-composition-frame-id="3" data-composition-frame-label="PH on-premises" x="860" y="36" width="190" height="116" rx="12" class="c-region" stroke-width="1"/>
+
         <!-- Connection paths (before components for correct z-order) -->
-        <path data-edge-from="customer" data-edge-to="frontdoor" data-edge-label="HTTPS" data-edge-key="0" data-edge-id="customer-request" data-composition-points="115,132;115,262" d="M 115 132 L 115 262" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="frontdoor" data-edge-to="appgw" data-edge-label="Private Link" data-edge-key="1" data-edge-id="private-origin" data-composition-points="190,298;320,298" d="M 190 298 L 320 298" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="customer" data-edge-to="frontdoor" data-edge-label="HTTPS 443, QR payload" data-edge-key="0" data-edge-id="customer-request" data-composition-points="115,132;115,262" d="M 115 132 L 115 262" class="a-emphasis" data-animate="edge" style="--step:0" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="frontdoor" data-edge-to="appgw" data-edge-label="Private Link 443" data-edge-key="1" data-edge-id="private-origin" data-composition-points="190,298;320,298" d="M 190 298 L 320 298" class="a-emphasis" data-animate="edge" style="--step:1" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="appgw" data-edge-to="apim" data-edge-label="mTLS ends here" data-edge-key="2" data-edge-id="mtls-ends" data-composition-points="470,298;600,298" d="M 470 298 L 600 298" class="a-security" data-animate="edge" style="--step:2" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="entra" data-edge-to="apim" data-edge-label="validates token" data-edge-key="3" data-edge-id="token-check" data-composition-points="470,96;675,96;675,262" d="M 470 96 L 667 96 Q 675 96 675 104 L 675 262" class="a-security" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="apim" data-edge-to="aksBank" data-edge-label="forwards request" data-edge-key="4" data-edge-id="to-cluster" data-composition-points="750,291;880,291" d="M 750 291 L 880 291" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
-        <path data-edge-from="aksBank" data-edge-to="bankdb" data-edge-label="private endpoint" data-edge-key="5" data-edge-id="bank-state" data-composition-points="955,334;955,464" d="M 955 334 L 955 464" class="a-emphasis" data-animate="edge" style="--step:5" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="entra" data-edge-to="apim" data-edge-label="OIDC token, then claims" data-edge-key="3" data-edge-id="token-check" data-composition-points="470,96;675,96;675,262" d="M 470 96 L 667 96 Q 675 96 675 104 L 675 262" class="a-security" data-animate="edge" style="--step:3" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="apim" data-edge-to="aksBank" data-edge-label="request + claims" data-edge-key="4" data-edge-id="to-cluster" data-composition-points="750,291;880,291" d="M 750 291 L 880 291" class="a-emphasis" data-animate="edge" style="--step:4" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="aksBank" data-edge-to="bankdb" data-edge-label="SQL 5432, private endpoint" data-edge-key="5" data-edge-id="bank-state" data-composition-points="955,334;955,464" d="M 955 334 L 955 464" class="a-emphasis" data-animate="edge" style="--step:5" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="aksBank" data-edge-to="redis" data-edge-label="sessions + locks" data-edge-key="6" data-edge-id="bank-cache" data-composition-points="1030,291;1095,291;1095,96;1160,96" d="M 1030 291 L 1087 291 Q 1095 291 1095 283 L 1095 104 Q 1095 96 1103 96 L 1160 96" class="a-default" data-animate="edge" style="--step:6" stroke-width="1.5" marker-end="url(#arrowhead)"/>
-        <path data-edge-from="aksBank" data-edge-to="core" data-edge-label="ExpressRoute" data-edge-key="7" data-edge-id="core-call" data-composition-points="955,262;955,132" d="M 955 262 L 955 132" class="a-security" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
-        <path data-edge-from="aksBank" data-edge-to="bus" data-edge-label="outbox events" data-edge-key="8" data-edge-id="outbox" data-composition-points="1030,305;1160,305" d="M 1030 305 L 1160 305" class="a-dashed" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="bus" data-edge-to="aksShop" data-edge-label="order totals" data-edge-key="9" data-edge-id="read-model" data-composition-points="1235,334;1235,614;395,614;395,536" d="M 1235 334 L 1235 606 Q 1235 614 1227 614 L 403 614 Q 395 614 395 606 L 395 536" class="a-dashed" data-animate="edge" style="--step:9" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
-        <path data-edge-from="frontdoor" data-edge-to="aksShop" data-edge-label="shop traffic" data-edge-key="10" data-edge-id="shop-ingress" data-composition-points="115,334;115,400;395,400;395,464" d="M 115 334 L 115 392 Q 115 400 123 400 L 387 400 Q 395 400 395 408 L 395 464" class="a-emphasis" data-animate="edge" style="--step:10" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
+        <path data-edge-from="aksBank" data-edge-to="core" data-edge-label="ExpressRoute, never public" data-edge-key="7" data-edge-id="core-call" data-composition-points="955,262;955,132" d="M 955 262 L 955 132" class="a-security" data-animate="edge" style="--step:7" stroke-width="1.5" marker-end="url(#arrowhead-security)"/>
+        <path data-edge-from="aksBank" data-edge-to="bus" data-edge-label="AMQP outbox rows" data-edge-key="8" data-edge-id="outbox" data-composition-points="1030,305;1160,305" d="M 1030 305 L 1160 305" class="a-dashed" data-animate="edge" style="--step:8" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="bus" data-edge-to="aksShop" data-edge-label="order totals, one way only" data-edge-key="9" data-edge-id="read-model" data-composition-points="1235,334;1235,614;395,614;395,536" d="M 1235 334 L 1235 606 Q 1235 614 1227 614 L 403 614 Q 395 614 395 606 L 395 536" class="a-dashed" data-animate="edge" style="--step:9" stroke-width="1.5" marker-end="url(#arrowhead-dashed)"/>
+        <path data-edge-from="frontdoor" data-edge-to="aksShop" data-edge-label="the shop&#39;s own route in" data-edge-key="10" data-edge-id="shop-ingress" data-composition-points="115,334;115,400;395,400;395,464" d="M 115 334 L 115 392 Q 115 400 123 400 L 387 400 Q 395 400 395 408 L 395 464" class="a-emphasis" data-animate="edge" style="--step:10" stroke-width="1.8" marker-end="url(#arrowhead-emphasis)"/>
         <path data-edge-from="aksShop" data-edge-to="ecomdb" data-edge-label="private endpoint" data-edge-key="11" data-edge-id="shop-state" data-composition-points="320,500;190,500" d="M 320 500 L 190 500" class="a-default" data-animate="edge" style="--step:11" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="aksShop" data-edge-to="firewall" data-edge-label="internet-bound" data-edge-key="12" data-edge-id="shop-egress" data-composition-points="470,500;600,500" d="M 470 500 L 600 500" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
         <path data-edge-from="aksBank" data-edge-to="firewall" data-edge-label="internet-bound" data-edge-key="13" data-edge-id="bank-egress" data-composition-points="880,305;815,305;815,500;750,500" d="M 880 305 L 823 305 Q 815 305 815 313 L 815 492 Q 815 500 807 500 L 750 500" class="a-default" data-animate="edge" style="--step:12" stroke-width="1.5" marker-end="url(#arrowhead)"/>
 
         <!-- Components -->
-        <g id="node-customer" data-node-id="customer" data-node-label="Customer" tabindex="0" role="button" aria-label="Focus Customer, phone or browser, Architecture component" aria-pressed="false" data-node-kind="external" data-node-sublabel="phone or browser" data-node-context="Architecture component">
-          <title>Customer · phone or browser · Architecture component</title>
+        <g id="node-customer" data-node-id="customer" data-node-label="Customer" tabindex="0" role="button" aria-label="Focus Customer, phone or browser, Architecture component" aria-pressed="false" data-node-kind="external" data-node-sublabel="phone or browser" data-node-tag="unmanaged device, untrusted network" data-node-context="Architecture component">
+          <title>Customer · phone or browser · Architecture component · unmanaged device, untrusted network</title>
           <rect x="40" y="60" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="40" y="60" width="150" height="72" rx="6" class="c-external" data-animate="node" style="--step:0" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(46 66) scale(0.6875)">
@@ -5063,10 +5065,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="115" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Customer</text>
         <text data-detail="context" x="115" y="110" class="t-muted" font-size="9" text-anchor="middle">phone or browser</text>
+        <text data-detail="fine" x="115" y="124" class="t-external" font-size="6.7" text-anchor="middle">unmanaged device, untrusted network</text>
         </g>
 
-        <g id="node-entra" data-node-id="entra" data-node-label="Entra External ID" tabindex="0" role="button" aria-label="Focus Entra External ID, customers sign in here, Architecture component" aria-pressed="false" data-node-kind="security" data-node-sublabel="customers sign in here" data-node-tag="MFA" data-node-context="Architecture component">
-          <title>Entra External ID · customers sign in here · Architecture component · MFA</title>
+        <g id="node-entra" data-node-id="entra" data-node-label="Entra External ID" tabindex="0" role="button" aria-label="Focus Entra External ID, customers sign in here, Architecture component" aria-pressed="false" data-node-kind="security" data-node-sublabel="customers sign in here" data-node-tag="MFA, conditional access, issues JWT" data-node-context="Architecture component">
+          <title>Entra External ID · customers sign in here · Architecture component · MFA, conditional access, issues JWT</title>
           <rect x="320" y="60" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="320" y="60" width="150" height="72" rx="6" class="c-security" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(326 66) scale(0.6875)">
@@ -5075,11 +5078,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="395" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Entra External ID</text>
         <text data-detail="context" x="395" y="110" class="t-muted" font-size="9" text-anchor="middle">customers sign in here</text>
-        <text data-detail="fine" x="395" y="124" class="t-security" font-size="7" text-anchor="middle">MFA</text>
+        <text data-detail="fine" x="395" y="124" class="t-security" font-size="6.7" text-anchor="middle">MFA, conditional access, issues JWT</text>
         </g>
 
-        <g id="node-redis" data-node-id="redis" data-node-label="Azure Managed Redis" tabindex="0" role="button" aria-label="Focus Azure Managed Redis, sessions, idempotency, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="sessions, idempotency" data-node-context="Architecture component">
-          <title>Azure Managed Redis · sessions, idempotency · Architecture component</title>
+        <g id="node-redis" data-node-id="redis" data-node-label="Azure Managed Redis" tabindex="0" role="button" aria-label="Focus Azure Managed Redis, sessions, idempotency, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="sessions, idempotency" data-node-tag="idempotency keys + distributed locks" data-node-context="Architecture component">
+          <title>Azure Managed Redis · sessions, idempotency · Architecture component · idempotency keys + distributed locks</title>
           <rect x="1160" y="60" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="1160" y="60" width="150" height="72" rx="6" class="c-database" data-animate="node" style="--step:7" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(1166 66) scale(0.6875)">
@@ -5088,10 +5091,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="1235" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Azure Managed Redis</text>
         <text data-detail="context" x="1235" y="110" class="t-muted" font-size="9" text-anchor="middle">sessions, idempotency</text>
+        <text data-detail="fine" x="1235" y="124" class="t-database" font-size="6.5" text-anchor="middle">idempotency keys + distributed locks</text>
         </g>
 
-        <g id="node-core" data-node-id="core" data-node-label="Core banking, PH" tabindex="0" role="button" aria-label="Focus Core banking, PH, system of record, Architecture component" aria-pressed="false" data-node-kind="external" data-node-sublabel="system of record" data-node-tag="on-premises" data-node-context="Architecture component">
-          <title>Core banking, PH · system of record · Architecture component · on-premises</title>
+        <g id="node-core" data-node-id="core" data-node-label="Core banking, PH" tabindex="0" role="button" aria-label="Focus Core banking, PH, the system of record, PH on-premises" aria-pressed="false" data-node-kind="external" data-node-sublabel="the system of record" data-node-tag="on-premises; only over ExpressRoute" data-node-context="PH on-premises">
+          <title>Core banking, PH · the system of record · PH on-premises · on-premises; only over ExpressRoute</title>
           <rect x="880" y="60" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="880" y="60" width="150" height="72" rx="6" class="c-external" data-animate="node" style="--step:8" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="external" class="semantic-sigil s-external" transform="translate(886 66) scale(0.6875)">
@@ -5099,12 +5103,12 @@
             <path d="M8 2.5h5.5V8M13.5 2.5 7.5 8.5"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="955" y="94" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Core banking, PH</text>
-        <text data-detail="context" x="955" y="110" class="t-muted" font-size="9" text-anchor="middle">system of record</text>
-        <text data-detail="fine" x="955" y="124" class="t-external" font-size="7" text-anchor="middle">on-premises</text>
+        <text data-detail="context" x="955" y="110" class="t-muted" font-size="9" text-anchor="middle">the system of record</text>
+        <text data-detail="fine" x="955" y="124" class="t-external" font-size="6.7" text-anchor="middle">on-premises; only over ExpressRoute</text>
         </g>
 
-        <g id="node-frontdoor" data-node-id="frontdoor" data-node-label="Front Door Premium" tabindex="0" role="button" aria-label="Focus Front Door Premium, WAF; TLS ends here, Architecture component" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="WAF; TLS ends here" data-node-tag="only inbound path" data-node-context="Architecture component">
-          <title>Front Door Premium · WAF; TLS ends here · Architecture component · only inbound path</title>
+        <g id="node-frontdoor" data-node-id="frontdoor" data-node-label="Front Door Premium" tabindex="0" role="button" aria-label="Focus Front Door Premium, WAF; TLS ends here, Architecture component" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="WAF; TLS ends here" data-node-tag="the only inbound path from outside" data-node-context="Architecture component">
+          <title>Front Door Premium · WAF; TLS ends here · Architecture component · the only inbound path from outside</title>
           <rect x="40" y="262" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="40" y="262" width="150" height="72" rx="6" class="c-cloud" data-animate="node" style="--step:1" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(46 268) scale(0.6875)">
@@ -5112,11 +5116,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="115" y="296" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Front Door Premium</text>
         <text data-detail="context" x="115" y="312" class="t-muted" font-size="9" text-anchor="middle">WAF; TLS ends here</text>
-        <text data-detail="fine" x="115" y="326" class="t-cloud" font-size="7" text-anchor="middle">only inbound path</text>
+        <text data-detail="fine" x="115" y="326" class="t-cloud" font-size="6.9" text-anchor="middle">the only inbound path from outside</text>
         </g>
 
-        <g id="node-appgw" data-node-id="appgw" data-node-label="App Gateway WAF v2" tabindex="0" role="button" aria-label="Focus App Gateway WAF v2, the Private Link origin, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="security" data-node-sublabel="the Private Link origin" data-node-tag="internal" data-node-context="Spoke: banking  10.1.0.0/16">
-          <title>App Gateway WAF v2 · the Private Link origin · Spoke: banking  10.1.0.0/16 · internal</title>
+        <g id="node-appgw" data-node-id="appgw" data-node-label="App Gateway WAF v2" tabindex="0" role="button" aria-label="Focus App Gateway WAF v2, the Private Link origin, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="security" data-node-sublabel="the Private Link origin" data-node-tag="internal; terminates merchant mTLS" data-node-context="Spoke: banking  10.1.0.0/16">
+          <title>App Gateway WAF v2 · the Private Link origin · Spoke: banking  10.1.0.0/16 · internal; terminates merchant mTLS</title>
           <rect x="320" y="262" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="320" y="262" width="150" height="72" rx="6" class="c-security" data-animate="node" style="--step:2" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(326 268) scale(0.6875)">
@@ -5125,11 +5129,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="395" y="296" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">App Gateway WAF v2</text>
         <text data-detail="context" x="395" y="312" class="t-muted" font-size="9" text-anchor="middle">the Private Link origin</text>
-        <text data-detail="fine" x="395" y="326" class="t-security" font-size="7" text-anchor="middle">internal</text>
+        <text data-detail="fine" x="395" y="326" class="t-security" font-size="6.9" text-anchor="middle">internal; terminates merchant mTLS</text>
         </g>
 
-        <g id="node-apim" data-node-id="apim" data-node-label="API Management" tabindex="0" role="button" aria-label="Focus API Management, Premium, internal mode, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="Premium, internal mode" data-node-context="Spoke: banking  10.1.0.0/16">
-          <title>API Management · Premium, internal mode · Spoke: banking  10.1.0.0/16</title>
+        <g id="node-apim" data-node-id="apim" data-node-label="API Management" tabindex="0" role="button" aria-label="Focus API Management, Premium, internal mode, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="cloud" data-node-sublabel="Premium, internal mode" data-node-tag="checks the token, then rate-limits" data-node-context="Spoke: banking  10.1.0.0/16">
+          <title>API Management · Premium, internal mode · Spoke: banking  10.1.0.0/16 · checks the token, then rate-limits</title>
           <rect x="600" y="262" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="600" y="262" width="150" height="72" rx="6" class="c-cloud" data-animate="node" style="--step:3" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="cloud" class="semantic-sigil s-cloud" transform="translate(606 268) scale(0.6875)">
@@ -5137,10 +5141,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="675" y="296" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">API Management</text>
         <text data-detail="context" x="675" y="312" class="t-muted" font-size="9" text-anchor="middle">Premium, internal mode</text>
+        <text data-detail="fine" x="675" y="326" class="t-cloud" font-size="6.9" text-anchor="middle">checks the token, then rate-limits</text>
         </g>
 
-        <g id="node-aksBank" data-node-id="aksBank" data-node-label="AKS: banking" tabindex="0" role="button" aria-label="Focus AKS: banking, private cluster, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="backend" data-node-sublabel="private cluster" data-node-tag="no public API server" data-node-context="Spoke: banking  10.1.0.0/16">
-          <title>AKS: banking · private cluster · Spoke: banking  10.1.0.0/16 · no public API server</title>
+        <g id="node-aksBank" data-node-id="aksBank" data-node-label="AKS: banking" tabindex="0" role="button" aria-label="Focus AKS: banking, private cluster, Spoke: banking  10.1.0.0/16" aria-pressed="false" data-node-kind="backend" data-node-sublabel="private cluster" data-node-tag="no public API server; KEDA autoscale" data-node-context="Spoke: banking  10.1.0.0/16">
+          <title>AKS: banking · private cluster · Spoke: banking  10.1.0.0/16 · no public API server; KEDA autoscale</title>
           <rect x="880" y="262" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="880" y="262" width="150" height="72" rx="6" class="c-backend" data-animate="node" style="--step:5" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(886 268) scale(0.6875)">
@@ -5148,11 +5153,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="955" y="296" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AKS: banking</text>
         <text data-detail="context" x="955" y="312" class="t-muted" font-size="9" text-anchor="middle">private cluster</text>
-        <text data-detail="fine" x="955" y="326" class="t-backend" font-size="7" text-anchor="middle">no public API server</text>
+        <text data-detail="fine" x="955" y="326" class="t-backend" font-size="6.5" text-anchor="middle">no public API server; KEDA autoscale</text>
         </g>
 
-        <g id="node-bus" data-node-id="bus" data-node-label="Service Bus Premium" tabindex="0" role="button" aria-label="Focus Service Bus Premium, read model, not a call, Architecture component" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="read model, not a call" data-node-context="Architecture component">
-          <title>Service Bus Premium · read model, not a call · Architecture component</title>
+        <g id="node-bus" data-node-id="bus" data-node-label="Service Bus Premium" tabindex="0" role="button" aria-label="Focus Service Bus Premium, read model, not a call, Architecture component" aria-pressed="false" data-node-kind="messagebus" data-node-sublabel="read model, not a call" data-node-tag="the only link between the two apps" data-node-context="Architecture component">
+          <title>Service Bus Premium · read model, not a call · Architecture component · the only link between the two apps</title>
           <rect x="1160" y="262" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="1160" y="262" width="150" height="72" rx="6" class="c-messagebus" data-animate="node" style="--step:9" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="messagebus" class="semantic-sigil s-messagebus" transform="translate(1166 268) scale(0.6875)">
@@ -5163,10 +5168,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="1235" y="296" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Service Bus Premium</text>
         <text data-detail="context" x="1235" y="312" class="t-muted" font-size="9" text-anchor="middle">read model, not a call</text>
+        <text data-detail="fine" x="1235" y="326" class="t-messagebus" font-size="6.9" text-anchor="middle">the only link between the two apps</text>
         </g>
 
-        <g id="node-ecomdb" data-node-id="ecomdb" data-node-label="PostgreSQL: ecomdb" tabindex="0" role="button" aria-label="Focus PostgreSQL: ecomdb, products, orders, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="products, orders" data-node-tag="own server" data-node-context="Architecture component">
-          <title>PostgreSQL: ecomdb · products, orders · Architecture component · own server</title>
+        <g id="node-ecomdb" data-node-id="ecomdb" data-node-label="PostgreSQL: ecomdb" tabindex="0" role="button" aria-label="Focus PostgreSQL: ecomdb, products, orders, stock, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="products, orders, stock" data-node-tag="own server; the shop&#39;s data only" data-node-context="Architecture component">
+          <title>PostgreSQL: ecomdb · products, orders, stock · Architecture component · own server; the shop&#39;s data only</title>
           <rect x="40" y="464" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="40" y="464" width="150" height="72" rx="6" class="c-database" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(46 470) scale(0.6875)">
@@ -5174,12 +5180,12 @@
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="115" y="498" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">PostgreSQL: ecomdb</text>
-        <text data-detail="context" x="115" y="514" class="t-muted" font-size="9" text-anchor="middle">products, orders</text>
-        <text data-detail="fine" x="115" y="528" class="t-database" font-size="7" text-anchor="middle">own server</text>
+        <text data-detail="context" x="115" y="514" class="t-muted" font-size="9" text-anchor="middle">products, orders, stock</text>
+        <text data-detail="fine" x="115" y="528" class="t-database" font-size="7" text-anchor="middle">own server; the shop&#39;s data only</text>
         </g>
 
-        <g id="node-aksShop" data-node-id="aksShop" data-node-label="AKS: e-commerce" tabindex="0" role="button" aria-label="Focus AKS: e-commerce, private cluster, Spoke: e-commerce  10.2.0.0/16" aria-pressed="false" data-node-kind="backend" data-node-sublabel="private cluster" data-node-context="Spoke: e-commerce  10.2.0.0/16">
-          <title>AKS: e-commerce · private cluster · Spoke: e-commerce  10.2.0.0/16</title>
+        <g id="node-aksShop" data-node-id="aksShop" data-node-label="AKS: e-commerce" tabindex="0" role="button" aria-label="Focus AKS: e-commerce, private cluster, Spoke: e-commerce  10.2.0.0/16" aria-pressed="false" data-node-kind="backend" data-node-sublabel="private cluster" data-node-tag="reads ecomdb only, never bankdb" data-node-context="Spoke: e-commerce  10.2.0.0/16">
+          <title>AKS: e-commerce · private cluster · Spoke: e-commerce  10.2.0.0/16 · reads ecomdb only, never bankdb</title>
           <rect x="320" y="464" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="320" y="464" width="150" height="72" rx="6" class="c-backend" data-animate="node" style="--step:10" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="backend" class="semantic-sigil s-backend" transform="translate(326 470) scale(0.6875)">
@@ -5187,10 +5193,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="395" y="498" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">AKS: e-commerce</text>
         <text data-detail="context" x="395" y="514" class="t-muted" font-size="9" text-anchor="middle">private cluster</text>
+        <text data-detail="fine" x="395" y="528" class="t-backend" font-size="7" text-anchor="middle">reads ecomdb only, never bankdb</text>
         </g>
 
-        <g id="node-firewall" data-node-id="firewall" data-node-label="Azure Firewall" tabindex="0" role="button" aria-label="Focus Azure Firewall, Premium; hub egress, Hub VNet  10.0.0.0/16" aria-pressed="false" data-node-kind="security" data-node-sublabel="Premium; hub egress" data-node-tag="inspects HTTP/S" data-node-context="Hub VNet  10.0.0.0/16">
-          <title>Azure Firewall · Premium; hub egress · Hub VNet  10.0.0.0/16 · inspects HTTP/S</title>
+        <g id="node-firewall" data-node-id="firewall" data-node-label="Azure Firewall" tabindex="0" role="button" aria-label="Focus Azure Firewall, Premium; hub egress, Hub VNet  10.0.0.0/16" aria-pressed="false" data-node-kind="security" data-node-sublabel="Premium; hub egress" data-node-tag="inspects HTTP/S; L4 rules elsewhere" data-node-context="Hub VNet  10.0.0.0/16">
+          <title>Azure Firewall · Premium; hub egress · Hub VNet  10.0.0.0/16 · inspects HTTP/S; L4 rules elsewhere</title>
           <rect x="600" y="464" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="600" y="464" width="150" height="72" rx="6" class="c-security" data-animate="node" style="--step:12" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="security" class="semantic-sigil s-security" transform="translate(606 470) scale(0.6875)">
@@ -5199,11 +5206,11 @@
           </g>
           <text data-node-label="" data-detail-anchor="" x="675" y="498" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">Azure Firewall</text>
         <text data-detail="context" x="675" y="514" class="t-muted" font-size="9" text-anchor="middle">Premium; hub egress</text>
-        <text data-detail="fine" x="675" y="528" class="t-security" font-size="7" text-anchor="middle">inspects HTTP/S</text>
+        <text data-detail="fine" x="675" y="528" class="t-security" font-size="6.7" text-anchor="middle">inspects HTTP/S; L4 rules elsewhere</text>
         </g>
 
-        <g id="node-bankdb" data-node-id="bankdb" data-node-label="PostgreSQL: bankdb" tabindex="0" role="button" aria-label="Focus PostgreSQL: bankdb, accounts, ledger, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="accounts, ledger" data-node-tag="own server" data-node-context="Architecture component">
-          <title>PostgreSQL: bankdb · accounts, ledger · Architecture component · own server</title>
+        <g id="node-bankdb" data-node-id="bankdb" data-node-label="PostgreSQL: bankdb" tabindex="0" role="button" aria-label="Focus PostgreSQL: bankdb, accounts, ledger, txns, Architecture component" aria-pressed="false" data-node-kind="database" data-node-sublabel="accounts, ledger, txns" data-node-tag="own server; NUMERIC(19,4) money" data-node-context="Architecture component">
+          <title>PostgreSQL: bankdb · accounts, ledger, txns · Architecture component · own server; NUMERIC(19,4) money</title>
           <rect x="880" y="464" width="150" height="72" rx="6" class="c-mask"/>
           <rect x="880" y="464" width="150" height="72" rx="6" class="c-database" data-animate="node" style="--step:6" stroke-width="1.5"/>
           <g aria-hidden="true" data-semantic-sigil="database" class="semantic-sigil s-database" transform="translate(886 470) scale(0.6875)">
@@ -5211,54 +5218,54 @@
             <path d="M3 4v8c0 1.1 2.2 2 5 2s5-.9 5-2V4M3 8c0 1.1 2.2 2 5 2s5-.9 5-2"/>
           </g>
           <text data-node-label="" data-detail-anchor="" x="955" y="498" class="t-primary" font-size="11" font-weight="600" text-anchor="middle">PostgreSQL: bankdb</text>
-        <text data-detail="context" x="955" y="514" class="t-muted" font-size="9" text-anchor="middle">accounts, ledger</text>
-        <text data-detail="fine" x="955" y="528" class="t-database" font-size="7" text-anchor="middle">own server</text>
+        <text data-detail="context" x="955" y="514" class="t-muted" font-size="9" text-anchor="middle">accounts, ledger, txns</text>
+        <text data-detail="fine" x="955" y="528" class="t-database" font-size="7" text-anchor="middle">own server; NUMERIC(19,4) money</text>
         </g>
 
         <!-- Connection labels -->
-        <g data-detail="context" data-edge-from="customer" data-edge-to="frontdoor" data-edge-label="HTTPS" data-edge-key="0" data-edge-id="customer-request">
-          <rect x="98" y="136" width="34" height="14" rx="3" class="c-mask"/>
-          <text x="115" y="146" class="t-backend" font-size="8" text-anchor="middle">HTTPS</text>
+        <g data-detail="context" data-edge-from="customer" data-edge-to="frontdoor" data-edge-label="HTTPS 443, QR payload" data-edge-key="0" data-edge-id="customer-request">
+          <rect x="59.6" y="136" width="110.8" height="14" rx="3" class="c-mask"/>
+          <text x="115" y="146" class="t-backend" font-size="8" text-anchor="middle">HTTPS 443, QR payload</text>
         </g>
-        <g data-detail="context" data-edge-from="frontdoor" data-edge-to="appgw" data-edge-label="Private Link" data-edge-key="1" data-edge-id="private-origin">
-          <rect x="221.2" y="278" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="255" y="288" class="t-backend" font-size="8" text-anchor="middle">Private Link</text>
+        <g data-detail="context" data-edge-from="frontdoor" data-edge-to="appgw" data-edge-label="Private Link 443" data-edge-key="1" data-edge-id="private-origin">
+          <rect x="211.6" y="278" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="255" y="288" class="t-backend" font-size="8" text-anchor="middle">Private Link 443</text>
         </g>
         <g data-detail="context" data-edge-from="appgw" data-edge-to="apim" data-edge-label="mTLS ends here" data-edge-key="2" data-edge-id="mtls-ends">
           <rect x="496.4" y="278" width="77.2" height="14" rx="3" class="c-mask"/>
           <text x="535" y="288" class="t-security" font-size="8" text-anchor="middle">mTLS ends here</text>
         </g>
-        <g data-detail="context" data-edge-from="entra" data-edge-to="apim" data-edge-label="validates token" data-edge-key="3" data-edge-id="token-check">
-          <rect x="634" y="159" width="82" height="14" rx="3" class="c-mask"/>
-          <text x="675" y="169" class="t-security" font-size="8" text-anchor="middle">validates token</text>
+        <g data-detail="context" data-edge-from="entra" data-edge-to="apim" data-edge-label="OIDC token, then claims" data-edge-key="3" data-edge-id="token-check">
+          <rect x="614.8" y="159" width="120.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="675" y="169" class="t-security" font-size="8" text-anchor="middle">OIDC token, then claims</text>
         </g>
-        <g data-detail="context" data-edge-from="apim" data-edge-to="aksBank" data-edge-label="forwards request" data-edge-key="4" data-edge-id="to-cluster">
+        <g data-detail="context" data-edge-from="apim" data-edge-to="aksBank" data-edge-label="request + claims" data-edge-key="4" data-edge-id="to-cluster">
           <rect x="771.6" y="271" width="86.8" height="14" rx="3" class="c-mask"/>
-          <text x="815" y="281" class="t-backend" font-size="8" text-anchor="middle">forwards request</text>
+          <text x="815" y="281" class="t-backend" font-size="8" text-anchor="middle">request + claims</text>
         </g>
-        <g data-detail="context" data-edge-from="aksBank" data-edge-to="bankdb" data-edge-label="private endpoint" data-edge-key="5" data-edge-id="bank-state">
-          <rect x="911.6" y="338" width="86.8" height="14" rx="3" class="c-mask"/>
-          <text x="955" y="348" class="t-backend" font-size="8" text-anchor="middle">private endpoint</text>
+        <g data-detail="context" data-edge-from="aksBank" data-edge-to="bankdb" data-edge-label="SQL 5432, private endpoint" data-edge-key="5" data-edge-id="bank-state">
+          <rect x="887.6" y="338" width="134.8" height="14" rx="3" class="c-mask"/>
+          <text x="955" y="348" class="t-backend" font-size="8" text-anchor="middle">SQL 5432, private endpoint</text>
         </g>
         <g data-detail="context" data-edge-from="aksBank" data-edge-to="redis" data-edge-label="sessions + locks" data-edge-key="6" data-edge-id="bank-cache">
           <rect x="1051.6" y="173.5" width="86.8" height="14" rx="3" class="c-mask"/>
           <text x="1095" y="183.5" class="t-muted" font-size="8" text-anchor="middle">sessions + locks</text>
         </g>
-        <g data-detail="context" data-edge-from="aksBank" data-edge-to="core" data-edge-label="ExpressRoute" data-edge-key="7" data-edge-id="core-call">
-          <rect x="921.2" y="242" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="955" y="252" class="t-security" font-size="8" text-anchor="middle">ExpressRoute</text>
+        <g data-detail="context" data-edge-from="aksBank" data-edge-to="core" data-edge-label="ExpressRoute, never public" data-edge-key="7" data-edge-id="core-call">
+          <rect x="887.6" y="242" width="134.8" height="14" rx="3" class="c-mask"/>
+          <text x="955" y="252" class="t-security" font-size="8" text-anchor="middle">ExpressRoute, never public</text>
         </g>
-        <g data-detail="context" data-edge-from="aksBank" data-edge-to="bus" data-edge-label="outbox events" data-edge-key="8" data-edge-id="outbox">
-          <rect x="1058.8" y="313" width="72.4" height="14" rx="3" class="c-mask"/>
-          <text x="1095" y="323" class="t-messagebus" font-size="8" text-anchor="middle">outbox events</text>
+        <g data-detail="context" data-edge-from="aksBank" data-edge-to="bus" data-edge-label="AMQP outbox rows" data-edge-key="8" data-edge-id="outbox">
+          <rect x="1051.6" y="313" width="86.8" height="14" rx="3" class="c-mask"/>
+          <text x="1095" y="323" class="t-messagebus" font-size="8" text-anchor="middle">AMQP outbox rows</text>
         </g>
-        <g data-detail="context" data-edge-from="bus" data-edge-to="aksShop" data-edge-label="order totals" data-edge-key="9" data-edge-id="read-model">
-          <rect x="781.2" y="594" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="815" y="604" class="t-messagebus" font-size="8" text-anchor="middle">order totals</text>
+        <g data-detail="context" data-edge-from="bus" data-edge-to="aksShop" data-edge-label="order totals, one way only" data-edge-key="9" data-edge-id="read-model">
+          <rect x="747.6" y="594" width="134.8" height="14" rx="3" class="c-mask"/>
+          <text x="815" y="604" class="t-messagebus" font-size="8" text-anchor="middle">order totals, one way only</text>
         </g>
-        <g data-detail="context" data-edge-from="frontdoor" data-edge-to="aksShop" data-edge-label="shop traffic" data-edge-key="10" data-edge-id="shop-ingress">
-          <rect x="221.2" y="380" width="67.6" height="14" rx="3" class="c-mask"/>
-          <text x="255" y="390" class="t-backend" font-size="8" text-anchor="middle">shop traffic</text>
+        <g data-detail="context" data-edge-from="frontdoor" data-edge-to="aksShop" data-edge-label="the shop&#39;s own route in" data-edge-key="10" data-edge-id="shop-ingress">
+          <rect x="194.8" y="380" width="120.39999999999999" height="14" rx="3" class="c-mask"/>
+          <text x="255" y="390" class="t-backend" font-size="8" text-anchor="middle">the shop&#39;s own route in</text>
         </g>
         <g data-detail="context" data-edge-from="aksShop" data-edge-to="ecomdb" data-edge-label="private endpoint" data-edge-key="11" data-edge-id="shop-state">
           <rect x="211.6" y="480" width="86.8" height="14" rx="3" class="c-mask"/>
@@ -5287,6 +5294,11 @@
         <g data-graph-role="structural-frame-label" data-composition-frame-id="2" data-composition-frame-kind="security-group" data-composition-frame-label="Spoke: e-commerce  10.2.0.0/16">
           <rect data-graph-role="structural-frame-label-mask" x="304" y="444" width="172" height="16" rx="3" class="c-mask"/>
           <text data-boundary-label="" x="308" y="457" class="t-security" font-size="9" font-weight="600">Spoke: e-commerce  10.2.0.0/16</text>
+        </g>
+
+        <g data-graph-role="structural-frame-label" data-composition-frame-id="3" data-composition-frame-kind="region" data-composition-frame-label="PH on-premises">
+          <rect data-graph-role="structural-frame-label-mask" x="864" y="40" width="85.6" height="16" rx="3" class="c-mask"/>
+          <text data-boundary-label="" x="868" y="53" class="t-cloud" font-size="9" font-weight="600">PH on-premises</text>
         </g>
 
         <!-- Legend -->
@@ -5480,13 +5492,12 @@
       <div class="card">
         <div class="card-header">
           <div class="card-dot cyan"></div>
-          <h3>How to read this</h3>
+          <h3>Click any node</h3>
         </div>
         <ul>
-          <li>&bull; Bold line: one banking payment, phone to database</li>
-          <li>&bull; Each frame is a virtual network</li>
-          <li>&bull; Dashed: asynchronous, never a synchronous call</li>
-          <li>&bull; One region: Southeast Asia, three zones</li>
+          <li>&bull; The passport gives its kind, what it does, and the network holding it</li>
+          <li>&bull; Upstream and downstream list every line, and what each one carries</li>
+          <li>&bull; Zoom past 175% for the fine print; R traces a route, P plays chapters</li>
         </ul>
       </div>
 
@@ -5496,23 +5507,23 @@
           <h3>Isolation the platform enforces</h3>
         </div>
         <ul>
-          <li>&bull; Spokes peer with the hub only, never each other</li>
-          <li>&bull; Two servers, two managed identities, no password</li>
-          <li>&bull; Service Bus is the only link between the apps</li>
-          <li>&bull; No workload endpoint is reachable from outside</li>
+          <li>&bull; One region: Southeast Asia (Singapore), three availability zones</li>
+          <li>&bull; Spokes peer with the hub only, never with each other</li>
+          <li>&bull; Two servers, two managed identities, no password to leak</li>
+          <li>&bull; Order totals cross Service Bus as a read model, never as a call</li>
         </ul>
       </div>
 
       <div class="card">
         <div class="card-header">
           <div class="card-dot rose"></div>
-          <h3>Corrections carried from review</h3>
+          <h3>Corrections and open items</h3>
         </div>
         <ul>
           <li>&bull; App Gateway is the origin: Front Door cannot use VNet-injected APIM</li>
           <li>&bull; Database traffic is not firewall-inspected: /32 beats 0.0.0.0/0</li>
           <li>&bull; Private DNS zones resolve endpoints; the Resolver only forwards</li>
-          <li>&bull; 99.99% and the USD 16k run rate are withdrawn</li>
+          <li>&bull; Only the two clusters and two databases exist as code; the rest is proposed</li>
         </ul>
       </div>
     </div>
