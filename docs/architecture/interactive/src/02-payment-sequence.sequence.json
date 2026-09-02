@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "One Banking Payment, Hop by Hop",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "column_fit": "spread",
+    "viewBox": [
+      1340,
+      622
+    ],
+    "views": [
+      {
+        "id": "admission",
+        "label": "1 \u00b7 Admission",
+        "focus": [
+          "customer",
+          "edge",
+          "apim"
+        ],
+        "note": "TLS ends at Front Door. The internal gateway behind it is the Private Link origin and terminates merchant mTLS."
+      },
+      {
+        "id": "identity",
+        "label": "2 \u00b7 Who is asking",
+        "focus": [
+          "apim",
+          "entra"
+        ],
+        "note": "The access token is validated before the private cluster is ever addressed."
+      },
+      {
+        "id": "idempotency",
+        "label": "3 \u00b7 Paying exactly once",
+        "focus": [
+          "bank",
+          "redis",
+          "bankdb"
+        ],
+        "note": "The idempotency key is claimed in Redis before funds are reserved, so a retried request cannot pay twice."
+      },
+      {
+        "id": "handover",
+        "label": "4 \u00b7 The handover",
+        "focus": [
+          "bank",
+          "core"
+        ],
+        "note": "Our service never moves money. It asks the system of record to, over ExpressRoute, and that answer is final."
+      },
+      {
+        "id": "record-and-reply",
+        "label": "5 \u00b7 Record, then reply",
+        "focus": [
+          "bank",
+          "bankdb",
+          "apim",
+          "edge",
+          "customer"
+        ],
+        "note": "Nothing of ours is committed until the core has answered. The outbox row is what later drains to Service Bus."
+      }
+    ],
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "emphasis": {
+          "label": "on the payment path"
+        },
+        "default": {
+          "label": "supporting call"
+        },
+        "security": {
+          "label": "identity check"
+        },
+        "dashed": {
+          "label": "one-way write"
+        },
+        "return": {
+          "label": "reply"
+        }
+      }
+    }
+  },
+  "participants": [
+    {
+      "id": "customer",
+      "type": "external",
+      "label": "Customer"
+    },
+    {
+      "id": "edge",
+      "type": "cloud",
+      "label": "Front Door"
+    },
+    {
+      "id": "apim",
+      "type": "cloud",
+      "label": "API Management"
+    },
+    {
+      "id": "entra",
+      "type": "security",
+      "label": "Entra External ID"
+    },
+    {
+      "id": "bank",
+      "type": "backend",
+      "label": "Banking service"
+    },
+    {
+      "id": "redis",
+      "type": "database",
+      "label": "Managed Redis"
+    },
+    {
+      "id": "bankdb",
+      "type": "database",
+      "label": "bankdb"
+    },
+    {
+      "id": "core",
+      "type": "external",
+      "label": "Core banking"
+    }
+  ],
+  "segments": [
+    {
+      "from": 158,
+      "to": 220,
+      "label": "Admission"
+    },
+    {
+      "from": 226,
+      "to": 310,
+      "label": "Authorise"
+    },
+    {
+      "from": 316,
+      "to": 430,
+      "label": "Reserve, then hand over"
+    },
+    {
+      "from": 436,
+      "to": 560,
+      "label": "Record and reply"
+    }
+  ],
+  "messages": [
+    {
+      "id": "pay-request",
+      "from": "customer",
+      "to": "edge",
+      "y": 176,
+      "label": "POST /payments",
+      "variant": "emphasis"
+    },
+    {
+      "id": "private-origin",
+      "from": "edge",
+      "to": "apim",
+      "y": 206,
+      "label": "Private Link origin",
+      "variant": "emphasis"
+    },
+    {
+      "id": "validate-token",
+      "from": "apim",
+      "to": "entra",
+      "y": 236,
+      "label": "validate token",
+      "variant": "security"
+    },
+    {
+      "id": "token-claims",
+      "from": "entra",
+      "to": "apim",
+      "y": 266,
+      "label": "claims and scope",
+      "variant": "return"
+    },
+    {
+      "id": "forward",
+      "from": "apim",
+      "to": "bank",
+      "y": 296,
+      "label": "forward request",
+      "variant": "emphasis"
+    },
+    {
+      "id": "claim-key",
+      "from": "bank",
+      "to": "redis",
+      "y": 326,
+      "label": "claim idempotency key",
+      "variant": "dashed"
+    },
+    {
+      "id": "reserve",
+      "from": "bank",
+      "to": "bankdb",
+      "y": 356,
+      "label": "reserve funds",
+      "variant": "emphasis"
+    },
+    {
+      "id": "post-transfer",
+      "from": "bank",
+      "to": "core",
+      "y": 386,
+      "label": "post the transfer",
+      "variant": "emphasis"
+    },
+    {
+      "id": "core-reference",
+      "from": "core",
+      "to": "bank",
+      "y": 416,
+      "label": "reference is final",
+      "variant": "return"
+    },
+    {
+      "id": "commit-ledger",
+      "from": "bank",
+      "to": "bankdb",
+      "y": 446,
+      "label": "commit ledger + outbox",
+      "variant": "default"
+    },
+    {
+      "id": "created",
+      "from": "bank",
+      "to": "apim",
+      "y": 476,
+      "label": "201 Created",
+      "variant": "return"
+    },
+    {
+      "id": "response",
+      "from": "apim",
+      "to": "edge",
+      "y": 506,
+      "label": "response",
+      "variant": "return"
+    },
+    {
+      "id": "receipt",
+      "from": "edge",
+      "to": "customer",
+      "y": 536,
+      "label": "receipt",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "edge",
+      "from": 171,
+      "to": 542,
+      "type": "cloud"
+    },
+    {
+      "participant": "apim",
+      "from": 201,
+      "to": 512,
+      "type": "cloud"
+    },
+    {
+      "participant": "entra",
+      "from": 231,
+      "to": 272,
+      "type": "security"
+    },
+    {
+      "participant": "bank",
+      "from": 291,
+      "to": 482,
+      "type": "backend"
+    },
+    {
+      "participant": "redis",
+      "from": 320,
+      "to": 345,
+      "type": "database"
+    },
+    {
+      "participant": "bankdb",
+      "from": 350,
+      "to": 452,
+      "type": "database"
+    },
+    {
+      "participant": "core",
+      "from": 381,
+      "to": 422,
+      "type": "external"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Where the boundary sits",
+      "items": [
+        "Every hop except the core is ours to operate",
+        "The core's reference is final; we only record it",
+        "No ledger and no settlement logic of our own"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Paying exactly once",
+      "items": [
+        "The idempotency key is claimed before funds are reserved",
+        "A replay finds the key and returns the first result",
+        "Ledger row and outbox row commit together, not in sequence"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Latency, honestly",
+      "items": [
+        "P95 under 250 ms is a design intent, not a measurement",
+        "Singapore to Manila is roughly 30 to 40 ms each way",
+        "The ExpressRoute leg to the core is the longest hop"
+      ]
+    }
+  ]
+}

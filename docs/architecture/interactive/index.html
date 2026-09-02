@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interactive Architecture — Hub and Spoke</title>
+<style>
+  :root {
+    color-scheme: dark light;
+    --bg: #070B14;
+    --panel: #0D1424;
+    --line: #1E2A42;
+    --ink: #E8EEF9;
+    --body: #A9B6CC;
+    --dim: #6C7C97;
+    --cyan: #22D3EE;
+    --emerald: #34D399;
+    --violet: #A78BFA;
+    --amber: #FBBF24;
+    --rose: #FB7185;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #F7F9FC; --panel: #FFFFFF; --line: #DCE3EE;
+      --ink: #0F1B2E; --body: #45536B; --dim: #74829A;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 15px/1.6 ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    padding: 48px 24px 72px;
+  }
+  main { max-width: 1080px; margin: 0 auto; }
+  .eyebrow {
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--dim); margin-bottom: 10px;
+  }
+  h1 { font-size: 27px; line-height: 1.25; margin: 0 0 14px; letter-spacing: -.01em; }
+  .lede { color: var(--body); max-width: 74ch; margin: 0 0 8px; }
+  .lede + .lede { margin-bottom: 34px; }
+  .grid { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+  a.scene {
+    display: block; text-decoration: none; color: inherit;
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px 20px;
+    transition: border-color .15s, transform .15s;
+  }
+  a.scene:hover, a.scene:focus-visible { border-color: var(--accent); transform: translateY(-2px); }
+  a.scene:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .num { font-size: 11px; letter-spacing: .12em; color: var(--accent); }
+  .kind { font-size: 11px; letter-spacing: .12em; color: var(--dim); float: right; }
+  h2 { font-size: 16px; margin: 8px 0 6px; }
+  .scene p { color: var(--body); font-size: 13.5px; margin: 0 0 12px; }
+  ul.beats { margin: 0; padding: 0; list-style: none; font-size: 12px; color: var(--dim); }
+  ul.beats li { padding-left: 14px; position: relative; }
+  ul.beats li::before { content: "·"; position: absolute; left: 3px; }
+  h3 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--dim);
+       margin: 40px 0 12px; }
+  .keys { display: grid; gap: 6px 20px; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          font-size: 13px; color: var(--body); }
+  kbd { background: var(--panel); border: 1px solid var(--line); border-bottom-width: 2px;
+        border-radius: 4px; padding: 1px 6px; font: inherit; font-size: 12px; color: var(--ink); }
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line);
+           font-size: 12px; color: var(--dim); }
+  footer a { color: var(--body); }
+  code { color: var(--ink); }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Consolidation proposal · interactive architecture</p>
+  <h1>One hub-and-spoke platform, read five ways</h1>
+  <p class="lede">
+    The same target architecture as
+    <code>docs/architecture/excalidraw/05-network-topology.excalidraw</code>, rebuilt as five
+    explorable scenes. Nothing here is a new design: the topology, the two databases, the single
+    hub firewall and the corrections carried in from the proposal paper's technical review are
+    unchanged. What changed is that you can now interrogate them.
+  </p>
+  <p class="lede">
+    Each scene is one self-contained HTML file with five guided chapters. Open one and press
+    <kbd>P</kbd> to play the chapters in order, or <kbd>?</kbd> for the full list of controls.
+  </p>
+
+  <div class="grid">
+    <a class="scene" href="01-network-topology.html" style="--accent: var(--cyan)">
+      <span class="num">Scene 01</span><span class="kind">Architecture</span>
+      <h2>Network Topology — Hub and Spoke</h2>
+      <p>Which network does each hop happen in, and what can reach what?</p>
+      <ul class="beats">
+        <li>One banking payment, phone to database</li>
+        <li>Who is asking</li>
+        <li>Two apps, two databases</li>
+        <li>Egress and the core</li>
+        <li>What the firewall never sees</li>
+      </ul>
+    </a>
+
+    <a class="scene" href="02-payment-sequence.html" style="--accent: var(--emerald)">
+      <span class="num">Scene 02</span><span class="kind">Sequence</span>
+      <h2>One Banking Payment, Hop by Hop</h2>
+      <p>The same payment over time, including where our service stops deciding.</p>
+      <ul class="beats">
+        <li>Admission</li>
+        <li>Who is asking</li>
+        <li>Paying exactly once</li>
+        <li>The handover</li>
+        <li>Record, then reply</li>
+      </ul>
+    </a>
+
+    <a class="scene" href="03-audit-and-residency.html" style="--accent: var(--violet)">
+      <span class="num">Scene 03</span><span class="kind">Data flow</span>
+      <h2>Audit, Residency and BSP Examination</h2>
+      <p>Where a record goes, what is classified as identity, and what an examiner can read.</p>
+      <ul class="beats">
+        <li>The audit record</li>
+        <li>Where PII stops</li>
+        <li>Operational telemetry</li>
+        <li>Residency</li>
+        <li>Seven years, locked</li>
+      </ul>
+    </a>
+
+    <a class="scene" href="04-build-and-run.html" style="--accent: var(--amber)">
+      <span class="num">Scene 04</span><span class="kind">Workflow</span>
+      <h2>Shipping Into a Private Network</h2>
+      <p>How a change reaches a cluster that has no public API server.</p>
+      <ul class="beats">
+        <li>Commit to rollout</li>
+        <li>What stops a release</li>
+        <li>One image, imported</li>
+        <li>Agents inside a spoke</li>
+        <li>Recovery</li>
+      </ul>
+    </a>
+
+    <a class="scene" href="05-payment-lifecycle.html" style="--accent: var(--rose)">
+      <span class="num">Scene 05</span><span class="kind">Lifecycle</span>
+      <h2>What a Payment Can Become</h2>
+      <p>Every state a payment can hold, and the three distinct ways it ends.</p>
+      <ul class="beats">
+        <li>The successful path</li>
+        <li>Waiting is not failing</li>
+        <li>Replay-safe retry</li>
+        <li>Compensation, not deletion</li>
+        <li>The three ways out</li>
+      </ul>
+    </a>
+  </div>
+
+  <h3>Controls, once a scene is open</h3>
+  <div class="keys">
+    <div><kbd>P</kbd> play the guided chapters</div>
+    <div><kbd>[</kbd> <kbd>]</kbd> previous / next chapter</div>
+    <div><kbd>/</kbd> find a node by name</div>
+    <div><kbd>R</kbd> trace a route between two nodes</div>
+    <div><kbd>L</kbd> compare two kinds of node</div>
+    <div><kbd>M</kbd> overview radar</div>
+    <div><kbd>F</kbd> presentation mode</div>
+    <div><kbd>T</kbd> light / dark</div>
+    <div><kbd>S</kbd> visual style</div>
+    <div><kbd>E</kbd> export PNG, SVG, share card</div>
+    <div><kbd>?</kbd> the full control list</div>
+    <div><kbd>+</kbd> <kbd>-</kbd> <kbd>0</kbd> zoom and reset</div>
+  </div>
+
+  <h3>What these scenes claim</h3>
+  <p class="lede">
+    Nothing in this folder is deployed. Address ranges, sizes and node counts are proposals.
+    The availability and cost figures from the earlier design are withdrawn rather than restated,
+    and the open findings — the retention-versus-erasure position, the recovery-region choice,
+    the missing volumetric basis — are shown as open. Selecting a node reveals only relationships
+    that were actually authored; the viewer never infers a path that is not in the source.
+  </p>
+
+  <footer>
+    Sources: <a href="../../consolidation/CloudConsolidation_ProposalPaper.md">CloudConsolidation_ProposalPaper.md</a>
+    §8.1, §8.4, §8.5 and §9.1–§9.10 ·
+    <a href="../excalidraw/README.md">the six static Excalidraw pages</a> ·
+    typed sources in <code>src/</code> ·
+    rendered with <a href="https://github.com/tt-a1i/archify">Archify</a> (MIT).
+  </footer>
+</main>
+</body>
+</html>

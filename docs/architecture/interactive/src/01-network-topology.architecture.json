@@ -1,0 +1,440 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "Network Topology \u2014 Hub and Spoke",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "views": [
+      {
+        "id": "payment-path",
+        "label": "1 \u00b7 One banking payment",
+        "focus": [
+          "customer",
+          "frontdoor",
+          "appgw",
+          "apim",
+          "aksBank",
+          "bankdb"
+        ],
+        "note": "One payment from phone to database. Front Door is the only inbound path from the internet."
+      },
+      {
+        "id": "who-is-asking",
+        "label": "2 \u00b7 Who is asking",
+        "focus": [
+          "customer",
+          "frontdoor",
+          "entra",
+          "apim"
+        ],
+        "note": "Customers sign in to Entra External ID. The token is checked before the cluster sees the request."
+      },
+      {
+        "id": "two-apps",
+        "label": "3 \u00b7 Two apps, two databases",
+        "focus": [
+          "aksBank",
+          "bankdb",
+          "bus",
+          "aksShop",
+          "ecomdb"
+        ],
+        "note": "Separate servers, separate identities. Service Bus is the only link between the two applications."
+      },
+      {
+        "id": "egress-and-core",
+        "label": "4 \u00b7 Egress and the core",
+        "focus": [
+          "aksBank",
+          "aksShop",
+          "firewall",
+          "core"
+        ],
+        "note": "Internet-bound traffic leaves through one hub firewall. The system of record is reached over ExpressRoute."
+      },
+      {
+        "id": "not-inspected",
+        "label": "5 \u00b7 What the firewall never sees",
+        "focus": [
+          "firewall",
+          "aksBank",
+          "bankdb",
+          "aksShop",
+          "ecomdb"
+        ],
+        "note": "A private endpoint installs a /32 route that beats the default route, so database traffic is not inspected."
+      }
+    ]
+  },
+  "layout": {
+    "mode": "grid",
+    "origin": [
+      40,
+      60
+    ],
+    "cols": 5,
+    "cellW": 150,
+    "cellH": 72,
+    "gapX": 130,
+    "gapY": 130
+  },
+  "components": [
+    {
+      "id": "customer",
+      "type": "external",
+      "label": "Customer",
+      "sublabel": "phone or browser",
+      "col": 0,
+      "row": 0,
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "entra",
+      "type": "security",
+      "label": "Entra External ID",
+      "sublabel": "customers sign in here",
+      "col": 1,
+      "row": 0,
+      "tag": "MFA",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "redis",
+      "type": "database",
+      "label": "Azure Managed Redis",
+      "sublabel": "sessions, idempotency",
+      "col": 4,
+      "row": 0,
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "core",
+      "type": "external",
+      "label": "Core banking, PH",
+      "sublabel": "system of record",
+      "col": 3,
+      "row": 0,
+      "tag": "on-premises",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "frontdoor",
+      "type": "cloud",
+      "label": "Front Door Premium",
+      "sublabel": "WAF; TLS ends here",
+      "col": 0,
+      "row": 1,
+      "tag": "only inbound path",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "appgw",
+      "type": "security",
+      "label": "App Gateway WAF v2",
+      "sublabel": "the Private Link origin",
+      "col": 1,
+      "row": 1,
+      "tag": "internal",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "apim",
+      "type": "cloud",
+      "label": "API Management",
+      "sublabel": "Premium, internal mode",
+      "col": 2,
+      "row": 1,
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "aksBank",
+      "type": "backend",
+      "label": "AKS: banking",
+      "sublabel": "private cluster",
+      "col": 3,
+      "row": 1,
+      "tag": "no public API server",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "bus",
+      "type": "messagebus",
+      "label": "Service Bus Premium",
+      "sublabel": "read model, not a call",
+      "col": 4,
+      "row": 1,
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "ecomdb",
+      "type": "database",
+      "label": "PostgreSQL: ecomdb",
+      "sublabel": "products, orders",
+      "col": 0,
+      "row": 2,
+      "tag": "own server",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "aksShop",
+      "type": "backend",
+      "label": "AKS: e-commerce",
+      "sublabel": "private cluster",
+      "col": 1,
+      "row": 2,
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "firewall",
+      "type": "security",
+      "label": "Azure Firewall",
+      "sublabel": "Premium; hub egress",
+      "col": 2,
+      "row": 2,
+      "tag": "inspects HTTP/S",
+      "size": [
+        150,
+        72
+      ]
+    },
+    {
+      "id": "bankdb",
+      "type": "database",
+      "label": "PostgreSQL: bankdb",
+      "sublabel": "accounts, ledger",
+      "col": 3,
+      "row": 2,
+      "tag": "own server",
+      "size": [
+        150,
+        72
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "security-group",
+      "label": "Spoke: banking  10.1.0.0/16",
+      "wraps": [
+        "appgw",
+        "apim",
+        "aksBank"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "security-group",
+      "label": "Hub VNet  10.0.0.0/16",
+      "wraps": [
+        "firewall"
+      ],
+      "pad": 20
+    },
+    {
+      "kind": "security-group",
+      "label": "Spoke: e-commerce  10.2.0.0/16",
+      "wraps": [
+        "aksShop"
+      ],
+      "pad": 20
+    }
+  ],
+  "connections": [
+    {
+      "id": "customer-request",
+      "from": "customer",
+      "to": "frontdoor",
+      "label": "HTTPS",
+      "variant": "emphasis",
+      "labelDy": 24
+    },
+    {
+      "id": "private-origin",
+      "from": "frontdoor",
+      "to": "appgw",
+      "label": "Private Link",
+      "variant": "emphasis"
+    },
+    {
+      "id": "mtls-ends",
+      "from": "appgw",
+      "to": "apim",
+      "label": "mTLS ends here",
+      "variant": "security"
+    },
+    {
+      "id": "token-check",
+      "from": "entra",
+      "to": "apim",
+      "label": "validates token",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          675,
+          96
+        ]
+      ]
+    },
+    {
+      "id": "to-cluster",
+      "from": "apim",
+      "to": "aksBank",
+      "label": "forwards request",
+      "variant": "emphasis"
+    },
+    {
+      "id": "bank-state",
+      "from": "aksBank",
+      "to": "bankdb",
+      "label": "private endpoint",
+      "variant": "emphasis",
+      "labelDy": 24
+    },
+    {
+      "id": "bank-cache",
+      "from": "aksBank",
+      "to": "redis",
+      "label": "sessions + locks"
+    },
+    {
+      "id": "core-call",
+      "from": "aksBank",
+      "to": "core",
+      "label": "ExpressRoute",
+      "variant": "security"
+    },
+    {
+      "id": "outbox",
+      "from": "aksBank",
+      "to": "bus",
+      "label": "outbox events",
+      "variant": "dashed",
+      "labelDy": 28
+    },
+    {
+      "id": "read-model",
+      "from": "bus",
+      "to": "aksShop",
+      "label": "order totals",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "bottom",
+      "via": [
+        [
+          1235,
+          614
+        ],
+        [
+          395,
+          614
+        ]
+      ]
+    },
+    {
+      "id": "shop-ingress",
+      "from": "frontdoor",
+      "to": "aksShop",
+      "label": "shop traffic",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "via": [
+        [
+          115,
+          400
+        ],
+        [
+          395,
+          400
+        ]
+      ]
+    },
+    {
+      "id": "shop-state",
+      "from": "aksShop",
+      "to": "ecomdb",
+      "label": "private endpoint"
+    },
+    {
+      "id": "shop-egress",
+      "from": "aksShop",
+      "to": "firewall",
+      "label": "internet-bound"
+    },
+    {
+      "id": "bank-egress",
+      "from": "aksBank",
+      "to": "firewall",
+      "label": "internet-bound"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "How to read this",
+      "items": [
+        "Bold line: one banking payment, phone to database",
+        "Each frame is a virtual network",
+        "Dashed: asynchronous, never a synchronous call",
+        "One region: Southeast Asia, three zones"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Isolation the platform enforces",
+      "items": [
+        "Spokes peer with the hub only, never each other",
+        "Two servers, two managed identities, no password",
+        "Service Bus is the only link between the apps",
+        "No workload endpoint is reachable from outside"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Corrections carried from review",
+      "items": [
+        "App Gateway is the origin: Front Door cannot use VNet-injected APIM",
+        "Database traffic is not firewall-inspected: /32 beats 0.0.0.0/0",
+        "Private DNS zones resolve endpoints; the Resolver only forwards",
+        "99.99% and the USD 16k run rate are withdrawn"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,295 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "What a Payment Can Become",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "viewBox": [
+      1340,
+      640
+    ],
+    "views": [
+      {
+        "id": "main-rail",
+        "label": "1 \u00b7 The successful path",
+        "focus": [
+          "received",
+          "reserved",
+          "posting",
+          "posted",
+          "settled"
+        ],
+        "note": "Five ordered states. Nothing of ours is committed until the core has returned a reference."
+      },
+      {
+        "id": "waiting",
+        "label": "2 \u00b7 Waiting is not failing",
+        "focus": [
+          "posting",
+          "awaitingCore"
+        ],
+        "note": "A payment with no answer from the core is neither settled nor lost; it stays in a named, non-terminal state."
+      },
+      {
+        "id": "retry",
+        "label": "3 \u00b7 Replay-safe retry",
+        "focus": [
+          "awaitingCore",
+          "failed",
+          "posting"
+        ],
+        "note": "The idempotency key claimed at intake is what makes a retry safe to send at all."
+      },
+      {
+        "id": "compensation",
+        "label": "4 \u00b7 Compensation, not deletion",
+        "focus": [
+          "settled",
+          "compensating",
+          "reversed"
+        ],
+        "note": "A settled payment is never edited away. It is reversed by a compensating entry, and both entries remain."
+      },
+      {
+        "id": "terminal",
+        "label": "5 \u00b7 The three ways out",
+        "focus": [
+          "expired",
+          "rejected",
+          "reversed"
+        ],
+        "note": "Retries exhausted, declined by the core, or compensated. Each exit is distinct and each is auditable."
+      }
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Payment states"
+    },
+    {
+      "id": "waiting",
+      "label": "Waiting"
+    },
+    {
+      "id": "recovery",
+      "label": "Recovery"
+    },
+    {
+      "id": "terminal",
+      "label": "Terminal outcomes"
+    }
+  ],
+  "states": [
+    {
+      "id": "received",
+      "type": "start",
+      "label": "Received",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "reserved",
+      "type": "active",
+      "label": "Funds reserved",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "posting",
+      "type": "active",
+      "label": "Posting to core",
+      "lane": "main",
+      "col": 2,
+      "step": "03"
+    },
+    {
+      "id": "posted",
+      "type": "decision",
+      "label": "Core answered",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "settled",
+      "type": "success",
+      "label": "Settled",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "awaitingCore",
+      "type": "waiting",
+      "label": "Awaiting the core",
+      "lane": "waiting",
+      "col": 0,
+      "width": 150
+    },
+    {
+      "id": "failed",
+      "type": "failure",
+      "label": "Retryable failure",
+      "lane": "recovery",
+      "col": 0,
+      "yOffset": 90,
+      "height": 48,
+      "width": 150
+    },
+    {
+      "id": "compensating",
+      "type": "failure",
+      "label": "Compensating",
+      "lane": "recovery",
+      "col": 2,
+      "yOffset": 90,
+      "height": 48,
+      "width": 150
+    },
+    {
+      "id": "expired",
+      "type": "failure",
+      "label": "Expired",
+      "lane": "terminal",
+      "col": 0
+    },
+    {
+      "id": "rejected",
+      "type": "failure",
+      "label": "Rejected",
+      "lane": "terminal",
+      "col": 1
+    },
+    {
+      "id": "reversed",
+      "type": "failure",
+      "label": "Reversed",
+      "lane": "terminal",
+      "col": 2
+    }
+  ],
+  "transitions": [
+    {
+      "id": "no-answer",
+      "from": "posting",
+      "to": "awaitingCore",
+      "label": "no answer",
+      "variant": "default",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 24
+    },
+    {
+      "id": "timeout",
+      "from": "awaitingCore",
+      "to": "failed",
+      "label": "timeout",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 24
+    },
+    {
+      "id": "resend",
+      "from": "failed",
+      "to": "posting",
+      "label": "resend, same key",
+      "variant": "emphasis",
+      "fromSide": "left",
+      "toSide": "top",
+      "via": [
+        [
+          20,
+          392
+        ],
+        [
+          20,
+          84
+        ],
+        [
+          402,
+          84
+        ]
+      ],
+      "labelSegment": 2
+    },
+    {
+      "id": "exhausted",
+      "from": "failed",
+      "to": "expired",
+      "label": "budget spent",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 24
+    },
+    {
+      "id": "declined",
+      "from": "posted",
+      "to": "rejected",
+      "label": "declined",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 24
+    },
+    {
+      "id": "reversal-asked",
+      "from": "settled",
+      "to": "compensating",
+      "label": "reversal asked",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight",
+      "labelDy": 24
+    },
+    {
+      "id": "reversal-done",
+      "from": "compensating",
+      "to": "reversed",
+      "variant": "security",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "route": "straight"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "emerald",
+      "title": "Why the states are named",
+      "items": [
+        "A payment with no answer is a state, not a missing row",
+        "Reserved and Settled are different facts about the same money",
+        "An operator can answer 'where is my payment' from the state alone"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Retry without paying twice",
+      "items": [
+        "The idempotency key is claimed before funds are reserved",
+        "A resend carries the same key, so the core sees one instruction",
+        "Retries are bounded; Expired is a real outcome, not a stuck row"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "What the prototype could not do",
+      "items": [
+        "It had no idempotency, so a replay could pay twice",
+        "It used floating-point money; the target uses NUMERIC(19,4)",
+        "It had a synchronous cross-domain callback, now a Service Bus read model"
+      ]
+    }
+  ]
+}

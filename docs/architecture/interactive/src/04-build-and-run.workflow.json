@@ -1,0 +1,337 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Shipping Into a Private Network",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "animation": "trace",
+    "views": [
+      {
+        "id": "happy-path",
+        "label": "1 \u00b7 Commit to rollout",
+        "focus": [
+          "pr",
+          "build",
+          "gates",
+          "push",
+          "approve",
+          "rollout"
+        ],
+        "note": "One reviewed change becomes one signed image, approved once, with the schema migrated before any pod is replaced."
+      },
+      {
+        "id": "blocking-gates",
+        "label": "2 \u00b7 What stops a release",
+        "focus": [
+          "gates",
+          "blocked"
+        ],
+        "note": "SonarQube and Trivy are blocking, not advisory. A red gate ends the release rather than warning about it."
+      },
+      {
+        "id": "image-custody",
+        "label": "3 \u00b7 One image, imported",
+        "focus": [
+          "build",
+          "push",
+          "approve"
+        ],
+        "note": "Promotion between environments is a registry import, never a rebuild, so the tested bytes are the shipped bytes."
+      },
+      {
+        "id": "inside-the-spoke",
+        "label": "4 \u00b7 Agents inside a spoke",
+        "focus": [
+          "build",
+          "rollout"
+        ],
+        "note": "A hosted agent cannot reach a private endpoint, so the agent pool and the schema migration both run inside the network."
+      },
+      {
+        "id": "recovery",
+        "label": "5 \u00b7 Recovery",
+        "focus": [
+          "rollout",
+          "rollback"
+        ],
+        "note": "A failed health check stops the rollout before it reaches every customer, and the last good image is restored."
+      }
+    ],
+    "viewBox": [
+      1130,
+      528
+    ],
+    "legend": {
+      "mode": "auto",
+      "entries": {
+        "frontend": {
+          "label": "Developer change"
+        },
+        "backend": {
+          "label": "Build step"
+        },
+        "security": {
+          "label": "Gate or approval"
+        },
+        "database": {
+          "label": "Artifact or schema"
+        },
+        "messagebus": {
+          "label": "Recovery action"
+        },
+        "cloud": {
+          "label": "Deployment target"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "ci",
+      "label": "Change, build and sign"
+    },
+    {
+      "id": "release",
+      "label": "Approve and roll out"
+    },
+    {
+      "id": "exception",
+      "label": "Stop and roll back",
+      "variant": "exception"
+    }
+  ],
+  "phases": [
+    {
+      "id": "change_phase",
+      "label": "Change",
+      "fromCol": 0,
+      "toCol": 1
+    },
+    {
+      "id": "verify_phase",
+      "label": "Verify and sign",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "promote_phase",
+      "label": "Approve and promote",
+      "fromCol": 4,
+      "toCol": 5,
+      "variant": "dashed"
+    }
+  ],
+  "groups": [
+    {
+      "id": "blocking",
+      "label": "Blocking gates",
+      "lane": "ci",
+      "fromCol": 2,
+      "toCol": 3,
+      "variant": "emphasis"
+    },
+    {
+      "id": "recovery_path",
+      "label": "Recovery path",
+      "lane": "exception",
+      "fromCol": 2,
+      "toCol": 4,
+      "variant": "security"
+    }
+  ],
+  "mainPath": [
+    "pr",
+    "build",
+    "gates",
+    "push",
+    "approve",
+    "rollout"
+  ],
+  "semanticChecks": {
+    "allowedRoots": [
+      "pr"
+    ],
+    "allowedTerminals": [
+      "blocked"
+    ],
+    "requiredEdges": [
+      {
+        "from": "gates",
+        "to": "blocked"
+      },
+      {
+        "from": "approve",
+        "to": "rollout"
+      }
+    ]
+  },
+  "nodes": [
+    {
+      "id": "pr",
+      "lane": "ci",
+      "col": 0,
+      "type": "frontend",
+      "label": "Pull request",
+      "sublabel": "one reviewer",
+      "width": 132
+    },
+    {
+      "id": "build",
+      "lane": "ci",
+      "col": 1,
+      "type": "backend",
+      "label": "Build image",
+      "sublabel": "VMSS agents in a spoke",
+      "width": 132
+    },
+    {
+      "id": "gates",
+      "lane": "ci",
+      "col": 2,
+      "type": "security",
+      "label": "Quality gates",
+      "sublabel": "SonarQube, Trivy",
+      "width": 132
+    },
+    {
+      "id": "push",
+      "lane": "ci",
+      "col": 3,
+      "type": "database",
+      "label": "Sign into ACR",
+      "sublabel": "Notation, Premium",
+      "width": 132
+    },
+    {
+      "id": "approve",
+      "lane": "release",
+      "col": 4,
+      "type": "security",
+      "label": "PIM approval",
+      "sublabel": "just-in-time, dual",
+      "width": 132
+    },
+    {
+      "id": "rollout",
+      "lane": "release",
+      "col": 5,
+      "type": "cloud",
+      "label": "Flyway, then Helm",
+      "sublabel": "schema before pods",
+      "width": 132
+    },
+    {
+      "id": "blocked",
+      "lane": "exception",
+      "col": 2,
+      "type": "security",
+      "label": "Stop the release",
+      "sublabel": "a gate is red",
+      "width": 132
+    },
+    {
+      "id": "rollback",
+      "lane": "exception",
+      "col": 4,
+      "type": "messagebus",
+      "label": "Roll back",
+      "sublabel": "last good image",
+      "width": 132
+    }
+  ],
+  "edges": [
+    {
+      "id": "merge",
+      "from": "pr",
+      "to": "build",
+      "label": "merge",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "scan",
+      "from": "build",
+      "to": "gates",
+      "role": "main"
+    },
+    {
+      "id": "green",
+      "from": "gates",
+      "to": "push",
+      "label": "green",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "import",
+      "from": "push",
+      "to": "approve",
+      "label": "import, never rebuild",
+      "variant": "emphasis",
+      "role": "main"
+    },
+    {
+      "id": "release",
+      "from": "approve",
+      "to": "rollout",
+      "label": "release",
+      "variant": "security",
+      "role": "main"
+    },
+    {
+      "id": "red",
+      "from": "gates",
+      "to": "blocked",
+      "label": "red",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "unhealthy",
+      "from": "rollout",
+      "to": "rollback",
+      "label": "health check fails",
+      "variant": "security",
+      "role": "error"
+    },
+    {
+      "id": "restore",
+      "from": "rollback",
+      "to": "rollout",
+      "label": "restore",
+      "variant": "dashed",
+      "role": "return"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Three environments, one image",
+      "items": [
+        "dev 10.10.0.0/16, staging 10.20.0.0/16, production 10.1.0.0/16",
+        "The same templates deploy all three; dev and staging run smaller",
+        "Promotion is a registry import, so the tested bytes ship"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "The pipeline must obey the network",
+      "items": [
+        "A hosted agent cannot reach a private endpoint at all",
+        "The agent pool sits in the shared-services spoke with no public IP",
+        "Flyway runs from there, before any pod is replaced"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Left out on purpose",
+      "items": [
+        "No service mesh and no confidential computing",
+        "No active-active second region: if this region is down, we are down",
+        "Azure Policy starts in audit mode and moves to deny at assurance"
+      ]
+    }
+  ]
+}
